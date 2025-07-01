@@ -18,7 +18,7 @@ params:
       - name: Resume
         url: "resume"
       - name: Blog
-        url: "/Posts"
+        url: "/posts"
 
 
   socialIcons: # optional
