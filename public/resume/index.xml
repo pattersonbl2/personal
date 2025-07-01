@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Resumes on Thought of  Mad Sre</title>
+    <link>http://localhost:1313/resume/</link>
+    <description>Recent content in Resumes on Thought of  Mad Sre</description>
+    <generator>Hugo -- 0.147.9</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/resume/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Brandon Patterson Resume</title>
+      <link>http://localhost:1313/resume/resume/</link>
+      <pubDate>Mon, 30 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/resume/</guid>
+      <description>&lt;h1 id=&#34;brandon-patterson&#34;&gt;Brandon Patterson&lt;/h1&gt;
+&lt;p&gt;Charlotte, NC 28208&lt;br&gt;
+📞 (804) 399-4165&lt;br&gt;
+📧 &lt;a href=&#34;mailto:bpatterson@ark31.info&#34;&gt;bpatterson@ark31.info&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;site-reliability--cloud-infrastructure-leader&#34;&gt;Site Reliability &amp;amp; Cloud Infrastructure Leader&lt;/h2&gt;
+&lt;p&gt;Engineering Manager with 3+ years of experience leading cloud-native infrastructure and site reliability initiatives at scale. Proven success in Kubernetes administration, cloud migrations, and infrastructure automation across GCP and AWS. Passionate about open source, scalable systems, and mentoring high-performing teams.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;experience&#34;&gt;Experience&lt;/h2&gt;
+&lt;h3 id=&#34;mozilla--remote&#34;&gt;Mozilla – Remote&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Site Reliability Engineer&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Nov 2023 – Present&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Led infrastructure design and deployment in GCP using Terraform, reducing manual overhead and improving scalability.&lt;/li&gt;
+&lt;li&gt;Migrated production workloads from AWS to GCP, achieving a 40% cost reduction.&lt;/li&gt;
+&lt;li&gt;Managed multi-tenant Kubernetes clusters supporting 50M+ users, ensuring high availability and performance.&lt;/li&gt;
+&lt;li&gt;Developed Helm charts and CI/CD pipelines (GitHub Actions) to standardize deployments and improve developer velocity.&lt;/li&gt;
+&lt;li&gt;Acted as incident commander for critical services, driving root cause analysis and reliability improvements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mozilla--remote-1&#34;&gt;Mozilla – Remote&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Software Engineer, Full-Stack Support &amp;amp; SRE&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;June 2021 – Nov 2023&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
