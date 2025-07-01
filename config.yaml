@@ -7,21 +7,28 @@ params:
   profileMode:
     enabled: true
     title: "Brandon Blog" # optional default will be site title
-    subtitle: "Working log site built with Hugo"
-    imageUrl: "<image link>" # optional
+    subtitle: "Working Blog site built with Hugo"
+    imageUrl: "/images/bleach-styled-image.png" # optional
     imageTitle: "Profile Pic" # optional
-    imageWidth: 120 # custom size
-    imageHeight: 120 # custom size
+    imageWidth: 200 # custom size
+    imageHeight: 200 # custom size
     buttons:
       - name: Archive
-        url: "/archive"
+        url: "archives"
       - name: Resume
-        url: "/resume"
-      - name: Github
-        url: "https://github.com/pattersonbl2"
+        url: "resume"
+      - name: Blog
+        url: "/Posts"
+
 
   socialIcons: # optional
     - name: "Github"
       url: "https://github.com/pattersonbl2"
     - name: "Linkedln"
       url: "https://www.linkedin.com/in/pattersonbl2/"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON 

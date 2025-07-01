@@ -1,12 +1,11 @@
 ---
-title: "Brandon Patterson Resume"
-date: 2025-06-30
-draft: false
----
+title: "Current Resume"
+url: "/resume/"
 
-# Brandon Patterson  
-Charlotte, NC 28208  
-📞 (804) 399-4165  
+---
+---
+### Brandon Patterson  
+Charlotte, NC 28208
 📧 bpatterson@ark31.info  
 
 ## Site Reliability & Cloud Infrastructure Leader  
