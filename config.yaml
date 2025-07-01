@@ -1,15 +1,15 @@
 baseURL: 'https://ark31.info'
 languageCode: 'en-us'
-title: "Thought of  Mad Sre"
+title: "Diary Of  Mad Engineer"
 theme: "PaperMod"
 
 params:
   profileMode:
     enabled: true
     title: "Brandon Blog" # optional default will be site title
-    subtitle: "Website Deploy with hugo"
+    subtitle: "Working log site built with Hugo"
     imageUrl: "<image link>" # optional
-    imageTitle: "<title of image as alt>" # optional
+    imageTitle: "Profile Pic" # optional
     imageWidth: 120 # custom size
     imageHeight: 120 # custom size
     buttons:
