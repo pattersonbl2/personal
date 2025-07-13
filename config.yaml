@@ -3,7 +3,16 @@ languageCode: 'en-us'
 title: "Diary Of  Mad Engineer"
 theme: "PaperMod"
 
+
+
 params:
+  assets:
+    favicon: "/assets/favicon.ico"
+    favicon16x16: "/assets/favicon-16x16.png"
+    favicon32x32: "/assets/favicon-32x32.png"
+    apple_touch_icon: "/assets/apple-touch-icon.png"
+    
+
   profileMode:
     enabled: true
     title: "Brandon Blog" # optional default will be site title
@@ -26,6 +35,10 @@ params:
       url: "https://github.com/pattersonbl2"
     - name: "Linkedln"
       url: "https://www.linkedin.com/in/pattersonbl2/"
+  label:
+    text: "Home"
+    icon: "/assets/apple-touch-icon.png"
+    iconHeight: 35
 
 outputs:
   home:
