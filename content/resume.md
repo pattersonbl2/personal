@@ -3,64 +3,67 @@ title: "Current Resume"
 url: "/resume/"
 
 ---
----
-### Brandon Patterson  
-Charlotte, NC 28208
-📧 bpatterson@ark31.info  
+## BRANDON PATTERSON SITE RELIABILITY ENGINEER
 
-## Site Reliability & Cloud Infrastructure Leader  
-Engineering Manager with 3+ years of experience leading cloud-native infrastructure and site reliability initiatives at scale. Proven success in Kubernetes administration, cloud migrations, and infrastructure automation across GCP and AWS. Passionate about open source, scalable systems, and mentoring high-performing teams.
+### Charlotte, NC | linkedin.com/in/pattersonbl
 
----
+A driven engineering professional highly regarded for progressive experience leading cloud-native infrastructure and site reliability
+initiatives at scale. Recognized as a motivated self-starter with proven success in Kubernetes administration, cloud migrations, and
+infrastructure automation across GCP and AWS. Builds internal platforms to empower product teams and scale service reliability.
+Passionate about open source, scalable systems, and mentoring high-performing teams.
 
-## Experience  
+CORE COMPETENCIES
 
-### Mozilla – Remote  
-**Site Reliability Engineer**  
-*Nov 2023 – Present*  
-- Led infrastructure design and deployment in GCP using Terraform, reducing manual overhead and improving scalability.  
-- Migrated production workloads from AWS to GCP, achieving a 40% cost reduction.  
-- Managed multi-tenant Kubernetes clusters supporting 50M+ users, ensuring high availability and performance.  
-- Developed Helm charts and CI/CD pipelines (GitHub Actions) to standardize deployments and improve developer velocity.  
-- Acted as incident commander for critical services, driving root cause analysis and reliability improvements.
+**Cloud & Infrastructure:** GCP, AWS, Terraform, Kubernetes, Docker, Helm **| CI/CD & Automation:** GitHub Actions, CircleCI, Jenkins
+**Programming Languages:** Python, JavaScript, TypeScript **| Networking:** Cloud Networking, Kubernetes Networking, NGINX proxy, DNS,
+Network Security **| Leadership:** Incident Management, Cross-functional Collaboration, Infrastructure Planning
 
-### Mozilla – Remote  
-**Software Engineer, Full-Stack Support & SRE**  
-*June 2021 – Nov 2023*  
-- Supported GKE infrastructure and improved operational efficiency across production environments.  
-- Built internal QA tools in TypeScript and automated test workflows.  
+PROFESSIONAL EXPERIENCE
+
+**Site Reliability Engineer |** Mozilla | Remote | 2023 – Present
+
+- Launched a new infrastructure design in GCP using Terraform, reducing manual overhead and improving scalability.
+- Created reusable infrastructure for shared environments, automated tasks, improved onboarding to the shared cluster, and
+    reduced deployment time from hours to seconds.
+- Migrated production workloads from AWS to GCP, achieving a 40% cost reduction.
+- Managed multi-tenant Kubernetes clusters supporting 50M+ users, ensuring high availability and performance.
+- Developed Helm charts and CI/CD pipelines (GitHub Actions) to standardize deployments and improve developer velocity, increase
+    output, and virtually eliminate manual labor hours for push production releases.
+- Acted as incident responder for critical services, driving root cause analysis and reliability improvements.
+- Participated in MozCloud platform’s rotational triage support schedule.
+- Drove initiatives across SRE spectrum for several production services, including observability, automation, release engineering,
+    capacity planning, and on-call operations.
+
+**Software Engineer, Hubs Support & SRE |** Mozilla | Remote | 2023 – Present
+
+- Supported GKE infrastructure and improved operational efficiency across production environments.
+- Collaborated to build GKE infrastructure, driving faster deployments and ease of use by end-users.
+- Built internal QA tools in TypeScript for automated test workflows.
+- Automated key testing features to decrease time to completion by 75% (1 day to < 2 hours).
 - Enhanced CI/CD pipelines with GitHub Actions, reducing deployment friction.
 
-### Audacious Inquiry – Remote  
-**SysOps Administrator (Azure/AWS)**  
-*May 2020 – May 2021*  
-- Served as IAM SME for Azure AD, managing secure access for 200+ users.  
-- Deployed AWS infrastructure via Terraform, reducing onboarding time by 10%.  
-- Managed SSL certificates and DNS for state agency systems, ensuring compliance and uptime.
+**IT Administrator |** Single Stone Consulting | Richmond, VA | 2019 – 2020
 
----
+- Oversaw daily IT administration tasks, including user provisioning, software updates, and system troubleshooting for consulting
+    teams, reducing ticket resolution time.
+- Managed shared Windows hybrid cloud environment for financial operations, office servers, and cloud via AWS.
+- Leveraged AWS expertise to reduce cloud service downtime and expand server as needed.
 
-## Projects  
+### CONSULTANCY & SPECIAL PROJECTS
 
-### GCP Migration (2024–2025)  
-- Led migration of applications from single-tenant to shared Kubernetes clusters, improving resource efficiency and maintainability.
+- **GCP Migration (2024 – 2025)** Led application migration from single-tenant to shared Kubernetes clusters, improving resource
+    efficiency and clarity.
+- **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure (relay.firefox.com, mozmail.com)
+    using Terraform and AWS.
+- **Audacious Inquiry, Remote SysOps Administrator (Azure/AWS) (2020 – 2021)** Served as identity access management SME for
+    Azure AD, managing secure access for 200+ users. Employed new endpoint services to protect computers, upholding data privacy
+    certification standards. Deployed AWS infrastructure via Terraform, reducing onboarding time 10% via automation. Managed SSL
+    certificates and DNS for state agency systems, ensuring 100% compliance and uptime.
+- **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided tech support during the DoD’s enterprise Windows 10
+    migration, deploying systems for 500 users across secure environments while minimizing downtime.
+- **VCU Health (2017 – 2018)** Supported the rollout of a multi-user login system for clinical environments, improving workstation
+    accessibility and reducing single-user conflicts on shared devices.
 
-### Email Services Deployment (2023–2024)  
-- Architected and deployed scalable email infrastructure (relay.firefox.com, mozmail.com) using Terraform and GKE.
+EDUCATION
 
----
-
-## Skills  
-
-- **Cloud & Infrastructure:** GCP, AWS, Terraform, Kubernetes (Admin), Docker, Helm  
-- **CI/CD & Automation:** GitHub Actions, CircleCI, Jenkins  
-- **Languages:** Python, JavaScript, TypeScript  
-- **Networking:** L3/L4 Networking, Kubernetes Networking, NGINX, DNS, Network Security  
-- **Leadership:** Incident Management, Cross-functional Collaboration, Infrastructure Planning
-
----
-
-## Education  
-
-**Virginia Commonwealth University – Richmond, VA**  
-Bachelor of Science (BS), May 2017
+**Virginia Commonwealth University, Richmond, VA:** _Bachelor of Science_
