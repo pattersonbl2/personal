@@ -20,7 +20,7 @@ Network Security **| Leadership:** Incident Management, Cross-functional Collabo
 
 PROFESSIONAL EXPERIENCE
 
-**Site Reliability Engineer |** Mozilla | Remote | 2023 – Present
+**Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
 - Launched a new infrastructure design in GCP using Terraform, reducing manual overhead and improving scalability.
 - Created reusable infrastructure for shared environments, automated tasks, improved onboarding to the shared cluster, and
@@ -34,13 +34,19 @@ PROFESSIONAL EXPERIENCE
 - Drove initiatives across SRE spectrum for several production services, including observability, automation, release engineering,
     capacity planning, and on-call operations.
 
-**Software Engineer, Hubs Support & SRE |** Mozilla | Remote | 2023 – Present
+**Software Engineer, Hubs Support|** Mozilla | Remote | 2021 – 2023
 
 - Supported GKE infrastructure and improved operational efficiency across production environments.
 - Collaborated to build GKE infrastructure, driving faster deployments and ease of use by end-users.
 - Built internal QA tools in TypeScript for automated test workflows.
 - Automated key testing features to decrease time to completion by 75% (1 day to < 2 hours).
 - Enhanced CI/CD pipelines with GitHub Actions, reducing deployment friction.
+
+- **SysOps Administrator (Azure/AWS)** Audacious Inquiry | 2020 - 2021
+    - Served as Identity Access Management SME for Azure AD, managing secure access for 200+ users.
+    - Implemented new endpoint protection services, maintaining compliance with data privacy certification standards.
+    - Deployed AWS infrastructure using Terraform, automating onboarding processes and reducing onboarding time by 10%.
+    - Managed SSL certificates and DNS for state agency systems, ensuring 100% compliance and uptime.
 
 **IT Administrator |** Single Stone Consulting | Richmond, VA | 2019 – 2020
 
@@ -55,10 +61,6 @@ PROFESSIONAL EXPERIENCE
     efficiency and clarity.
 - **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure (relay.firefox.com, mozmail.com)
     using Terraform and AWS.
-- **Audacious Inquiry, Remote SysOps Administrator (Azure/AWS) (2020 – 2021)** Served as identity access management SME for
-    Azure AD, managing secure access for 200+ users. Employed new endpoint services to protect computers, upholding data privacy
-    certification standards. Deployed AWS infrastructure via Terraform, reducing onboarding time 10% via automation. Managed SSL
-    certificates and DNS for state agency systems, ensuring 100% compliance and uptime.
 - **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided tech support during the DoD’s enterprise Windows 10
     migration, deploying systems for 500 users across secure environments while minimizing downtime.
 - **VCU Health (2017 – 2018)** Supported the rollout of a multi-user login system for clinical environments, improving workstation
@@ -67,3 +69,6 @@ PROFESSIONAL EXPERIENCE
 EDUCATION
 
 **Virginia Commonwealth University, Richmond, VA:** _Bachelor of Science_
+
+Certifications
+**AWS Certified Solutions Architect - Associate:**  2020-2023  
