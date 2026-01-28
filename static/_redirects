@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects file
+# Handles trailing slashes and common routing issues
+
+# Ensure trailing slashes for directories (redirect without slash to with slash)
+/archives /archives/ 301
+/resume /resume/ 301
+/posts /posts/ 301

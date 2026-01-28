@@ -1,4 +1,4 @@
-baseURL: 'https://ark31.info'
+baseURL: '/'  # Will be overridden by build script using CF_PAGES_URL or production URL
 languageCode: 'en-us'
 title: "Diary Of  Mad Engineer"
 theme: "PaperMod"
@@ -14,11 +14,11 @@ params:
     imageHeight: 200 # custom size
     buttons:
       - name: Archive
-        url: "archives"
+        url: "/archives/"
       - name: Resume
-        url: "resume"
+        url: "/resume/"
       - name: Blog
-        url: "/posts"
+        url: "/posts/"
 
 
   socialIcons: # optional
