@@ -24,7 +24,7 @@ params:
   socialIcons: # optional
     - name: "Github"
       url: "https://github.com/pattersonbl2"
-    - name: "Linkedln"
+    - name: "LinkedIn"
       url: "https://www.linkedin.com/in/pattersonbl2/"
 
 outputs:

@@ -5,7 +5,7 @@ url: "/resume/"
 ---
 ## BRANDON PATTERSON SITE RELIABILITY ENGINEER
 
-### Charlotte, NC | linkedin.com/in/pattersonbl
+### Charlotte, NC | linkedin.com/in/pattersonbl2
 
 A driven engineering professional highly regarded for progressive experience leading cloud-native infrastructure and site reliability
 initiatives at scale. Recognized as a motivated self-starter with proven success in Kubernetes administration, cloud migrations, and
@@ -19,6 +19,14 @@ CORE COMPETENCIES
 Network Security **| Leadership:** Incident Management, Cross-functional Collaboration, Infrastructure Planning
 
 PROFESSIONAL EXPERIENCE
+
+**Mid-Level DevOps Engineer |** Jasper.ai | Remote | 2026 – Present
+
+- Leading initiatives to modernize infrastructure and reduce technical debt accumulated during rapid growth.
+- Implementing comprehensive observability practices including metrics, logging, and distributed tracing to improve system visibility and incident response.
+- Building and improving CI/CD pipelines and deployment automation to increase developer velocity and reduce manual operations.
+- Establishing reliability best practices and incident response procedures to improve system stability.
+- Collaborating with engineering teams to identify and address infrastructure pain points and scalability concerns.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
