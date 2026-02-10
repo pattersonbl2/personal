@@ -24,5 +24,7 @@ _testmain.go
 
 ./public
 .DS_Store
+backend/.env
+backend/resume.pdf
 .hugo_build.lock
 resources/_gen/

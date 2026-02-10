@@ -3,9 +3,12 @@ title: "Current Resume"
 url: "/resume/"
 
 ---
+
+{{< resume-download >}}
+
 ## BRANDON PATTERSON SITE RELIABILITY ENGINEER
 
-### Charlotte, NC | linkedin.com/in/pattersonbl
+### Charlotte, NC | linkedin.com/in/pattersonbl2
 
 A driven engineering professional highly regarded for progressive experience leading cloud-native infrastructure and site reliability
 initiatives at scale. Recognized as a motivated self-starter with proven success in Kubernetes administration, cloud migrations, and

@@ -3,6 +3,11 @@ languageCode: 'en-us'
 title: "Diary Of  Mad Engineer"
 theme: "PaperMod"
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 params:
   profileMode:
     enabled: true
@@ -19,7 +24,12 @@ params:
         url: "/resume/"
       - name: Blog
         url: "/posts/"
+      - name: Contact
+        url: "/contact/"
 
+
+  # Full URL for resume PDF download (e.g. http://localhost:8080/api/resume?token=placeholder)
+  resumeDownloadURL: "https://api.ark31.info/api/resume?token=edac425f1f9058c4d4b787a707b51faf"
 
   socialIcons: # optional
     - name: "Github"
