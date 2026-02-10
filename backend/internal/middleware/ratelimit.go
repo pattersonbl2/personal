@@ -13,6 +13,29 @@ func RateLimit(next http.Handler, limit int, window time.Duration) http.Handler 
 	mu := sync.Mutex{}
 	ips := make(map[string][]time.Time)
 
+	// Periodic cleanup to prevent unbounded memory growth
+	go func() {
+		for {
+			time.Sleep(window)
+			mu.Lock()
+			cutoff := time.Now().Add(-window)
+			for ip, times := range ips {
+				var recent []time.Time
+				for _, t := range times {
+					if t.After(cutoff) {
+						recent = append(recent, t)
+					}
+				}
+				if len(recent) == 0 {
+					delete(ips, ip)
+				} else {
+					ips[ip] = recent
+				}
+			}
+			mu.Unlock()
+		}
+	}()
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ip := r.RemoteAddr
 		// Prefer Cloudflare's real IP when behind CF; otherwise X-Forwarded-For (first = client)

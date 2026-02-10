@@ -26,6 +26,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	r.Body = http.MaxBytesReader(w, r.Body, 64*1024) // 64KB limit
 	if err := r.ParseForm(); err != nil {
 		sendErrorHTML(w, "Bad request.", http.StatusBadRequest)
 		return
@@ -65,7 +66,8 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	apiKey := os.Getenv("RESEND_API_KEY")
 	contactEmail := os.Getenv("CONTACT_EMAIL")
 	if apiKey == "" || contactEmail == "" {
-		sendErrorHTML(w, "Email not configured. Set RESEND_API_KEY and CONTACT_EMAIL environment variables.", http.StatusInternalServerError)
+		log.Println("contact: RESEND_API_KEY or CONTACT_EMAIL not set")
+		sendErrorHTML(w, "Email service is temporarily unavailable.", http.StatusInternalServerError)
 		return
 	}
 
