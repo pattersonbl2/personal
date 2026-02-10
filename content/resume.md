@@ -3,6 +3,9 @@ title: "Current Resume"
 url: "/resume/"
 
 ---
+
+{{< resume-download >}}
+
 ## BRANDON PATTERSON SITE RELIABILITY ENGINEER
 
 ### Charlotte, NC | linkedin.com/in/pattersonbl2

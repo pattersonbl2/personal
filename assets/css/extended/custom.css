@@ -1,0 +1,94 @@
+/* Profile buttons - larger, more visible */
+.buttons .button {
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 120px;
+  text-align: center;
+}
+
+.buttons .button-inner {
+  padding: 0 4px;
+}
+
+/* Contact form - inputs and submit button */
+.contact-form {
+  max-width: 480px;
+  margin-top: 1.5rem;
+}
+
+.contact-form p {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--primary);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: var(--entry);
+  color: var(--content);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-form button[type="submit"] {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--theme);
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.contact-form button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.contact-form button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* Resume download button */
+.post-content .button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 1.5rem;
+  background: var(--tertiary);
+  color: var(--primary);
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: transform 0.1s;
+}
+
+.post-content .button:hover {
+  opacity: 0.9;
+}
+
+.post-content .button:active {
+  transform: scale(0.96);
+}
