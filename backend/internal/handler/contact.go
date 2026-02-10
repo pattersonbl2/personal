@@ -131,7 +131,7 @@ func sendStyledHTML(w http.ResponseWriter, message string) {
 <body>
   <div class="card">
     <p>%s</p>
-    <a href="javascript:history.back()">Back</a>
+    <a href="https://ark31.info/">Back to Site</a>
   </div>
 </body>
 </html>`, message)
