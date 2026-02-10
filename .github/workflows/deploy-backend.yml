@@ -1,0 +1,52 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/663187895323/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-actions@calm-aegis-436701-v1.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Auth Docker
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+      - name: Build and push
+        run: |
+          docker build --platform linux/amd64 \
+            -t us-central1-docker.pkg.dev/calm-aegis-436701-v1/backend/api:latest \
+            -t us-central1-docker.pkg.dev/calm-aegis-436701-v1/backend/api:${{ github.sha }} \
+            backend/
+          docker push us-central1-docker.pkg.dev/calm-aegis-436701-v1/backend/api --all-tags
+
+      - name: Deploy to Stage
+        run: |
+          gcloud run services update backend-api \
+            --project=calm-aegis-436701-v1 \
+            --region=us-central1 \
+            --image=us-central1-docker.pkg.dev/calm-aegis-436701-v1/backend/api:${{ github.sha }} \
+            --quiet
+
+      - name: Deploy to Prod
+        run: |
+          gcloud run services update backend-api \
+            --project=training-project-467719 \
+            --region=us-central1 \
+            --image=us-central1-docker.pkg.dev/calm-aegis-436701-v1/backend/api:${{ github.sha }} \
+            --quiet
