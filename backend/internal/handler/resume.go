@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"crypto/subtle"
 	"log"
 	"net/http"
 	"os"
@@ -23,7 +24,7 @@ func ResumeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if token == "" || token != expected {
+	if token == "" || subtle.ConstantTimeCompare([]byte(token), []byte(expected)) != 1 {
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
 		return
 	}

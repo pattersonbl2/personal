@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Cloudflare Pages build script for Hugo
 # Uses CF_PAGES_URL for preview deployments, falls back to production URL

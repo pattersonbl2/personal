@@ -19,7 +19,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health", healthHandler)
 	mux.Handle("/api/contact", middleware.RateLimit(http.HandlerFunc(handler.ContactHandler), 5, time.Hour))
-	mux.HandleFunc("/api/resume", handler.ResumeHandler)
+	mux.Handle("/api/resume", middleware.RateLimit(http.HandlerFunc(handler.ResumeHandler), 10, time.Minute))
 
 	var c *cors.Cors
 	if origins := os.Getenv("ALLOWED_ORIGINS"); origins != "" {
@@ -34,6 +34,7 @@ func main() {
 			AllowCredentials: false,
 		})
 	} else {
+		log.Println("WARNING: ALLOWED_ORIGINS not set, CORS allows all origins")
 		c = cors.Default()
 	}
 	h := middleware.SecurityHeaders(c.Handler(mux))
