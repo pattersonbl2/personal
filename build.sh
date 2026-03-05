@@ -2,13 +2,16 @@
 set -e
 
 # Cloudflare Pages build script for Hugo
-# Uses CF_PAGES_URL for preview deployments, falls back to production URL
+# Uses production URL for main branch, CF_PAGES_URL for preview deployments
 
-if [ -n "$CF_PAGES_URL" ]; then
+if [ "$CF_PAGES_BRANCH" = "main" ]; then
+  # Production deployment - use the configured domain
+  BASE_URL="https://ark31.info"
+elif [ -n "$CF_PAGES_URL" ]; then
   # Preview deployment - use the provided URL
   BASE_URL="$CF_PAGES_URL"
 else
-  # Production deployment - use the configured domain
+  # Local build fallback
   BASE_URL="https://ark31.info"
 fi
 
