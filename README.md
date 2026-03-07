@@ -1,13 +1,22 @@
-## Summary 
+## Summary
 
-### Dev Tooling 
-Hugo 
-- **Reasoning**
-I am still in the learning phase of being a software engineer. I wanted something simple and easy—a way to create a webpage for myself.
+Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudflare Pages at [ark31.info](https://ark31.info).
 
-### Deployment 
-- **cloudflare pages** 
-I have connected Cloudflare Pages to this repository to automatically deploy to staging for any new branch commits and to production when committed to the main branch.
+### Tech Stack
+- **Frontend:** Hugo static site with PaperMod theme
+- **Backend:** Go API on GCP Cloud Run (stage + prod) — handles contact form submissions and resume PDF downloads
+- **Infrastructure:** Terraform-managed GCP resources (Cloud Run, Artifact Registry, Secret Manager)
+- **Deployment:** Cloudflare Pages — auto-deploys staging on branch commits and production on merge to main
 
-### Future Plans 
-Connecting this webpage to the backend to enable more dynamic content.
+### Changes Made
+- **Contact form** — working contact page that submits to the Go backend API with honeypot spam protection
+- **Resume page** — full resume rendered in markdown with a PDF download button powered by the backend API
+- **Backend API** — Go service deployed to Cloud Run in both stage (`api-stage.ark31.info`) and prod (`api.ark31.info`) environments
+- **GCP infrastructure** — Terraform configs for Cloud Run, Artifact Registry, IAM, secrets, and custom domain mappings
+- **Profile landing page** — profile mode homepage with image, nav buttons (Archive, Resume, Blog, Contact), and social links (GitHub, LinkedIn)
+- **Search and archives** — built-in search and post archive pages
+
+### Future Ideas
+1. **Blog post series with tutorials** — write technical posts covering real-world SRE/DevOps topics (Terraform patterns, Kubernetes debugging, CI/CD pipelines) to showcase expertise and give back to the community
+2. **Visitor analytics dashboard** — integrate a privacy-friendly analytics tool (e.g., Plausible or Umami) to track page views, popular posts, and traffic sources without cookies
+3. **Projects showcase page** — a dedicated page highlighting personal and open-source projects with descriptions, tech used, and links to live demos or repos

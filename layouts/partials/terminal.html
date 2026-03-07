@@ -1,0 +1,194 @@
+<div class="go-terminal" aria-hidden="true">
+  <div class="go-terminal-header">
+    <div class="go-terminal-dots">
+      <span class="dot-red"></span>
+      <span class="dot-yellow"></span>
+      <span class="dot-green"></span>
+    </div>
+    <span class="go-terminal-filename" id="go-term-file"></span>
+    <div class="go-terminal-dots-spacer"></div>
+  </div>
+  <div class="go-terminal-body" id="go-term-body">
+    <pre id="go-term-out"></pre>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var CHAR_DELAY    = 12;
+  var NEWLINE_PAUSE = 50;
+  var SNIPPET_HOLD  = 2600;
+  var FADE_MS       = 350;
+
+  var KEYWORDS = new Set([
+    'break','case','chan','const','continue','default','defer','else',
+    'fallthrough','for','func','go','goto','if','import','interface',
+    'map','package','range','return','select','struct','switch','type','var',
+    'nil','true','false','iota',
+  ]);
+
+  function tokenize(code) {
+    var tokens = [];
+    var i = 0;
+    var n = code.length;
+
+    while (i < n) {
+      var ch = code[i];
+
+      // Line comment
+      if (ch === '/' && i + 1 < n && code[i + 1] === '/') {
+        var j = i;
+        while (j < n && code[j] !== '\n') j++;
+        tokens.push({ text: code.slice(i, j), cls: 'cmt' });
+        i = j;
+        continue;
+      }
+
+      // Double-quoted string
+      if (ch === '"') {
+        var j = i + 1;
+        while (j < n && code[j] !== '"') {
+          if (code[j] === '\\') j++;
+          j++;
+        }
+        j = Math.min(j + 1, n);
+        tokens.push({ text: code.slice(i, j), cls: 'str' });
+        i = j;
+        continue;
+      }
+
+      // Backtick string
+      if (ch === '`') {
+        var end = code.indexOf('`', i + 1);
+        var j = end === -1 ? n : end + 1;
+        tokens.push({ text: code.slice(i, j), cls: 'str' });
+        i = j;
+        continue;
+      }
+
+      // Identifier / keyword / type / function
+      if (/[a-zA-Z_]/.test(ch)) {
+        var j = i;
+        while (j < n && /[a-zA-Z0-9_]/.test(code[j])) j++;
+        var word = code.slice(i, j);
+        var cls = '';
+        if (KEYWORDS.has(word)) {
+          cls = 'kw';
+        } else if (j < n && code[j] === '(') {
+          cls = 'fn';
+        } else if (/^[A-Z]/.test(word)) {
+          cls = 'type';
+        }
+        tokens.push({ text: word, cls: cls });
+        i = j;
+        continue;
+      }
+
+      // Default: single character
+      tokens.push({ text: ch, cls: '' });
+      i++;
+    }
+
+    return tokens;
+  }
+
+  var snippets = [
+    {
+      filename: 'health_check.go',
+      code: 'package main\n\nimport (\n\t"context"\n\t"net/http"\n\t"sync"\n\t"time"\n)\n\ntype Result struct {\n\tTarget  string\n\tLatency time.Duration\n\tHealthy bool\n}\n\nfunc checkAll(ctx context.Context, targets []string) []Result {\n\tvar mu sync.Mutex\n\tvar results []Result\n\tvar wg sync.WaitGroup\n\n\tfor _, t := range targets {\n\t\twg.Add(1)\n\t\tgo func(target string) {\n\t\t\tdefer wg.Done()\n\t\t\tstart := time.Now()\n\t\t\t_, err := http.Get(target)\n\t\t\tmu.Lock()\n\t\t\tresults = append(results, Result{\n\t\t\t\tTarget:  target,\n\t\t\t\tLatency: time.Since(start),\n\t\t\t\tHealthy: err == nil,\n\t\t\t})\n\t\t\tmu.Unlock()\n\t\t}(t)\n\t}\n\n\twg.Wait()\n\treturn results\n}',
+    },
+    {
+      filename: 'middleware.go',
+      code: 'package middleware\n\nimport (\n\t"net/http"\n\t"sync"\n\t"time"\n)\n\n// RateLimit returns a middleware that limits requests per IP.\nfunc RateLimit(limit int, window time.Duration) func(http.Handler) http.Handler {\n\tvar mu sync.Mutex\n\tclients := make(map[string][]time.Time)\n\n\treturn func(next http.Handler) http.Handler {\n\t\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\t\tip := r.RemoteAddr\n\t\t\tmu.Lock()\n\t\t\tnow := time.Now()\n\t\t\tcutoff := now.Add(-window)\n\t\t\tvar recent []time.Time\n\t\t\tfor _, t := range clients[ip] {\n\t\t\t\tif t.After(cutoff) {\n\t\t\t\t\trecent = append(recent, t)\n\t\t\t\t}\n\t\t\t}\n\t\t\tif len(recent) >= limit {\n\t\t\t\tmu.Unlock()\n\t\t\t\thttp.Error(w, "too many requests", http.StatusTooManyRequests)\n\t\t\t\treturn\n\t\t\t}\n\t\t\tclients[ip] = append(recent, now)\n\t\t\tmu.Unlock()\n\t\t\tnext.ServeHTTP(w, r)\n\t\t})\n\t}\n}',
+    },
+    {
+      filename: 'server.go',
+      code: 'package main\n\nimport (\n\t"context"\n\t"log"\n\t"net/http"\n\t"os"\n\t"os/signal"\n\t"syscall"\n\t"time"\n)\n\nfunc main() {\n\tmux := http.NewServeMux()\n\tmux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {\n\t\tw.Write([]byte("OK"))\n\t})\n\n\tsrv := &http.Server{\n\t\tAddr:         ":8080",\n\t\tHandler:      mux,\n\t\tReadTimeout:  15 * time.Second,\n\t\tWriteTimeout: 15 * time.Second,\n\t\tIdleTimeout:  60 * time.Second,\n\t}\n\n\tgo func() {\n\t\tlog.Println("listening on :8080")\n\t\tif err := srv.ListenAndServe(); err != http.ErrServerClosed {\n\t\t\tlog.Fatalf("server: %v", err)\n\t\t}\n\t}()\n\n\tquit := make(chan os.Signal, 1)\n\tsignal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)\n\t<-quit\n\n\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n\tdefer cancel()\n\tif err := srv.Shutdown(ctx); err != nil {\n\t\tlog.Printf("shutdown: %v", err)\n\t}\n\tlog.Println("stopped")\n}',
+    },
+  ];
+
+  var snippetIdx = 0;
+  var tokenIdx   = 0;
+  var charIdx    = 0;
+  var tokens     = [];
+  var currentSpan = null;
+  var tid        = null;
+
+  var outEl  = null;
+  var bodyEl = null;
+  var fileEl = null;
+
+  function loadSnippet(idx) {
+    tokens = tokenize(snippets[idx].code);
+    fileEl.textContent = snippets[idx].filename;
+    tokenIdx    = 0;
+    charIdx     = 0;
+    currentSpan = null;
+  }
+
+  function step() {
+    if (tokenIdx >= tokens.length) {
+      tid = setTimeout(transition, SNIPPET_HOLD);
+      return;
+    }
+
+    var tok = tokens[tokenIdx];
+    var ch  = tok.text[charIdx];
+
+    if (charIdx === 0) {
+      if (tok.cls) {
+        currentSpan = document.createElement('span');
+        currentSpan.className = 'gt-' + tok.cls;
+        outEl.appendChild(currentSpan);
+      } else {
+        currentSpan = null;
+      }
+    }
+
+    var target = currentSpan || outEl;
+    target.appendChild(document.createTextNode(ch));
+    bodyEl.scrollTop = bodyEl.scrollHeight;
+
+    charIdx++;
+    if (charIdx >= tok.text.length) {
+      tokenIdx++;
+      charIdx = 0;
+    }
+
+    tid = setTimeout(step, ch === '\n' ? NEWLINE_PAUSE : CHAR_DELAY);
+  }
+
+  function transition() {
+    bodyEl.style.transition = 'opacity ' + FADE_MS + 'ms ease';
+    bodyEl.style.opacity    = '0';
+
+    setTimeout(function () {
+      outEl.innerHTML = '';
+      snippetIdx = (snippetIdx + 1) % snippets.length;
+      loadSnippet(snippetIdx);
+      bodyEl.style.opacity = '1';
+      tid = setTimeout(step, 200);
+    }, FADE_MS);
+  }
+
+  function init() {
+    outEl  = document.getElementById('go-term-out');
+    bodyEl = document.getElementById('go-term-body');
+    fileEl = document.getElementById('go-term-file');
+
+    if (!outEl) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    loadSnippet(0);
+    tid = setTimeout(step, 800);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

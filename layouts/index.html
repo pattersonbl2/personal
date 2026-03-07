@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+{{/* ── Hero ── */}}
+<div class="hero">
+  {{- with site.Params.imageUrl }}
+  <img class="hero-photo" src="{{ . | absURL }}" alt="{{ site.Params.author }}" width="90" height="90">
+  {{- end }}
+  <h1 class="hero-name">{{ site.Params.author }}</h1>
+  <p class="hero-role">{{ site.Params.role }} · <em>{{ site.Params.company }}</em></p>
+  <div class="hero-social">
+    {{- range site.Params.socialIcons }}
+    <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}">
+      {{- partial "svg-icon.html" (dict "name" .name "size" "18") }}
+      {{ .name }}
+    </a>
+    {{- end }}
+  </div>
+</div>
+
+{{/* ── Terminal hero ── */}}
+<div class="terminal-section">
+  {{- partial "terminal.html" . }}
+</div>
+
+{{/* ── Nav buttons ── */}}
+<div class="hero-buttons">
+  <a href="/archives/" class="hero-btn">Archive</a>
+  <a href="/posts/"   class="hero-btn">Blog</a>
+  <a href="/resume/"  class="hero-btn">Resume</a>
+  <a href="/contact/" class="hero-btn">Contact</a>
+</div>
+
+{{/* ── Recent posts ── */}}
+<div class="container">
+  <h2 class="section-title">Recent Posts</h2>
+  <div class="post-grid">
+    {{- $posts := where site.RegularPages "Type" "posts" }}
+    {{- range ($posts | first 6) }}
+    <a href="{{ .Permalink }}" class="post-card">
+      <div class="post-card-title">{{ .Title }}</div>
+      <div class="post-card-date">{{ .Date.Format "Jan 02, 2006" }}</div>
+      <div class="post-card-summary">{{ .Summary | plainify | truncate 120 }}</div>
+    </a>
+    {{- end }}
+  </div>
+</div>
+
+{{ end }}

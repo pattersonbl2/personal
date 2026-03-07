@@ -24,7 +24,8 @@ func ResumeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if token == "" || subtle.ConstantTimeCompare([]byte(token), []byte(expected)) != 1 {
+	// Always run constant-time compare even for empty token to avoid timing differences.
+	if subtle.ConstantTimeCompare([]byte(token), []byte(expected)) != 1 {
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
 		return
 	}

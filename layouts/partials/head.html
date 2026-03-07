@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d1117">
+
+<title>
+  {{- if .IsHome -}}
+    {{ site.Title }}
+  {{- else -}}
+    {{ .Title }} · {{ site.Title }}
+  {{- end -}}
+</title>
+
+{{- with site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta name="author" content="{{ site.Params.author | default site.Title }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
+

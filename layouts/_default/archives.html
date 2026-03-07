@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-title">Archive</h1>
+  </div>
+
+  {{- $pages := site.RegularPages.ByDate.Reverse }}
+  {{- $currentYear := "" }}
+  {{- range $pages }}
+  {{- $year := .Date.Format "2006" }}
+  {{- if ne $year $currentYear }}
+  <div class="archive-year">{{ $year }}</div>
+  {{- $currentYear = $year }}
+  {{- end }}
+  <div class="archive-entry">
+    <span class="archive-date">{{ .Date.Format "Jan 02" }}</span>
+    <a href="{{ .Permalink }}" class="archive-title">{{ .Title }}</a>
+  </div>
+  {{- end }}
+</div>
+{{ end }}

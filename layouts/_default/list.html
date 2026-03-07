@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="page-desc">{{ . }}</p>
+    {{- end }}
+  </div>
+
+  <div class="post-list">
+    {{- range .Pages }}
+    <a href="{{ .Permalink }}" class="post-list-item">
+      <div class="post-list-title">{{ .Title }}</div>
+      <div class="post-list-meta">
+        {{ .Date.Format "January 02, 2006" }}
+        {{- if .ReadingTime }} · {{ .ReadingTime }} min read{{- end }}
+      </div>
+      {{- with .Summary }}
+      <div class="post-list-summary">{{ . | plainify | truncate 180 }}</div>
+      {{- end }}
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}

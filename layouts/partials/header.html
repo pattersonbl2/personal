@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="site-logo">ark31.info</a>
+    <nav class="site-nav">
+      {{- range site.Menus.main }}
+      <a href="{{ .URL }}"{{- if page.IsMenuCurrent "main" . }} class="active"{{- end }}>
+        <span class="nav-label">{{ .Name }}</span>
+      </a>
+      {{- end }}
+      {{- range site.Params.socialIcons }}
+      {{- if eq .name "Github" }}
+      <a href="{{ .url }}" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
+        {{- partial "svg-icon.html" (dict "name" "Github" "size" "20") }}
+      </a>
+      {{- end }}
+      {{- end }}
+    </nav>
+  </div>
+</header>

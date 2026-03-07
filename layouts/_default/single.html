@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="container">
+  <article>
+    <div class="post-header">
+      {{- if eq .Type "posts" }}
+      <a href="/posts/" class="post-back">← Blog</a>
+      {{- end }}
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{- if eq .Type "posts" }}
+      <div class="post-meta">
+        {{- if not .Date.IsZero }}
+        <span>{{ .Date.Format "January 02, 2006" }}</span>
+        {{- end }}
+        {{- if .ReadingTime }}
+        <span>{{ .ReadingTime }} min read</span>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+  </article>
+</div>
+{{ end }}

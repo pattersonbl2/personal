@@ -16,6 +16,7 @@ const (
 	maxNameLen    = 100
 	maxEmailLen   = 254
 	maxMessageLen = 5000
+	minMessageLen = 10
 )
 
 // ContactHandler accepts POST to /api/contact, validates input, sends email via Resend.
@@ -62,6 +63,19 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 		sendErrorHTML(w, "Message is too long.", http.StatusBadRequest)
 		return
 	}
+	if utf8.RuneCountInString(message) < minMessageLen {
+		sendErrorHTML(w, "Message is too short.", http.StatusBadRequest)
+		return
+	}
+
+	// Anti-spam: silent-discard so bots don't know they were blocked.
+	if isSpam(name, message) {
+		log.Printf("contact: spam rejected from %s", r.RemoteAddr)
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.WriteHeader(http.StatusAccepted)
+		sendStyledHTML(w, "Message received. Thanks!")
+		return
+	}
 
 	apiKey := os.Getenv("RESEND_API_KEY")
 	contactEmail := os.Getenv("CONTACT_EMAIL")
@@ -101,6 +115,32 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(http.StatusAccepted)
 	sendStyledHTML(w, "Message received. Thanks!")
+}
+
+// isSpam returns true if the submission looks like spam.
+// Rules are intentionally simple and conservative to avoid false positives.
+func isSpam(name, message string) bool {
+	// Cyrillic script covers Russian, Ukrainian, Bulgarian, etc.
+	// Legitimate contacts on this English-language site are extremely unlikely to use it.
+	if containsScript(name, 0x0400, 0x052F) || containsScript(message, 0x0400, 0x052F) {
+		return true
+	}
+	// URLs in messages are a near-universal spam signal for contact forms.
+	msg := strings.ToLower(message)
+	if strings.Contains(msg, "http://") || strings.Contains(msg, "https://") || strings.Contains(msg, "www.") {
+		return true
+	}
+	return false
+}
+
+// containsScript reports whether s contains any rune in the Unicode range [lo, hi].
+func containsScript(s string, lo, hi rune) bool {
+	for _, r := range s {
+		if r >= lo && r <= hi {
+			return true
+		}
+	}
+	return false
 }
 
 func sendErrorHTML(w http.ResponseWriter, msg string, code int) {

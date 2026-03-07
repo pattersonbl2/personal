@@ -1,44 +1,45 @@
-baseURL: '/'  # Will be overridden by build script using CF_PAGES_URL or production URL
+baseURL: '/'  # Overridden by build script using CF_PAGES_URL or production URL
 languageCode: 'en-us'
-title: "Diary Of  Mad Engineer"
-theme: "PaperMod"
+title: 'ark31.info'
 
 markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    noClasses: false   # Use CSS classes so we can override colors
+
+enableRobotsTXT: true
 
 params:
-  profileMode:
-    enabled: true
-    title: "Brandon Blog" # optional default will be site title
-    subtitle: "Working Blog site built with Hugo"
-    imageUrl: "/images/bleach-styled-image.png" # optional
-    imageTitle: "Profile Pic" # optional
-    imageWidth: 200 # custom size
-    imageHeight: 200 # custom size
-    buttons:
-      - name: Archive
-        url: "/archives/"
-      - name: Resume
-        url: "/resume/"
-      - name: Blog
-        url: "/posts/"
-      - name: Contact
-        url: "/contact/"
+  author: 'Brandon Patterson'
+  role: 'DevOps Engineer'
+  company: 'Jasper AI'
+  description: 'SRE at Jasper AI. Writing about infrastructure, observability, and platform engineering.'
+  imageUrl: '/images/bleach-styled-image.png'
+  resumeDownloadURL: 'https://api.ark31.info/api/resume?token=edac425f1f9058c4d4b787a707b51faf'
+  socialIcons:
+    - name: 'Github'
+      url: 'https://github.com/pattersonbl2'
+    - name: 'LinkedIn'
+      url: 'https://www.linkedin.com/in/pattersonbl2/'
 
+mainSections:
+  - posts
 
-  # Full URL for resume PDF download (e.g. http://localhost:8080/api/resume?token=placeholder)
-  resumeDownloadURL: "https://api.ark31.info/api/resume?token=edac425f1f9058c4d4b787a707b51faf"
-
-  socialIcons: # optional
-    - name: "Github"
-      url: "https://github.com/pattersonbl2"
-    - name: "LinkedIn"
-      url: "https://www.linkedin.com/in/pattersonbl2/"
+menu:
+  main:
+    - name: Blog
+      url: /posts/
+      weight: 10
+    - name: Resume
+      url: /resume/
+      weight: 20
+    - name: Contact
+      url: /contact/
+      weight: 30
 
 outputs:
   home:
     - HTML
     - RSS
-    - JSON 
