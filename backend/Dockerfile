@@ -6,6 +6,9 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o api ./cmd/api
+# Ensure resume.pdf exists so the COPY below never fails.
+# The real file is injected via CI (RESUME_PDF secret) or mounted at runtime.
+RUN test -f resume.pdf || touch resume.pdf
 
 # Runtime stage
 FROM scratch
