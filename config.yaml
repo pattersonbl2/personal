@@ -17,7 +17,7 @@ params:
   company: 'Jasper AI'
   description: 'SRE at Jasper AI. Writing about infrastructure, observability, and platform engineering.'
   imageUrl: '/images/bleach-styled-image.png'
-  resumeDownloadURL: 'https://api.ark31.info/api/resume?token=edac425f1f9058c4d4b787a707b51faf'
+  resumeDownloadURL: 'https://api.ark31.info/api/resume?token=d6ae47cb1baa3be38538bb87bb2174b8'
   socialIcons:
     - name: 'Github'
       url: 'https://github.com/pattersonbl2'
