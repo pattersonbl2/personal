@@ -27,6 +27,15 @@ jobs:
       - name: Auth Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 
+      - name: Download resume PDF
+        run: |
+          gh release download resume-assets \
+            --repo pattersonbl2/personal \
+            --pattern "resume.pdf" \
+            --dir backend/
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push
         run: |
           docker build --platform linux/amd64 \
