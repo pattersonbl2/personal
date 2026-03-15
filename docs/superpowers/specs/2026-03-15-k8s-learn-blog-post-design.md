@@ -21,7 +21,7 @@ Concise, punchy. Short paragraphs. Highlight the most impressive engineering bit
 
 ### Opening (2-3 sentences)
 
-What it is, who it's for, link to `learn.bp31app.com`. One-liner on the stack: K3s, ArgoCD, n8n, Ollama, Cloudflare Tunnel.
+Lead with the live link as a call-to-action ("try it yourself" hook), then frame it as a project you built. One-liner on the stack: K3s, ArgoCD, n8n, Ollama, Cloudflare Tunnel.
 
 ### Section 1: The Frontend
 
@@ -31,26 +31,26 @@ What it is, who it's for, link to `learn.bp31app.com`. One-liner on the stack: K
 ### Section 2: User Provisioning
 
 - **Problem:** Each user needs an isolated namespace with RBAC, created on-demand from a signup form.
-- **Solution:** n8n workflow triggered by signup webhook. Creates namespace, service account, scoped RBAC — all via K8s API using a dedicated ServiceAccount with ClusterRole. Rate-limited at nginx layer (2r/m per IP).
+- **Solution:** n8n workflow (running outside the cluster on VM 110 via Docker, authenticating with a long-lived SA token) triggered by signup webhook. Creates namespace, service account, scoped RBAC — all via K8s API using a dedicated ServiceAccount with ClusterRole. Rate-limited at nginx layer (2r/m per IP). Signup page has a polished multi-step progress bar (Creating namespace → Deploying terminal → Environment ready) with polling.
 
 ### Section 3: Per-User Routing
 
 - **Problem:** Users deploy apps in their tasks and need real public URLs (`learn-[name]-app.bp31app.com`).
-- **Solution:** Cloudflare Tunnel wildcard rule for `*.learn.bp31app.com` + Traefik IngressRoute. User runs `kubectl create ingress` with their subdomain and it just works. This required an explicit tunnel rule since Cloudflare only supports one level of subdomain on free plans.
+- **Solution:** Cloudflare Tunnel `*.bp31app.com` catch-all routes to Traefik, which matches user Ingress resources. User subdomains use single-level pattern (`learn-[name]-app.bp31app.com`) to stay within Cloudflare's free-plan subdomain limit. User runs `kubectl create ingress` with their subdomain and it just works.
 
 ### Section 4: AI Help Widget
 
 - **Problem:** Users get stuck, but this is fully self-hosted — no SaaS LLM dependency.
-- **Solution:** Floating "?" button → n8n webhook → Ollama running qwen2.5:14b on a dedicated GPU node (RTX 3060 via PCI passthrough). Scoped system prompt keeps answers relevant to the 5 tasks only. Rate-limited at 6r/m per IP with 45s response timeout.
+- **Solution:** Floating "?" button → n8n webhook → Ollama running qwen2.5:14b on a dedicated GPU node (RTX 3060 via PCI passthrough). Scoped system prompt keeps answers relevant to the 5 tasks only. Rate-limited at 6r/m per IP with 60s nginx read timeout.
 
 ### Section 5: Cleanup
 
 - **Problem:** Can't let abandoned user namespaces accumulate indefinitely.
-- **Solution:** 24-hour auto-cleanup lifecycle for provisioned environments.
+- **Solution:** 24-hour auto-cleanup lifecycle for provisioned environments. (Note: confirm mechanism during writing — likely n8n scheduled workflow or K8s CronJob.)
 
 ### Closing (2-3 sentences)
 
-What you'd change or add next (e.g., more tasks, better observability per user, Helm chart for the whole platform). Link to gitops repo if public.
+What you'd change or add next (e.g., more tasks, better observability per user, Helm chart for the whole platform). End with italicized repo link line matching existing post convention (e.g., `*Check out the repo: [gitops](...)*`).
 
 ## Frontmatter
 
