@@ -69,7 +69,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Anti-spam: silent-discard so bots don't know they were blocked.
-	if isSpam(name, message) {
+	if isSpam(name, email, message) {
 		log.Printf("contact: spam rejected from %s", r.RemoteAddr)
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.WriteHeader(http.StatusAccepted)
@@ -119,7 +119,13 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 
 // isSpam returns true if the submission looks like spam.
 // Rules are intentionally simple and conservative to avoid false positives.
-func isSpam(name, message string) bool {
+func isSpam(name, email, message string) bool {
+	// Known bad sender(s) that repeatedly spam the form.
+	lowerEmail := strings.ToLower(email)
+	if lowerEmail == "zekisuquc419@gmail.com" {
+		return true
+	}
+
 	// Cyrillic script covers Russian, Ukrainian, Bulgarian, etc.
 	// Legitimate contacts on this English-language site are extremely unlikely to use it.
 	if containsScript(name, 0x0400, 0x052F) || containsScript(message, 0x0400, 0x052F) {
