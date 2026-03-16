@@ -1,6 +1,7 @@
 ---
 title: "K8s Learn: A Self-Hosted Kubernetes Training Platform"
 date: 2026-03-15T12:00:00-05:00
+lastmod: 2026-03-16T20:00:00-05:00
 draft: false
 ---
 
@@ -90,6 +91,58 @@ at a time, so the rate limiting also protects inference latency for concurrent u
 User environments auto-expire after 24 hours. A scheduled n8n workflow handles deletion —
 namespace, RBAC, everything — using the same ClusterRole permissions that provisioned them.
 No manual intervention, no orphaned resources accumulating on the cluster.
+
+---
+
+## Monitoring
+
+The platform has a dedicated Grafana dashboard tracking environment health across all `learn-*`
+namespaces. Six stat panels at the top show active environments, total pods, CPU/memory usage,
+pod restarts, and failed pods at a glance. Below that, a table lists every environment with its
+age, pod count, and resource consumption — useful for spotting environments that are consuming
+more than expected or have been idle too long.
+
+Time series panels break down CPU and memory by namespace, pod status over time (running/pending/failed),
+container restart rates, and network I/O. A bar gauge shows environment age with color thresholds:
+green under a day, yellow under a week, red over 30 days — making it obvious when cleanup is overdue.
+The dashboard is provisioned via Terraform using the Grafana provider, so it stays in sync with the
+infrastructure-as-code pattern.
+
+---
+
+## Secrets Management
+
+The cluster originally used KSOPS (Kustomize + SOPS) for secret management — SOPS-encrypted YAML
+files in Git, decrypted at sync time by a sidecar container on ArgoCD's repo-server. It worked in
+theory, but in practice it was fragile: the sidecar needed GPG keys, a kustomize plugin directory
+with exact path conventions, and a CMP (Config Management Plugin) ConfigMap. Any misconfiguration
+meant ArgoCD couldn't render manifests at all, taking out every app that used encrypted secrets.
+
+I replaced it with [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets). The controller
+runs as a standard Helm deployment, generates its own key pair on the cluster, and requires no
+sidecar. Secrets are encrypted locally with `kubeseal`, committed as `SealedSecret` CRDs, and
+decrypted into regular `Secret` objects by the controller. ArgoCD handles them natively — no
+plugins, no generators, no special kustomize flags.
+
+The migration was straightforward: decrypt each SOPS secret, pipe through `kubeseal`, replace the
+kustomize generator with a plain resource reference, and strip the KSOPS sidecar from ArgoCD's
+values. Four secrets migrated (cloudflare-tunnel credentials, alertmanager config, personal API
+secrets, ArgoCD repo credentials), the GPG key deleted, and the repo-server went from a two-container
+pod back to one.
+
+---
+
+## Alerting
+
+Prometheus alerting routes critical alerts to [ntfy](https://ntfy.sh) (self-hosted) for push
+notifications and Slack for visibility. The alertmanager config lives in the SOPS-migrated sealed
+secret and includes receivers for both channels. ntfy runs with `deny-all` default access, so
+the webhook uses a Bearer token for authentication. Non-critical alerts go to Slack only;
+critical alerts fan out to both.
+
+Kubelet recording rules from kube-prometheus-stack are disabled — K3s doesn't expose metrics
+like `kubelet_certificate_manager_client_ttl_seconds` that the default rules expect, and the
+resulting `PrometheusRuleFailures` alerts were noise rather than signal.
 
 ---
 
