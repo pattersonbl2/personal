@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff"/>
+      <stop offset="100%" style="stop-color:#1f6feb"/>
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Terminal bracket accents -->
+  <text x="36" y="340" font-family="monospace, 'Courier New'" font-size="260" font-weight="700" fill="url(#accent)" opacity="0.35">&gt;</text>
+  <!-- BP text -->
+  <text x="256" y="345" font-family="monospace, 'Courier New'" font-size="240" font-weight="700" fill="#e6edf3" text-anchor="middle" letter-spacing="-10">BP</text>
+  <!-- Cursor blink -->
+  <rect x="410" y="260" width="16" height="80" rx="2" fill="#58a6ff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+</svg>
