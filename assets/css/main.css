@@ -1,6 +1,7 @@
 /* ========================================
    Design Tokens
    ======================================== */
+/* Dark mode (default) */
 :root {
   --bg:           #0d1117;
   --bg-card:      #161b22;
@@ -8,13 +9,28 @@
   --border:       #30363d;
   --text:         #e6edf3;
   --text-muted:   #8b949e;
-  --accent:       #d2a8ff;
+  --accent:       #58a6ff;
   --accent-2:     #79c0ff;
+  --accent-hover: #79c0ff;
   --accent-green: #3fb950;
   --radius:       6px;
   --max-w:        860px;
   --font-mono:    'Cascadia Code', 'Fira Code', 'JetBrains Mono', ui-monospace, monospace;
   --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --bg:           #ffffff;
+  --bg-card:      #f6f8fa;
+  --bg-elevated:  #eaeef2;
+  --border:       #d0d7de;
+  --text:         #1f2328;
+  --text-muted:   #656d76;
+  --accent:       #0969da;
+  --accent-2:     #0550ae;
+  --accent-hover: #0550ae;
+  --accent-green: #1a7f37;
 }
 
 /* ========================================
@@ -50,7 +66,7 @@ a {
   text-decoration: none;
   transition: color 0.15s;
 }
-a:hover { color: #e8c9ff; }
+a:hover { color: var(--accent-hover); }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--text);
@@ -149,6 +165,25 @@ main { flex: 1; padding-bottom: 4rem; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+[data-theme="light"] .site-header {
+  background: rgba(255, 255, 255, 0.92);
+}
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  line-height: 1;
+  transition: color 0.15s, border-color 0.15s;
+  margin-left: 12px;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 .site-header .container {
   display: flex;
   align-items: center;
@@ -163,7 +198,7 @@ main { flex: 1; padding-bottom: 4rem; }
   color: var(--accent) !important;
   letter-spacing: -0.02em;
 }
-.site-logo:hover { color: #e8c9ff !important; }
+.site-logo:hover { color: var(--accent-hover) !important; }
 
 .site-nav {
   display: flex;
@@ -485,13 +520,34 @@ main { flex: 1; padding-bottom: 4rem; }
 .chroma .sb, .chroma .sc, .chroma .se  { color: #a5d6ff; }
 .chroma .c,  .chroma .c1, .chroma .cm,
 .chroma .cp, .chroma .cs               { color: #8b949e; font-style: italic; }
-.chroma .nf, .chroma .fm               { color: #d2a8ff; }
+.chroma .nf, .chroma .fm               { color: var(--accent); }
 .chroma .nc, .chroma .nn               { color: #79c0ff; }
 .chroma .mi, .chroma .mf, .chroma .mo  { color: #79c0ff; }
 .chroma .n,  .chroma .na, .chroma .nb  { color: #e6edf3; }
 .chroma .o                             { color: #ff7b72; }
 .chroma .p                             { color: #e6edf3; }
 .chroma .err                           { color: #f85149; }
+
+/* Chroma — Light mode overrides */
+[data-theme="light"] .chroma { background: #f6f8fa !important; color: #1f2328; }
+[data-theme="light"] .chroma .k,  [data-theme="light"] .chroma .kd,
+[data-theme="light"] .chroma .kn, [data-theme="light"] .chroma .kp,
+[data-theme="light"] .chroma .kr, [data-theme="light"] .chroma .kt  { color: #cf222e; }
+[data-theme="light"] .chroma .s,  [data-theme="light"] .chroma .s1,
+[data-theme="light"] .chroma .s2, [data-theme="light"] .chroma .sb,
+[data-theme="light"] .chroma .sc, [data-theme="light"] .chroma .se  { color: #0a3069; }
+[data-theme="light"] .chroma .c,  [data-theme="light"] .chroma .c1,
+[data-theme="light"] .chroma .cm, [data-theme="light"] .chroma .cp,
+[data-theme="light"] .chroma .cs  { color: #6e7781; font-style: italic; }
+[data-theme="light"] .chroma .nf, [data-theme="light"] .chroma .fm  { color: #8250df; }
+[data-theme="light"] .chroma .nc, [data-theme="light"] .chroma .nn  { color: #0550ae; }
+[data-theme="light"] .chroma .mi, [data-theme="light"] .chroma .mf,
+[data-theme="light"] .chroma .mo  { color: #0550ae; }
+[data-theme="light"] .chroma .n,  [data-theme="light"] .chroma .na,
+[data-theme="light"] .chroma .nb  { color: #1f2328; }
+[data-theme="light"] .chroma .o   { color: #cf222e; }
+[data-theme="light"] .chroma .p   { color: #1f2328; }
+[data-theme="light"] .chroma .err { color: #cf222e; }
 
 /* ========================================
    Archives
@@ -716,7 +772,7 @@ main { flex: 1; padding-bottom: 4rem; }
   50%       { opacity: 0; }
 }
 .gt-kw   { color: #ff7b72; }
-.gt-fn   { color: #d2a8ff; }
+.gt-fn   { color: var(--accent); }
 .gt-str  { color: #a5d6ff; }
 .gt-cmt  { color: #8b949e; font-style: italic; }
 .gt-type { color: #79c0ff; }
