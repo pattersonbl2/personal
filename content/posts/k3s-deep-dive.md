@@ -1,6 +1,6 @@
 ---
 title: "Deep Dive: How I Run Kubernetes in My Homelab"
-date: 2026-03-25T20:00:00-04:00
+date: 2026-03-25T17:00:00-04:00
 draft: false
 ---
 
