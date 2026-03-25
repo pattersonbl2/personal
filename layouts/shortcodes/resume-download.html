@@ -1,4 +1,4 @@
-{{- $token := getenv "RESUME_TOKEN" -}}
+{{- $token := getenv "RESUME_TOKEN" | strings.TrimSpace -}}
 {{- $url := printf "https://api.ark31.info/api/resume?token=%s" $token -}}
 {{- if $token -}}
 <a href="{{ $url }}" class="resume-btn" target="_blank" rel="noopener">
