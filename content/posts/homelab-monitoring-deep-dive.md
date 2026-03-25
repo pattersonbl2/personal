@@ -1,6 +1,6 @@
 ---
 title: "How I Monitor Everything in My Homelab"
-date: 2026-03-25T18:00:00-04:00
+date: 2026-03-25
 draft: false
 ---
 
