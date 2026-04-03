@@ -4,130 +4,149 @@ date: 2026-04-03
 draft: false
 ---
 
-Most of the interesting work on my personal site this year was not glamorous.
+When I looked back through my recent GitHub activity, I expected to find a clean story.
 
-It wasn’t a flashy redesign or a giant feature launch. It was the kind of work that tends to disappear into commit history: fixing deployment edge cases, tightening security, cleaning up frontmatter, wiring up backend behavior, and making the site feel a little more intentional each time I touched it.
+Something like: I redesigned my site, published a few posts, polished the homepage, and called it progress.
 
-Looking back through my recent GitHub activity, that’s the real pattern I see. A lot of small changes, but all in service of the same goal: make the site easier to trust, easier to maintain, and less likely to surprise me later.
+That is not what the commit history says.
 
-That feels worth writing about, because it’s a more honest picture of engineering than “I built a thing” posts usually capture.
+What it actually shows is a lot messier and a lot more honest. Fixes for weird deployment behavior. Small security improvements. Frontmatter date issues. Backend cleanup. Theme tweaks. Resume token problems caused by whitespace. Little things that took time, mattered a lot, and would be almost invisible to anyone just looking at the finished site.
 
-## The work behind a personal site is mostly systems work
+And honestly, that felt familiar.
 
-A personal site looks simple from the outside. A homepage, a few blog posts, a resume, a contact page.
+That’s also what a lot of real engineering work looks like.
 
-But once you actually own the thing end to end, it turns into a small platform:
+## I wanted a website. I ended up with a system.
 
-- content needs to build correctly
-- deployment needs to behave differently in preview and production
-- form endpoints need rate limiting and input validation
-- secrets need to stay out of the repo
-- dates, URLs, and metadata need to be right or the site quietly does the wrong thing
-- the visual layer still needs to feel coherent
+From the outside, a personal site seems simple. A homepage, a blog, a resume, a contact form. Nothing too serious.
 
-That’s what I see in the repo history. Not one big "site rewrite," but a steady stream of practical improvements:
+But once I owned the whole thing, it stopped feeling like a “website” and started feeling like a small platform I was responsible for.
 
-- deployment workflow updates
-- Cloudflare Pages fixes
-- security hardening
-- backend additions for contact and resume handling
-- favicon and theme polish
-- blog post publishing fixes after Hugo date issues
+Not in an overdramatic way. Just in the practical sense that everything had to line up:
 
-None of those changes are individually dramatic. Together, they’re the work of turning a personal website into something that behaves like a maintained system instead of a static side project.
+- content had to build correctly
+- preview and production deploys had to behave differently in the right places
+- the contact flow had to be safe
+- secrets had to stay out of the repo
+- metadata had to be correct
+- the design had to feel intentional enough that I’d actually want to keep using it
 
-## Small bugs on personal projects still teach real lessons
+That’s the part people don’t really talk about when they talk about personal sites. The visible part is the writing. The invisible part is all the maintenance required to make publishing feel easy instead of annoying.
 
-One pattern that jumped out immediately was how many fixes were about correctness at the edges.
+I think that invisible part is what I’ve actually been working on.
 
-For example, I had to correct post frontmatter dates because Hugo was treating some content as future-dated and filtering it out. That’s a tiny detail until it isn’t. You can write the post, commit the file, push the change, and still end up with missing content because a date format was just slightly wrong.
+## A lot of my recent work was basically me removing future headaches
 
-That kind of issue is a good reminder that publishing systems are opinionated in ways that don’t always announce themselves. A lot of engineering is just learning where those sharp edges live.
+Looking through the repo, I noticed that most of my changes were not ambitious. They were preventive.
 
-Same story with environment variables and backend behavior. One recent fix trimmed whitespace from a `RESUME_TOKEN` because an invisible extra character was enough to turn a valid URL into a broken one. Again: not glamorous, very real.
+That might be the most accurate summary of how I work these days.
 
-I like this kind of bug because it reinforces something I’ve learned repeatedly in infrastructure and platform work:
+I spent time fixing post dates because Hugo was quietly treating some content as future-dated. I fixed token handling because a small formatting issue could turn a valid resume link into a broken one. I made deployment-related fixes because the difference between “works locally” and “works when published” is still where a lot of bugs like to hide.
 
-**systems rarely fail in impressive ways.**
+None of that is exciting in the usual blog-post sense.
 
-More often, they fail through formatting, assumptions, sequencing, or glue code.
+But I’ve started to trust that kind of work more.
 
-That applies just as much to a personal website as it does to a production service.
+There’s a phase of learning where big visible progress feels like the only kind that counts. New feature. New stack. New service. New post. Something you can point to.
 
-## Personal sites are a good place to practice restraint
+Lately, I’ve found myself caring more about whether a thing is stable, understandable, and pleasant to come back to later.
 
-The repo also reflects something I’m trying to get better at: not overbuilding.
+That’s not as flashy, but it’s probably a better long-term instinct.
 
-It would be very easy to turn a personal site into an endless framework experiment. New theme. New stack. New CMS. New frontend. New rewrite every two months.
+## This repo felt weirdly personal in a way I didn’t expect
 
-Instead, most of the recent changes are incremental:
+What surprised me most was that the site repo didn’t just show what I built. It showed how I think.
 
-- improve the existing design
-- add a dark/light mode toggle
-- switch the accent color
-- clean up headers and icons
-- make backend pieces safer
-- improve deploy behavior without redoing everything
+The changes tell on me a little.
 
-I think that’s the right instinct.
+They show that I’m the kind of engineer who will spend time on details that most people never notice if I think those details will reduce friction later. They show that I care about reliability more than novelty. They show that I’d rather make the existing thing better than constantly rebuild it from scratch.
 
-A personal site does not need to be a monument to technical complexity. It needs to be clear, durable, and easy to update. If I’m going to keep writing, the publishing path needs to stay lightweight enough that posting feels easier than postponing.
+That last part matters to me.
 
-That constraint matters. The best blog engine in the world is useless if it adds friction every time you want to hit publish.
+I could absolutely turn my personal site into a permanent lab experiment. New framework every month. New theme every quarter. Constant reinvention disguised as ambition.
 
-## The invisible work is usually the work that matters
+But I know myself well enough to know that too much churn kills momentum. If the publishing path becomes a project every time I want to write, I’ll write less. If the system becomes too clever, I’ll trust it less.
 
-One reason I wanted to write this is that GitHub activity can be misleading if you only look for dramatic milestones.
+So a lot of the work in this repo is me trying to build something I’ll actually continue using.
 
-A lot of the meaningful work in my repos lately has been invisible to anyone who only scans titles:
+Not the most impressive version. The most sustainable one.
 
-- adjusting deployment assumptions so preview and production behave properly
-- tightening the site’s security posture instead of chasing quick shortcuts
-- improving content publishing reliability
-- adding backend structure around forms and resume delivery
-- cleaning up the site’s presentation so it feels more finished
+## Tiny bugs are humbling, and I kind of appreciate that
 
-That kind of work doesn’t usually get applause. Nobody sees a cleanly handled environment variable and thinks, “wow.” But those are exactly the details that make software feel solid.
+One thing I’ve learned over and over, both in infrastructure work and in smaller personal projects, is that systems rarely fail in cinematic ways.
 
-I’ve started to think that one sign of engineering maturity is being willing to spend real time on work that mostly prevents future annoyance.
+Usually it’s something dumb.
 
-Not because it’s exciting in the moment, but because you’re the one who will have to live with the platform later.
+A date format. Whitespace in a token. A deployment assumption that turns out not to be true. A configuration mismatch between environments. A path that works in one context and breaks in another.
 
-## A repo tells the truth about how you work
+That used to frustrate me more than it does now.
 
-If I had to summarize what this site repo says about me right now, it’s probably this:
+Now I mostly see it as part of the craft. Software has a way of forcing you to respect details. It doesn’t really care whether the bug feels important enough to deserve your time. If it breaks the flow, it breaks the flow.
 
-I care a lot less about novelty than I do about reliability and iteration.
+In a weird way, I think personal projects are good for learning that lesson because there’s nowhere to hide. No separate team, no handoff, no ticket disappearing into a queue. If something is brittle, I’m the one who feels it later.
 
-The recent commit history is not the history of someone trying to show off. It’s the history of someone trying to make a system a little cleaner every time they touch it.
+That kind of feedback loop is annoying, but it’s useful.
 
-That includes writing posts, but it also includes all the surrounding maintenance work:
+## I’m trying to build fewer things I have to fight
 
-- getting build behavior right
-- keeping secrets out of source
-- reducing weird edge cases
-- making the UI feel more intentional
-- creating a setup I can continue to use without fighting it
+I think that’s the real thread running through this repo.
 
-Honestly, that’s how I approach most engineering work now. Build the thing, yes — but also improve the path around the thing. The path to deploy it. The path to debug it. The path to update it a month later when context is gone.
+Not “I built a personal website.”
 
-## What I want from this site going forward
+More like: I’m trying to build a version of my tools, systems, and projects that I don’t have to fight every time I come back to them.
 
-I don’t want this site to become a portfolio fossil.
+That applies to infrastructure. It applies to Kubernetes. It applies to observability work. And apparently, it also applies to my blog.
 
-I want it to stay alive enough to reflect what I’m actually doing: platform engineering, infrastructure work, debugging, automation, observability, and all the weird practical lessons in between.
+I want the site to feel like an extension of how I already work:
 
-That probably means more posts that are grounded in real work and fewer posts that try to sound like announcements.
+- simple where it should be simple
+- structured where it needs structure
+- secure enough that I’m not nervous about it
+- lightweight enough that writing still feels easy
 
-And it definitely means continuing to treat the site itself like a real system:
+That probably sounds obvious, but I don’t think it is. A lot of us who like building things also like making things more elaborate than they need to be.
 
-- simple enough to use
-- structured enough to maintain
-- secure enough to trust
-- polished enough to feel deliberate
+I definitely have that tendency.
 
-That’s the main lesson I got from looking back through the repo.
+So in some ways, this repo is also me practicing restraint.
 
-The value wasn’t in one giant change. It was in the accumulation of a lot of smaller decisions that made the site more real.
+## The finished site hides the part that probably matters most
 
-And, honestly, that’s true of most good engineering.
+If someone lands on the site, they’ll see posts, a homepage, maybe a resume, maybe a contact page.
+
+What they won’t see is the accumulation of small decisions underneath it:
+
+- the deployment fixes
+- the content publishing corrections
+- the security hardening
+- the backend cleanup
+- the UI polish
+- the repeated effort to make the system a little less fragile than it was before
+
+But that hidden layer is probably the part I’m proudest of.
+
+Not because it’s technically advanced, but because it reflects a version of engineering I’ve come to value more over time: the kind where you make things calmer, clearer, and easier to trust.
+
+That work doesn’t always produce a dramatic before-and-after.
+
+Sometimes it just means the site keeps working. Publishing feels smoother. A future bug never happens. A weird edge case stops stealing your time.
+
+That counts.
+
+## What I want this site to be
+
+I don’t want this site to be a frozen portfolio.
+
+I want it to feel alive enough that when someone reads it, they’re getting a real snapshot of what I’m learning, building, debugging, and thinking about.
+
+Not just the polished wins. The process too.
+
+That probably means I want the writing to feel a little more personal going forward. Less like I’m presenting finished work from a distance, and more like I’m documenting what it actually feels like to build things, maintain them, get them wrong, fix them, and slowly get better.
+
+Looking through this repo reminded me that progress usually doesn’t happen as one big leap. At least not for me.
+
+It happens in small corrections. Small cleanups. Small improvements that make the next step easier.
+
+That’s true of this site.
+
+And, if I’m being honest, it’s true of me too.
