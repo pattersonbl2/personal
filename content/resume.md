@@ -10,42 +10,42 @@ url: "/resume/"
 
 ### Charlotte, NC | linkedin.com/in/pattersonbl2
 
-Platform and reliability-focused engineer with experience building and operating cloud-native infrastructure, internal platforms, and developer workflows across GCP and AWS. Strong background in Kubernetes, Terraform, CI/CD automation, observability, and production operations. Proven track record modernizing infrastructure, reducing toil, improving developer velocity, and driving reliability at scale. Passionate about scalable systems, platform engineering, and continuous improvement.
+Platform and reliability engineer with experience building and operating Kubernetes platforms, cloud infrastructure, CI/CD systems, and internal developer workflows across GCP and AWS. Strong background in Terraform, GitOps, observability, and production operations at scale. Proven track record reducing toil, improving developer velocity, modernizing infrastructure, and increasing reliability for shared platforms and production services. Passionate about platform engineering, scalable systems, and continuous improvement.
 
 CORE COMPETENCIES
 
-**Platform & Cloud Infrastructure:** Kubernetes, Terraform, GCP, AWS, Docker, Helm, Proxmox  
-**CI/CD & Developer Enablement:** GitHub Actions, CircleCI, Jenkins, ArgoCD, deployment automation, internal tooling  
-**Observability & Reliability:** Prometheus, Grafana, Loki, Datadog, Alertmanager, incident response, root cause analysis  
+**Platform & Cloud Infrastructure:** Kubernetes, Terraform, GCP, AWS, Docker, Helm, Proxmox, Cloud Run  
+**CI/CD, GitOps & Developer Enablement:** GitHub Actions, CircleCI, Jenkins, ArgoCD, deployment automation, internal tooling, release engineering  
+**Observability & Reliability:** Prometheus, Grafana, Loki, Datadog, Alertmanager, incident response, root cause analysis, capacity planning  
 **Networking & Security:** Kubernetes networking, cloud networking, BGP, NGINX, DNS, TLS, network security  
-**Programming Languages:** Python, Go, JavaScript, TypeScript  
+**Programming Languages:** Python, Go, JavaScript, TypeScript, Bash  
 **Leadership & Operations:** Cross-functional collaboration, infrastructure planning, platform modernization, technical debt reduction
 
 PROFESSIONAL EXPERIENCE
 
 **Mid-Level DevOps Engineer |** Jasper.ai | Remote | 2026 – Present
 
-- Leading infrastructure modernization efforts to reduce technical debt and improve platform reliability during a period of rapid growth.
-- Driving observability maturity in Datadog by standardizing metrics, logging, alerting, and dashboards across engineering teams.
-- Building and improving CI/CD workflows and deployment automation to reduce manual operations and improve developer velocity.
-- Establishing reliability best practices and incident response processes to improve operational consistency and system stability.
-- Partnering with engineering teams to identify infrastructure pain points, improve platform usability, and address scalability concerns.
+- Lead infrastructure modernization efforts to reduce technical debt and improve platform reliability during a period of rapid growth.
+- Drive observability maturity in Datadog by standardizing metrics, logging, alerting, and dashboards across engineering teams.
+- Build and improve CI/CD workflows and deployment automation to reduce manual operations and increase developer velocity.
+- Establish reliability best practices and incident response processes to improve operational consistency and system stability.
+- Partner with engineering teams to identify infrastructure pain points, improve platform usability, and address scalability concerns.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
 - Designed and launched new GCP infrastructure with Terraform, improving scalability and reducing manual operational overhead.
 - Built reusable infrastructure patterns for shared environments, improved onboarding to the shared Kubernetes platform, and reduced deployment time from hours to seconds.
-- Migrated production workloads from AWS to GCP, reducing cloud costs by 40% while improving clarity and maintainability.
+- Migrated production workloads from AWS to GCP, reducing cloud costs by 40% while improving platform clarity and maintainability.
 - Operated multi-tenant Kubernetes clusters supporting 50M+ users with a focus on availability, performance, and platform consistency.
 - Developed Helm charts and GitHub Actions pipelines to standardize deployments, improve developer workflows, and eliminate significant manual release effort.
-- Acted as incident responder for critical services, driving root cause analysis and follow-up reliability improvements.
+- Served as incident responder for critical services, driving root cause analysis and follow-up reliability improvements.
 - Participated in MozCloud platform triage rotation, supporting production services and shared infrastructure.
-- Led work across observability, automation, release engineering, capacity planning, and on-call operations for multiple production services.
+- Led initiatives across observability, automation, release engineering, capacity planning, and on-call operations for multiple production services.
 
 **Software Engineer, Hubs Support |** Mozilla | Remote | 2021 – 2023
 
 - Supported GKE-based production infrastructure and improved operational efficiency across shared environments.
-- Contributed to building and improving GKE infrastructure, enabling faster deployments and a better developer experience.
+- Helped build and improve GKE infrastructure, enabling faster deployments and a better developer experience.
 - Built internal QA tooling in TypeScript to automate test workflows and reduce repetitive engineering work.
 - Automated testing processes that reduced time to completion by 75%, from one day to under two hours.
 - Improved CI/CD pipelines with GitHub Actions, reducing deployment friction and supporting faster delivery.
@@ -61,7 +61,7 @@ PROFESSIONAL EXPERIENCE
 
 - Managed day-to-day IT administration including user provisioning, software lifecycle work, and troubleshooting for consulting teams.
 - Supported hybrid cloud environments spanning office systems, financial operations, and AWS-hosted infrastructure.
-- Helped reduce downtime and improve service continuity through practical cloud operations and infrastructure support.
+- Reduced downtime and improved service continuity through practical cloud operations and infrastructure support.
 
 ### CONSULTANCY & SPECIAL PROJECTS
 
