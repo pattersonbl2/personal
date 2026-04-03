@@ -6,80 +6,70 @@ url: "/resume/"
 
 {{< resume-download >}}
 
-## BRANDON PATTERSON · DEVOPS ENGINEER | SRE
+## BRANDON PATTERSON · PLATFORM ENGINEER | SRE
 
 ### Charlotte, NC | linkedin.com/in/pattersonbl2
 
-A driven engineering professional with progressive experience leading cloud-native infrastructure, DevOps, and site reliability
-initiatives at scale. Recognized as a motivated self-starter with proven success in Kubernetes administration, cloud migrations,
-and infrastructure automation across GCP and AWS. Builds internal platforms and tooling to empower product teams and scale service
-reliability. Passionate about open source, scalable systems, and continuous improvement.
+Platform and reliability engineer with experience building and operating Kubernetes platforms, cloud infrastructure, CI/CD systems, and internal developer workflows across GCP and AWS. Strong background in Terraform, GitOps, observability, and production operations at scale. Proven track record reducing toil, improving developer velocity, modernizing infrastructure, and increasing reliability for shared platforms and production services. Passionate about platform engineering, scalable systems, and continuous improvement.
 
 CORE COMPETENCIES
 
-**Cloud & Infrastructure:** GCP, AWS, Terraform, Kubernetes, Docker, Helm, Proxmox **| CI/CD & Automation:** GitHub Actions, CircleCI, Jenkins, ArgoCD
-**Programming Languages:** Python, Go, JavaScript, TypeScript **| Observability:** Prometheus, Grafana, Loki, Datadog, Alertmanager
-**Networking:** Cloud Networking, Kubernetes Networking, BGP, NGINX, DNS, Network Security **| Leadership:** Incident Management, Cross-functional Collaboration, Infrastructure Planning
+**Platform & Cloud Infrastructure:** Kubernetes, Terraform, GCP, AWS, Docker, Helm, Proxmox, Cloud Run  
+**CI/CD, GitOps & Developer Enablement:** GitHub Actions, CircleCI, Jenkins, ArgoCD, deployment automation, internal tooling, release engineering  
+**Observability & Reliability:** Prometheus, Grafana, Loki, Datadog, Alertmanager, incident response, root cause analysis, capacity planning  
+**Networking & Security:** Kubernetes networking, cloud networking, BGP, NGINX, DNS, TLS, network security  
+**Programming Languages:** Python, Go, JavaScript, TypeScript, Bash  
+**Leadership & Operations:** Cross-functional collaboration, infrastructure planning, platform modernization, technical debt reduction
 
 PROFESSIONAL EXPERIENCE
 
 **Mid-Level DevOps Engineer |** Jasper.ai | Remote | 2026 – Present
 
-- Leading initiatives to modernize infrastructure and reduce technical debt accumulated during rapid growth.
-- Driving Datadog observability maturity project — standardizing metrics, logging, alerting, and dashboards across engineering teams (42% complete).
-- Building and improving CI/CD pipelines and deployment automation to increase developer velocity and reduce manual operations.
-- Establishing reliability best practices and incident response procedures to improve system stability.
-- Collaborating with engineering teams to identify and address infrastructure pain points and scalability concerns.
+- Lead infrastructure modernization efforts to reduce technical debt and improve platform reliability during a period of rapid growth.
+- Drive observability maturity in Datadog by standardizing metrics, logging, alerting, and dashboards across engineering teams.
+- Build and improve CI/CD workflows and deployment automation to reduce manual operations and increase developer velocity.
+- Establish reliability best practices and incident response processes to improve operational consistency and system stability.
+- Partner with engineering teams to identify infrastructure pain points, improve platform usability, and address scalability concerns.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
-- Launched a new infrastructure design in GCP using Terraform, reducing manual overhead and improving scalability.
-- Created reusable infrastructure for shared environments, automated tasks, improved onboarding to the shared cluster, and
-    reduced deployment time from hours to seconds.
-- Migrated production workloads from AWS to GCP, achieving a 40% cost reduction.
-- Managed multi-tenant Kubernetes clusters supporting 50M+ users, ensuring high availability and performance.
-- Developed Helm charts and CI/CD pipelines (GitHub Actions) to standardize deployments and improve developer velocity, increase
-    output, and virtually eliminate manual labor hours for push production releases.
-- Acted as incident responder for critical services, driving root cause analysis and reliability improvements.
-- Participated in MozCloud platform's rotational triage support schedule.
-- Drove initiatives across SRE spectrum for several production services, including observability, automation, release engineering,
-    capacity planning, and on-call operations.
+- Designed and launched new GCP infrastructure with Terraform, improving scalability and reducing manual operational overhead.
+- Built reusable infrastructure patterns for shared environments, improved onboarding to the shared Kubernetes platform, and reduced deployment time from hours to seconds.
+- Migrated production workloads from AWS to GCP, reducing cloud costs by 40% while improving platform clarity and maintainability.
+- Operated multi-tenant Kubernetes clusters supporting 50M+ users with a focus on availability, performance, and platform consistency.
+- Developed Helm charts and GitHub Actions pipelines to standardize deployments, improve developer workflows, and eliminate significant manual release effort.
+- Served as incident responder for critical services, driving root cause analysis and follow-up reliability improvements.
+- Participated in MozCloud platform triage rotation, supporting production services and shared infrastructure.
+- Led initiatives across observability, automation, release engineering, capacity planning, and on-call operations for multiple production services.
 
 **Software Engineer, Hubs Support |** Mozilla | Remote | 2021 – 2023
 
-- Supported GKE infrastructure and improved operational efficiency across production environments.
-- Collaborated to build GKE infrastructure, driving faster deployments and ease of use by end-users.
-- Built internal QA tools in TypeScript for automated test workflows.
-- Automated key testing features to decrease time to completion by 75% (1 day to < 2 hours).
-- Enhanced CI/CD pipelines with GitHub Actions, reducing deployment friction.
+- Supported GKE-based production infrastructure and improved operational efficiency across shared environments.
+- Helped build and improve GKE infrastructure, enabling faster deployments and a better developer experience.
+- Built internal QA tooling in TypeScript to automate test workflows and reduce repetitive engineering work.
+- Automated testing processes that reduced time to completion by 75%, from one day to under two hours.
+- Improved CI/CD pipelines with GitHub Actions, reducing deployment friction and supporting faster delivery.
 
 **SysOps Administrator (Azure/AWS) |** Audacious Inquiry | 2020 – 2021
 
-- Served as Identity Access Management SME for Azure AD, managing secure access for 200+ users.
-- Implemented new endpoint protection services, maintaining compliance with data privacy certification standards.
-- Deployed AWS infrastructure using Terraform, automating onboarding processes and reducing onboarding time by 10%.
-- Managed SSL certificates and DNS for state agency systems, ensuring 100% compliance and uptime.
+- Served as identity and access management SME for Azure AD, supporting secure access for 200+ users.
+- Implemented endpoint protection services to maintain compliance with data privacy and security requirements.
+- Deployed AWS infrastructure with Terraform and automated onboarding workflows, reducing onboarding time by 10%.
+- Managed SSL certificates and DNS for state agency systems, maintaining uptime and compliance.
 
 **IT Administrator |** Single Stone Consulting | Richmond, VA | 2019 – 2020
 
-- Oversaw daily IT administration tasks, including user provisioning, software updates, and system troubleshooting for consulting
-    teams, reducing ticket resolution time.
-- Managed shared Windows hybrid cloud environment for financial operations, office servers, and cloud via AWS.
-- Leveraged AWS expertise to reduce cloud service downtime and expand server as needed.
+- Managed day-to-day IT administration including user provisioning, software lifecycle work, and troubleshooting for consulting teams.
+- Supported hybrid cloud environments spanning office systems, financial operations, and AWS-hosted infrastructure.
+- Reduced downtime and improved service continuity through practical cloud operations and infrastructure support.
 
 ### CONSULTANCY & SPECIAL PROJECTS
 
-- **Personal Homelab Platform (2024 – Present)** Built and operate a production-grade homelab spanning Proxmox, K3s, Docker, VyOS,
-    TrueNAS, and Oracle Cloud VPS. Fully GitOps-managed via ArgoCD with Terraform for infrastructure, Ansible for configuration,
-    and a full observability stack (Prometheus, Grafana, Loki, Alertmanager).
-- **ark31.info (2025 – Present)** Designed and deployed a personal blog and portfolio site using Hugo (custom theme) with a Go
-    backend API on GCP Cloud Run — handling contact form submissions, resume delivery, and rate limiting.
-- **GCP Migration (2024 – 2025)** Led application migration from single-tenant to shared Kubernetes clusters, improving resource
-    efficiency and clarity.
-- **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure (relay.firefox.com, mozmail.com)
-    using Terraform and AWS.
-- **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided tech support during the DoD's enterprise Windows 10
-    migration, deploying systems for 500 users across secure environments while minimizing downtime.
+- **Personal Homelab Platform (2024 – Present)** Built and operate a production-grade homelab platform spanning Proxmox, K3s, Docker, VyOS, TrueNAS, and Oracle Cloud VPS. Managed with GitOps via ArgoCD, Terraform for infrastructure, Ansible for configuration, and a full observability stack using Prometheus, Grafana, Loki, and Alertmanager.
+- **ark31.info (2025 – Present)** Designed and deployed a personal blog and portfolio platform using Hugo with a custom theme and a Go backend API on GCP Cloud Run for contact submissions, resume delivery, rate limiting, and operational controls.
+- **GCP Migration (2024 – 2025)** Led migration from single-tenant environments to shared Kubernetes clusters, improving resource efficiency, platform consistency, and operational clarity.
+- **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure for relay.firefox.com and mozmail.com using Terraform and AWS.
+- **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided technical support during the DoD enterprise Windows 10 migration, deploying systems for 500 users across secure environments while minimizing downtime.
 
 EDUCATION
 

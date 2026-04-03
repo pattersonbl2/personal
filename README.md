@@ -15,6 +15,11 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 - **GCP infrastructure** — Terraform configs for Cloud Run, Artifact Registry, IAM, secrets, and custom domain mappings
 - **Profile landing page** — profile mode homepage with image, nav buttons (Archive, Resume, Blog, Contact), and social links (GitHub, LinkedIn)
 - **Search and archives** — built-in search and post archive pages
+- **Resume PDF sync** — downloadable resume PDF is generated from `content/resume.md` into `backend/resume.pdf` so the website resume and downloaded resume share one source of truth
+
+### Resume PDF Generation
+- Local build: `make resume-pdf`
+- CI build: `.github/workflows/deploy-backend.yml` regenerates the PDF automatically before backend deploys
 
 ### Future Ideas
 1. **Blog post series with tutorials** — write technical posts covering real-world SRE/DevOps topics (Terraform patterns, Kubernetes debugging, CI/CD pipelines) to showcase expertise and give back to the community
