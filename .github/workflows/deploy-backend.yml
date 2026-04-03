@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'backend/**'
+      - 'content/resume.md'
+      - '.github/workflows/deploy-backend.yml'
+      - 'Makefile'
   workflow_dispatch:
 
 permissions:
@@ -17,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install resume PDF build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-latex-recommended
+
+      - name: Generate resume PDF from content/resume.md
+        run: make resume-pdf
+
       - id: auth
         uses: google-github-actions/auth@v2
         with:
@@ -27,15 +38,6 @@ jobs:
 
       - name: Auth Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
-
-      - name: Download resume PDF
-        run: |
-          gh release download resume-assets \
-            --repo pattersonbl2/personal \
-            --pattern "resume.pdf" \
-            --dir backend/
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
         run: |
