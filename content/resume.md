@@ -15,21 +15,21 @@ Platform and reliability engineer with experience building and operating Kuberne
 CORE COMPETENCIES
 
 **Platform & Cloud Infrastructure:** Kubernetes, Terraform, GCP, AWS, Docker, Helm, Proxmox, Cloud Run  
-**CI/CD, GitOps & Developer Enablement:** GitHub Actions, CircleCI, Jenkins, ArgoCD, deployment automation, internal tooling, release engineering  
-**Observability & Reliability:** Prometheus, Grafana, Loki, Datadog, Alertmanager, incident response, root cause analysis, capacity planning  
-**Networking & Security:** Kubernetes networking, cloud networking, BGP, NGINX, DNS, TLS, network security  
+**CI/CD, GitOps & Developer Enablement:** GitHub Actions, CircleCI, Jenkins, ArgoCD, Helm, deployment automation, release engineering  
+**Observability & Reliability:** Datadog (monitors, SLOs, on-call, RUM, dashboards), Prometheus, Grafana, Loki, Alertmanager, incident response, capacity planning  
+**Networking & Security:** Kubernetes networking, cloud networking, BGP, NGINX, DNS, TLS, network security, supply-chain CI  
 **Programming Languages:** Python, Go, JavaScript, TypeScript, Bash  
-**Leadership & Operations:** Cross-functional collaboration, infrastructure planning, platform modernization, technical debt reduction
+**Leadership & Operations:** Cross-functional collaboration, infrastructure planning, FinOps, platform modernization, technical debt reduction
 
 PROFESSIONAL EXPERIENCE
 
 **Mid-Level DevOps Engineer |** Jasper.ai | Remote | 2026 – Present
 
-- Lead infrastructure modernization efforts to reduce technical debt and improve platform reliability during a period of rapid growth.
-- Drive observability maturity in Datadog by standardizing metrics, logging, alerting, and dashboards across engineering teams.
-- Build and improve CI/CD workflows and deployment automation to reduce manual operations and increase developer velocity.
-- Establish reliability best practices and incident response processes to improve operational consistency and system stability.
-- Partner with engineering teams to identify infrastructure pain points, improve platform usability, and address scalability concerns.
+- Led a Datadog observability overhaul: team-based on-call (schedules, escalations, Slack routing), runbooks, SLO consolidation, and standardization of hundreds of monitors with team tags, routing, and noise reduction. Delivered LLM-aware golden signals, RUM dashboards, and critical-only alerting.
+- Cut Argo CD sync lag after merges by automating post-merge refresh across the releases pipeline, with supporting Helm (Argo accounts/RBAC) and Terraform (Workload Identity Federation + IAP-style auth for CI automation).
+- Drove Terraform changes for BigQuery–Cloud SQL connectivity, replica/DNS/Helm health-check cleanup, VPC Flow Logs enablement, and default VPC reduction for improved security posture.
+- Owned urgent supply-chain remediation for a compromised Trivy GitHub Action — assessment, pinning, and coordinated remediation across Security and DevOps. Supported compliance-oriented work including customer data deletion and access pattern review.
+- Executed FinOps initiatives (GCS lifecycle policies, cloud cleanup, legacy platform decommission) and cross-team platform requests (secrets, IAM, BigQuery, Cloud Run, vendor integrations). Authored internal audits, runbooks, and rollout plans to align engineering and leadership on observability and infrastructure changes.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
