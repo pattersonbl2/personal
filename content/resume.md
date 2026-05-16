@@ -26,7 +26,7 @@ PROFESSIONAL EXPERIENCE
 **DevOps / Platform Engineer |** Jasper.ai | Remote | 2026 – Present
 
 - Overhauled Datadog observability for multiple engineering teams — consolidated SLOs, standardized monitor tagging and routing, and reduced alert noise by retiring hundreds of low-signal alerts. Delivered LLM-aware golden signals, RUM dashboards, team-based on-call schedules, and critical-only alerting.
-- Eliminated Argo CD sync lag after merges by automating post-merge refresh across the releases pipeline, with supporting Helm (Argo accounts/RBAC) and Terraform (Workload Identity Federation + IAP-style auth for CI automation).
+- Took platform ownership of ArgoCD GitOps delivery — diagnosed and resolved repo-server deadline timeout issues causing sync failures across 10 production applications, improving deployment platform reliability and developer experience; automated post-merge sync refresh to reduce delivery friction and implemented Helm-based RBAC and Terraform Workload Identity Federation for self-service CI automation.
 - Implemented Atlantis to enable pull request–driven Terraform workflows, improving visibility, enforcing approval processes, and reducing manual infrastructure operations.
 - Designed and implemented GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
 - Drove Terraform changes for BigQuery–Cloud SQL connectivity, replica/DNS/Helm health-check cleanup, VPC Flow Logs enablement, and default VPC reduction for improved security posture.
