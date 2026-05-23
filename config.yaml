@@ -37,6 +37,9 @@ menu:
     - name: Blog
       url: /posts/
       weight: 10
+    - name: Consulting
+      url: /consulting/
+      weight: 15
     - name: Resume
       url: /resume/
       weight: 20
