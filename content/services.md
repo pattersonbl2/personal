@@ -1,7 +1,6 @@
 ---
 title: "Work With Me"
 url: "/services/"
-hideMeta: true
 description: "Kubernetes, GitOps, and observability consulting from a platform engineer who runs this stack in production every day."
 ---
 

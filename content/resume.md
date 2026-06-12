@@ -1,6 +1,7 @@
 ---
 title: "Resume"
 url: "/resume/"
+description: "Resume of Brandon Patterson — platform engineer and SRE specializing in Kubernetes, GitOps, Terraform, and observability."
 
 ---
 
@@ -30,7 +31,7 @@ PROFESSIONAL EXPERIENCE
 - Implemented Atlantis to enable pull request–driven Terraform workflows, improving visibility, enforcing approval processes, and reducing manual infrastructure operations.
 - Designed GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
 - Owned urgent supply-chain remediation for a compromised Trivy GitHub Action — assessment, pinning, and coordinated remediation across Security and DevOps. Supported compliance work including customer data deletion and access pattern review.
-- Strengthened cloud security and cost posture via Terraform — VPC Flow Logs enablement, default VPC reduction, BigQuery–Cloud SQL connectivity, GCS lifecycle policies, and legacy platform decommissioning — alongside cross-team platform requests (secrets, IAM, Cloud Run, vendor integrations) and authored runbooks and rollout plans.
+- Strengthened cloud security and cost posture via Terraform — VPC Flow Logs enablement, default VPC reduction, BigQuery–Cloud SQL connectivity, replica/DNS/Helm health-check cleanup, GCS lifecycle policies, cloud cleanup, and legacy platform decommissioning — alongside cross-team platform requests (secrets, IAM, BigQuery, Cloud Run, vendor integrations). Authored internal audits, runbooks, and rollout plans.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 

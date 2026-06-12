@@ -15,7 +15,8 @@
   {{- end -}}
 </title>
 
-{{- $desc := or .Description (and .IsPage (.Summary | plainify | truncate 160)) site.Params.description }}
+{{- $desc := or .Description (and .IsPage (.Summary | plainify | truncate 160)) site.Params.description "" }}
+{{- $socialTitle := cond .IsHome site.Title .Title }}
 {{- with $desc }}
 <meta name="description" content="{{ . }}">
 {{- end }}
@@ -23,7 +24,7 @@
 <link rel="canonical" href="{{ .Permalink }}">
 
 {{- /* Open Graph / Twitter cards */}}
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:title" content="{{ $socialTitle }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
@@ -37,21 +38,21 @@
 {{- end }}
 {{- end }}
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:title" content="{{ $socialTitle }}">
 <meta name="twitter:description" content="{{ $desc }}">
 
 {{- if .IsHome }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": {{ site.Params.author | jsonify }},
-  "jobTitle": {{ site.Params.role | jsonify }},
-  "worksFor": { "@type": "Organization", "name": {{ site.Params.company | jsonify }} },
-  "url": {{ site.BaseURL | jsonify }},
-  "sameAs": [{{ range $i, $s := site.Params.socialIcons }}{{ if $i }},{{ end }}{{ $s.url | jsonify }}{{ end }}]
-}
-</script>
+{{- $sameAs := slice }}
+{{- range site.Params.socialIcons }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+{{- $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" site.Params.author
+      "jobTitle" site.Params.role
+      "worksFor" (dict "@type" "Organization" "name" site.Params.company)
+      "url" site.BaseURL
+      "sameAs" $sameAs }}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
 {{- end }}
 
 {{- with .OutputFormats.Get "rss" }}
