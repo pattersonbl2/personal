@@ -2,6 +2,8 @@
 title: "Hardening K8s Learn: Security, Monitoring, and Ditching KSOPS"
 date: 2026-03-16T17:00:00-05:00
 draft: false
+summary: "Security fixes, monitoring additions, and a secret-management migration off KSOPS after the K8s Learn platform went live."
+tags: ["kubernetes", "security", "gitops"]
 ---
 
 The [K8s Learn platform](/posts/k8s-learn-review/) launched a few days ago and immediately exposed

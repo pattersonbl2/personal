@@ -2,6 +2,8 @@
 title: "How I Monitor Everything in My Homelab"
 date: 2026-03-25
 draft: false
+summary: "How I monitor every layer of my homelab — bare metal, VyOS, Longhorn, Kubernetes, and a public VPS — from a single Grafana instance."
+tags: ["observability", "homelab", "prometheus"]
 ---
 
 I can tell you the CPU temperature of my Proxmox nodes, how many packets my VyOS router

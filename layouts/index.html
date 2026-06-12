@@ -31,6 +31,31 @@
   <a href="/contact/"    class="hero-btn">Contact</a>
 </div>
 
+{{/* ── Featured projects ── */}}
+<div class="container">
+  <h2 class="section-title">Projects</h2>
+  <div class="project-grid">
+    <a href="https://learn.bp31app.com" target="_blank" rel="noopener" class="post-card project-card">
+      <div class="post-card-title">K8s Learn — live Kubernetes playground</div>
+      <div class="project-tech">K3s · ArgoCD · Go · Cloudflare Tunnel</div>
+      <div class="post-card-summary">A free, self-hosted training platform that gives you a real cluster and a browser terminal. Built, deployed, and operated end-to-end on my own infrastructure.</div>
+      <span class="project-link">Try it live →</span>
+    </a>
+    <a href="/posts/k3s-deep-dive/" class="post-card project-card">
+      <div class="post-card-title">Production-grade homelab platform</div>
+      <div class="project-tech">Proxmox · K3s · Terraform · Prometheus/Grafana</div>
+      <div class="post-card-summary">Multi-node Kubernetes platform with GitOps delivery, VXLAN-isolated networking, and full-stack observability — 19 ArgoCD-managed applications across 8 nodes.</div>
+      <span class="project-link">Read the write-up →</span>
+    </a>
+    <a href="/posts/what-shipping-my-site-taught-me/" class="post-card project-card">
+      <div class="post-card-title">This site — Hugo + Go API on Cloud Run</div>
+      <div class="project-tech">Hugo · Go · GCP Cloud Run · CI/CD</div>
+      <div class="post-card-summary">Custom theme with a Go backend handling contact submissions, resume delivery, and rate limiting. Shipped with PR checks and auto-merge on green.</div>
+      <span class="project-link">How it's built →</span>
+    </a>
+  </div>
+</div>
+
 {{/* ── Services teaser ── */}}
 <div class="container">
   <h2 class="section-title">Consulting</h2>

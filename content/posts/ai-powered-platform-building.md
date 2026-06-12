@@ -2,6 +2,8 @@
 title: "Using AI to Deepen My Platform Building Journey"
 date: 2026-01-27T12:00:00-05:00
 draft: false
+summary: "How I used AI assistance to accelerate building a production-grade homelab — GitOps, Kubernetes, ArgoCD, and monitoring — while actually learning the fundamentals."
+tags: ["ai", "homelab", "gitops"]
 ---
 
 As someone transitioning from infrastructure operations to a more development-focused SRE role, I've been on a mission to build a production-grade homelab that serves as both a learning environment and a practical platform. What started as a simple Docker setup has evolved into a full GitOps infrastructure with Kubernetes, ArgoCD, monitoring, and secure external access. But the real game-changer has been integrating AI assistance—specifically Claude—into my workflow to accelerate learning and deepen my understanding of platform engineering.

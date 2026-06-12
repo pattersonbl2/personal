@@ -2,6 +2,8 @@
 title: "AI Didn't Fix My Broken Platform — We Did"
 date: 2026-03-18T20:00:00-05:00
 draft: false
+summary: "My Kubernetes learning platform silently broke for 24 hours — AI helped build it, harden it, and break it. What that taught me about staying in the loop."
+tags: ["ai", "kubernetes", "platform-engineering"]
 ---
 
 My Kubernetes learning platform was silently broken for 24 hours. Every signup went into a black hole. No errors surfaced. No alerts fired. No one knew.

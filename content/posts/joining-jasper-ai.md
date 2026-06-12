@@ -2,6 +2,8 @@
 title: "A New Chapter: Joining Jasper.ai as a DevOps Engineer"
 date: 2026-01-27T14:00:00-05:00
 draft: false
+summary: "I've joined Jasper AI as a DevOps engineer, focusing on the foundational infrastructure that supports their continued scale."
+tags: ["career"]
 ---
 
 I'm excited to share that I've joined **Jasper.ai** as a Mid-Level DevOps Engineer! After leaving Mozilla in October and spending time building my homelab, learning, and reflecting on my career path, I'm thrilled to be back in a role where I can make an immediate impact.

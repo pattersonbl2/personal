@@ -2,6 +2,8 @@
 title: "What Shipping My Personal Site Actually Taught Me"
 date: 2026-04-03
 draft: false
+summary: "What my commit history actually says about redesigning and shipping this site — Hugo, a Go backend on Cloud Run, and the messy middle."
+tags: ["projects", "go", "hugo"]
 ---
 
 When I looked back through my recent GitHub activity, I expected to find a clean story.

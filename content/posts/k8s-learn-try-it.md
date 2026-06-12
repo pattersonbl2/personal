@@ -2,6 +2,8 @@
 title: "Learn Kubernetes by Breaking Things (On My Cluster)"
 date: 2026-03-25
 draft: false
+summary: "A free Kubernetes playground with a real cluster and a browser terminal — five tasks from 'what's a Pod?' to deploying an app on the internet."
+tags: ["kubernetes", "projects"]
 ---
 
 I built a free Kubernetes playground that gives you a real cluster, a browser terminal, and five tasks that take you from "what's a Pod?" to deploying an app on the internet. No installs, no credit card, no Docker Desktop fighting your laptop for RAM.

@@ -2,6 +2,8 @@
 title: "Homelab End-to-End: A Production-Grade Platform in 2026"
 date: 2026-01-28T14:00:00-05:00
 draft: false
+summary: "A visual tour of my homelab platform: Proxmox, K3s, GitOps with ArgoCD, Terraform, and services running across Docker and Kubernetes."
+tags: ["homelab", "kubernetes", "gitops"]
 ---
 
 A lot has changed since I first wrote about building my homelab with AI assistance. What started as a learning project has evolved into a production-grade platform spanning two repositories, multiple Terraform projects, a full GitOps pipeline, and services running on both Docker and Kubernetes. This post is both a progress update and a visual tour of where things stand today.

@@ -15,11 +15,45 @@
   {{- end -}}
 </title>
 
-{{- with site.Params.description }}
+{{- $desc := or .Description (and .IsPage (.Summary | plainify | truncate 160)) site.Params.description "" }}
+{{- $socialTitle := cond .IsHome site.Title .Title }}
+{{- with $desc }}
 <meta name="description" content="{{ . }}">
 {{- end }}
 <meta name="author" content="{{ site.Params.author | default site.Title }}">
 <link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Open Graph / Twitter cards */}}
+<meta property="og:title" content="{{ $socialTitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+{{- with site.Params.imageUrl }}
+<meta property="og:image" content="{{ . | absURL }}">
+{{- end }}
+{{- if .IsPage }}
+{{- with .Date }}
+<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+{{- end }}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ $socialTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+
+{{- if .IsHome }}
+{{- $sameAs := slice }}
+{{- range site.Params.socialIcons }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+{{- $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" site.Params.author
+      "jobTitle" site.Params.role
+      "worksFor" (dict "@type" "Organization" "name" site.Params.company)
+      "url" site.BaseURL
+      "sameAs" $sameAs }}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}
 
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">

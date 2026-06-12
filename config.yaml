@@ -45,7 +45,7 @@ menu:
       weight: 20
     - name: Contact
       url: /contact/
-      weight: 30
+      weight: 40
 
 outputs:
   home:
