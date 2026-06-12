@@ -2,6 +2,8 @@
 title: "Defining SRE Observability at Jasper — 42% Through Our Datadog Optimization"
 date: 2026-01-28T10:00:00-05:00
 draft: false
+summary: "A mid-project update on standardizing Datadog instrumentation, monitors, and alerting at Jasper AI — and the SRE observability model behind it."
+tags: ["observability", "datadog", "sre"]
 ---
 
 I’ve been leading an effort to mature observability at Jasper: we’re about **42% through a Datadog optimization project** aimed at standardizing how we instrument, monitor, and alert on our systems. This post is a short update on how we’re defining SRE observability practices and the approach that’s working so far.

@@ -1,7 +1,7 @@
 ---
 title: Latest Update
 date: 2025-10-07T12:58:54-04:00
-draft: false
+draft: true
 ---
 ### Life comes fast 
 

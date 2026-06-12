@@ -1,5 +1,5 @@
 ---
-title: "Current Resume"
+title: "Resume"
 url: "/resume/"
 
 ---
@@ -8,9 +8,9 @@ url: "/resume/"
 
 ## BRANDON PATTERSON · PLATFORM ENGINEER | SRE
 
-### Charlotte, NC | linkedin.com/in/pattersonbl2
+### Charlotte, NC | bpatterson@ark31.info | ark31.info | linkedin.com/in/pattersonbl2
 
-Platform-focused DevOps Engineer with 5+ years of experience designing and operating Kubernetes-based infrastructure across AWS and GCP. Strong background in Infrastructure as Code (Terraform, Atlantis), observability at scale, and GitOps workflows. Proven track record reducing toil, improving developer velocity, and increasing reliability for shared platforms and production services. Passionate about platform engineering, scalable systems, and continuous improvement.
+Platform-focused DevOps Engineer with 6+ years of experience designing and operating Kubernetes-based infrastructure across AWS and GCP. Strong background in Infrastructure as Code (Terraform, Atlantis), observability at scale, and GitOps workflows. Proven track record reducing toil, improving developer velocity, and increasing reliability for shared platforms and production services. Passionate about platform engineering, scalable systems, and continuous improvement.
 
 CORE COMPETENCIES
 
@@ -26,13 +26,11 @@ PROFESSIONAL EXPERIENCE
 **DevOps / Platform Engineer |** Jasper.ai | Remote | 2026 – Present
 
 - Overhauled Datadog observability for multiple engineering teams — consolidated SLOs, standardized monitor tagging and routing, and reduced alert noise by retiring hundreds of low-signal alerts. Delivered LLM-aware golden signals, RUM dashboards, team-based on-call schedules, and critical-only alerting.
-- Established as ArgoCD SME — led platform ownership of GitOps delivery pipeline, resolving repo-server deadline timeouts and Config Management Plugin (CMP) stability issues causing sync failures across production applications; improved deployment reliability and developer experience through automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation.
-- Drove GitOps platform health improvements — audited and remediated out-of-sync Argo application metrics, decommissioned stale services and deprecated projects, and fixed DORA metrics pipeline to surface accurate delivery performance data for engineering leadership.
+- Established as ArgoCD SME — led platform ownership of the GitOps delivery pipeline, resolving repo-server timeouts and CMP stability issues causing production sync failures; improved deployment reliability through automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation. Remediated out-of-sync application metrics, decommissioned stale services, and fixed the DORA metrics pipeline to surface accurate delivery data for engineering leadership.
 - Implemented Atlantis to enable pull request–driven Terraform workflows, improving visibility, enforcing approval processes, and reducing manual infrastructure operations.
-- Designed and implemented GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
-- Drove Terraform changes for BigQuery–Cloud SQL connectivity, replica/DNS/Helm health-check cleanup, VPC Flow Logs enablement, and default VPC reduction for improved security posture.
-- Owned urgent supply-chain remediation for a compromised Trivy GitHub Action — assessment, pinning, and coordinated remediation across Security and DevOps. Supported compliance-oriented work including customer data deletion and access pattern review.
-- Executed FinOps initiatives (GCS lifecycle policies, cloud cleanup, legacy platform decommission) and cross-team platform requests (secrets, IAM, BigQuery, Cloud Run, vendor integrations). Authored internal audits, runbooks, and rollout plans to align engineering and leadership on observability and infrastructure changes.
+- Designed GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
+- Owned urgent supply-chain remediation for a compromised Trivy GitHub Action — assessment, pinning, and coordinated remediation across Security and DevOps. Supported compliance work including customer data deletion and access pattern review.
+- Strengthened cloud security and cost posture via Terraform — VPC Flow Logs enablement, default VPC reduction, BigQuery–Cloud SQL connectivity, GCS lifecycle policies, and legacy platform decommissioning — alongside cross-team platform requests (secrets, IAM, Cloud Run, vendor integrations) and authored runbooks and rollout plans.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
@@ -73,4 +71,4 @@ PROFESSIONAL EXPERIENCE
 
 EDUCATION
 
-**Virginia Commonwealth University, Richmond, VA:** _Bachelor of Science_
+**Virginia Commonwealth University, Richmond, VA:** _Bachelor of Science, Sociology_

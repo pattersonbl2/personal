@@ -2,6 +2,8 @@
 title: "Deep Dive: How I Run Kubernetes in My Homelab"
 date: 2026-03-25
 draft: false
+summary: "19 ArgoCD-managed applications across 8 nodes: how my K3s cluster, GitOps workflow, network policies, and monitoring fit together."
+tags: ["kubernetes", "homelab", "gitops"]
 ---
 
 I've been running a K3s cluster in my homelab for a few months now. What started as "let me learn Kubernetes properly" turned into 19 ArgoCD-managed applications across 8 nodes, with real monitoring, network policies, and a GitOps workflow I actually trust. Here's how it all fits together.

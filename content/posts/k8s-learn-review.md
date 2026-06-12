@@ -2,6 +2,8 @@
 title: "K8s Learn: A Self-Hosted Kubernetes Training Platform"
 date: 2026-03-15T12:00:00-05:00
 draft: false
+summary: "K8s Learn is a hands-on Kubernetes training platform I built and self-host: K3s, ArgoCD, n8n, Ollama, and Cloudflare Tunnel."
+tags: ["kubernetes", "projects", "homelab"]
 ---
 
 K8s Learn is a hands-on Kubernetes training platform I built because most K8s tutorials give

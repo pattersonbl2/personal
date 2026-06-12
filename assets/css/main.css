@@ -346,6 +346,66 @@ main { flex: 1; padding-bottom: 4rem; }
 }
 
 /* ========================================
+   Project Cards & CTA (homepage)
+   ======================================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  color: var(--text) !important;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.project-tech {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.project-link {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.cta-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 3rem;
+}
+.cta-text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+@media (max-width: 700px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
    Post Card
    ======================================== */
 .post-card {
