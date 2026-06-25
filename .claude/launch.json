@@ -4,7 +4,7 @@
     {
       "name": "hugo",
       "runtimeExecutable": "hugo",
-      "runtimeArgs": ["server", "--baseURL", "http://localhost", "--port", "1313", "--disableFastRender"],
+      "runtimeArgs": ["server", "--port", "1313", "--disableFastRender"],
       "port": 1313
     }
   ]
