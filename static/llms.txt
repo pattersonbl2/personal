@@ -1,0 +1,44 @@
+# Brandon Patterson — ark31.info
+
+> Platform Engineer / SRE in Charlotte, NC. 6+ years building and operating
+> Kubernetes infrastructure on GCP and AWS — GitOps, Terraform, and observability
+> at scale. Currently at Jasper AI; previously Mozilla. Open to senior
+> Platform/SRE roles and select consulting engagements.
+
+## Facts
+
+- Name: Brandon Patterson
+- Title: Platform Engineer / Site Reliability Engineer (SRE)
+- Location: Charlotte, NC (works remotely)
+- Current employer: Jasper AI
+- Previous: Mozilla (SRE, 2023–2025; Software Engineer, 2021–2023)
+- Education: B.S., Virginia Commonwealth University
+- Contact: bpatterson@ark31.info
+
+## Expertise
+
+Kubernetes (GKE, K3s), Terraform, ArgoCD/GitOps, Atlantis, Datadog, Prometheus,
+Grafana, Loki, observability and SLOs, incident response, CI/CD (GitHub Actions,
+CircleCI, Jenkins), FinOps, GCP, AWS, Go, Python.
+
+## Selected impact
+
+- Operated multi-tenant Kubernetes clusters supporting 50M+ users at Mozilla.
+- Migrated production workloads AWS → GCP with Terraform, cutting cloud spend ~40%.
+- ArgoCD subject-matter expert at Jasper AI; fixed the DORA metrics pipeline and
+  improved GitOps delivery reliability.
+- Runs a multi-node Proxmox + K3s homelab with full GitOps and observability
+  (19 ArgoCD-managed applications across 8 nodes).
+
+## Key pages
+
+- Home: https://ark31.info/
+- Resume: https://ark31.info/resume/
+- Consulting services: https://ark31.info/consulting/
+- Blog: https://ark31.info/posts/
+- Contact: https://ark31.info/contact/
+
+## Links
+
+- GitHub: https://github.com/pattersonbl2
+- LinkedIn: https://www.linkedin.com/in/pattersonbl2/
