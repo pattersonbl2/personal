@@ -9,10 +9,10 @@
   --border:       #2a2f37;
   --text:         #e6edf3;
   --text-muted:   #9aa4b2;
-  --accent:       #e3b341;   /* signature amber/gold */
-  --accent-2:     #f2cc60;
-  --accent-hover: #f2cc60;
-  --accent-soft:  rgba(227, 179, 65, 0.10);
+  --accent:       #2dd4bf;   /* signature teal/cyan */
+  --accent-2:     #5eead4;
+  --accent-hover: #5eead4;
+  --accent-soft:  rgba(45, 212, 191, 0.10);
   --accent-green: #3fb950;   /* semantic: healthy / passed */
   --accent-red:   #f85149;   /* semantic: failed */
   --radius:       6px;
@@ -29,10 +29,10 @@
   --border:       #d0d7de;
   --text:         #1f2328;
   --text-muted:   #656d76;
-  --accent:       #9a6700;   /* signature amber/gold — darkened for contrast on white */
-  --accent-2:     #7d5300;
-  --accent-hover: #7d5300;
-  --accent-soft:  rgba(154, 103, 0, 0.08);
+  --accent:       #0d9488;   /* signature teal/cyan — darkened for contrast on white */
+  --accent-2:     #0f766e;
+  --accent-hover: #0f766e;
+  --accent-soft:  rgba(13, 148, 136, 0.08);
   --accent-green: #1a7f37;
   --accent-red:   #cf222e;
 }
@@ -349,7 +349,7 @@ main { flex: 1; padding-bottom: 4rem; }
   background: var(--accent-soft);
 }
 
-/* Primary CTA (filled amber) — recruiter actions */
+/* Primary CTA (filled accent) — recruiter actions */
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -371,8 +371,8 @@ main { flex: 1; padding-bottom: 4rem; }
 .cta-btn svg { width: 16px; height: 16px; }
 .cta-btn.cta-primary {
   background: var(--accent);
-  color: #1a1205 !important;
-  box-shadow: 0 6px 18px rgba(227, 179, 65, 0.18);
+  color: #04231f !important;
+  box-shadow: 0 6px 18px rgba(45, 212, 191, 0.18);
 }
 .cta-btn.cta-primary:hover {
   background: var(--accent-2);
