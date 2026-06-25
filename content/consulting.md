@@ -3,6 +3,17 @@ title: "Consulting"
 url: "/consulting/"
 hideMeta: true
 description: "Consulting services from Brandon Patterson — digital readiness, SRE / platform engineering, and web development & hosting."
+faq:
+  - q: "What does Brandon Patterson do?"
+    a: "Brandon is a Platform Engineer and SRE with 6+ years building and operating Kubernetes infrastructure on GCP and AWS. He focuses on GitOps delivery, Terraform-based infrastructure as code, and observability at scale, currently at Jasper AI and previously at Mozilla."
+  - q: "Is Brandon available for hire or consulting?"
+    a: "Yes. Brandon is open to senior Platform/SRE roles and takes select consulting engagements — short-term projects, monthly retainers, or hourly advisory. He works remotely from Charlotte, NC across time zones."
+  - q: "What kinds of consulting engagements do you take?"
+    a: "Three shapes: fixed-scope short-term projects (migrations, build-outs, audits, observability rollouts), monthly retainers for ongoing platform support and on-call backup, and pay-as-you-go hourly advisory for architecture decisions or unblocking a specific question."
+  - q: "What is your experience with Kubernetes?"
+    a: "Brandon has operated multi-tenant Kubernetes clusters supporting 50M+ users, runs a multi-node Proxmox + K3s homelab with 19 ArgoCD-managed applications, and works across GKE, EKS, and K3s with Helm, Cilium, MetalLB, and VXLAN networking."
+  - q: "How do I get in touch?"
+    a: "Send a message through the contact form at ark31.info/contact, or email bpatterson@ark31.info. Brandon typically responds within a day or two."
 ---
 
 I help small and mid-sized teams stand up production-grade infrastructure, ship faster with less toil, and put a credible presence on the web. Five years of hands-on platform engineering across AWS, GCP, and Kubernetes — most recently at Jasper.ai and Mozilla.
@@ -56,6 +67,10 @@ I take on engagements in three shapes — pick whichever fits the problem.
 - Operated Kubernetes at 50M+ user scale; migrated production workloads AWS → GCP and cut cloud spend 40%
 - Built and run a multi-node homelab on Proxmox / K3s with full GitOps and observability — the same patterns I apply to client work
 - Comfortable working remotely across time zones and embedding with existing engineering teams
+
+## Frequently asked
+
+{{< faq >}}
 
 ## Get in touch
 

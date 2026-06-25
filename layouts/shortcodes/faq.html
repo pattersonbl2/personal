@@ -1,0 +1,10 @@
+{{- with .Page.Params.faq }}
+<div class="faq-list">
+  {{- range . }}
+  <details class="faq-item">
+    <summary class="faq-q">{{ .q }}</summary>
+    <div class="faq-a">{{ .a | markdownify }}</div>
+  </details>
+  {{- end }}
+</div>
+{{- end }}

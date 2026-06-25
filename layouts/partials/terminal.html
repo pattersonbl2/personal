@@ -5,11 +5,11 @@
       <span class="dot-yellow"></span>
       <span class="dot-green"></span>
     </div>
-    <span class="go-terminal-filename" id="go-term-file"></span>
+    <span class="go-terminal-filename" id="pl-file">deploy · ark31/platform</span>
     <div class="go-terminal-dots-spacer"></div>
   </div>
-  <div class="go-terminal-body" id="go-term-body">
-    <pre id="go-term-out"></pre>
+  <div class="go-terminal-body" id="pl-body">
+    <div class="pipeline" id="pl-out"></div>
   </div>
 </div>
 
@@ -17,172 +17,152 @@
 (function () {
   'use strict';
 
-  var CHAR_DELAY    = 12;
-  var NEWLINE_PAUSE = 50;
-  var SNIPPET_HOLD  = 2600;
-  var FADE_MS       = 350;
-
-  var KEYWORDS = new Set([
-    'break','case','chan','const','continue','default','defer','else',
-    'fallthrough','for','func','go','goto','if','import','interface',
-    'map','package','range','return','select','struct','switch','type','var',
-    'nil','true','false','iota',
-  ]);
-
-  function tokenize(code) {
-    var tokens = [];
-    var i = 0;
-    var n = code.length;
-
-    while (i < n) {
-      var ch = code[i];
-
-      // Line comment
-      if (ch === '/' && i + 1 < n && code[i + 1] === '/') {
-        var j = i;
-        while (j < n && code[j] !== '\n') j++;
-        tokens.push({ text: code.slice(i, j), cls: 'cmt' });
-        i = j;
-        continue;
-      }
-
-      // Double-quoted string
-      if (ch === '"') {
-        var j = i + 1;
-        while (j < n && code[j] !== '"') {
-          if (code[j] === '\\') j++;
-          j++;
-        }
-        j = Math.min(j + 1, n);
-        tokens.push({ text: code.slice(i, j), cls: 'str' });
-        i = j;
-        continue;
-      }
-
-      // Backtick string
-      if (ch === '`') {
-        var end = code.indexOf('`', i + 1);
-        var j = end === -1 ? n : end + 1;
-        tokens.push({ text: code.slice(i, j), cls: 'str' });
-        i = j;
-        continue;
-      }
-
-      // Identifier / keyword / type / function
-      if (/[a-zA-Z_]/.test(ch)) {
-        var j = i;
-        while (j < n && /[a-zA-Z0-9_]/.test(code[j])) j++;
-        var word = code.slice(i, j);
-        var cls = '';
-        if (KEYWORDS.has(word)) {
-          cls = 'kw';
-        } else if (j < n && code[j] === '(') {
-          cls = 'fn';
-        } else if (/^[A-Z]/.test(word)) {
-          cls = 'type';
-        }
-        tokens.push({ text: word, cls: cls });
-        i = j;
-        continue;
-      }
-
-      // Default: single character
-      tokens.push({ text: ch, cls: '' });
-      i++;
-    }
-
-    return tokens;
-  }
-
-  var snippets = [
-    {
-      filename: 'health_check.go',
-      code: 'package main\n\nimport (\n\t"context"\n\t"net/http"\n\t"sync"\n\t"time"\n)\n\ntype Result struct {\n\tTarget  string\n\tLatency time.Duration\n\tHealthy bool\n}\n\nfunc checkAll(ctx context.Context, targets []string) []Result {\n\tvar mu sync.Mutex\n\tvar results []Result\n\tvar wg sync.WaitGroup\n\n\tfor _, t := range targets {\n\t\twg.Add(1)\n\t\tgo func(target string) {\n\t\t\tdefer wg.Done()\n\t\t\tstart := time.Now()\n\t\t\t_, err := http.Get(target)\n\t\t\tmu.Lock()\n\t\t\tresults = append(results, Result{\n\t\t\t\tTarget:  target,\n\t\t\t\tLatency: time.Since(start),\n\t\t\t\tHealthy: err == nil,\n\t\t\t})\n\t\t\tmu.Unlock()\n\t\t}(t)\n\t}\n\n\twg.Wait()\n\treturn results\n}',
-    },
-    {
-      filename: 'middleware.go',
-      code: 'package middleware\n\nimport (\n\t"net/http"\n\t"sync"\n\t"time"\n)\n\n// RateLimit returns a middleware that limits requests per IP.\nfunc RateLimit(limit int, window time.Duration) func(http.Handler) http.Handler {\n\tvar mu sync.Mutex\n\tclients := make(map[string][]time.Time)\n\n\treturn func(next http.Handler) http.Handler {\n\t\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\t\tip := r.RemoteAddr\n\t\t\tmu.Lock()\n\t\t\tnow := time.Now()\n\t\t\tcutoff := now.Add(-window)\n\t\t\tvar recent []time.Time\n\t\t\tfor _, t := range clients[ip] {\n\t\t\t\tif t.After(cutoff) {\n\t\t\t\t\trecent = append(recent, t)\n\t\t\t\t}\n\t\t\t}\n\t\t\tif len(recent) >= limit {\n\t\t\t\tmu.Unlock()\n\t\t\t\thttp.Error(w, "too many requests", http.StatusTooManyRequests)\n\t\t\t\treturn\n\t\t\t}\n\t\t\tclients[ip] = append(recent, now)\n\t\t\tmu.Unlock()\n\t\t\tnext.ServeHTTP(w, r)\n\t\t})\n\t}\n}',
-    },
-    {
-      filename: 'server.go',
-      code: 'package main\n\nimport (\n\t"context"\n\t"log"\n\t"net/http"\n\t"os"\n\t"os/signal"\n\t"syscall"\n\t"time"\n)\n\nfunc main() {\n\tmux := http.NewServeMux()\n\tmux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {\n\t\tw.Write([]byte("OK"))\n\t})\n\n\tsrv := &http.Server{\n\t\tAddr:         ":8080",\n\t\tHandler:      mux,\n\t\tReadTimeout:  15 * time.Second,\n\t\tWriteTimeout: 15 * time.Second,\n\t\tIdleTimeout:  60 * time.Second,\n\t}\n\n\tgo func() {\n\t\tlog.Println("listening on :8080")\n\t\tif err := srv.ListenAndServe(); err != http.ErrServerClosed {\n\t\t\tlog.Fatalf("server: %v", err)\n\t\t}\n\t}()\n\n\tquit := make(chan os.Signal, 1)\n\tsignal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)\n\t<-quit\n\n\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n\tdefer cancel()\n\tif err := srv.Shutdown(ctx); err != nil {\n\t\tlog.Printf("shutdown: %v", err)\n\t}\n\tlog.Println("stopped")\n}',
-    },
+  // Pipeline stages — `run` is the cosmetic spinner duration (ms); `time` is the
+  // fake wall-clock shown after the stage resolves.
+  var STAGES = [
+    { stage: 'build',   run: 850, time: '12.3s', detail: 'docker image <span class="pl-hash">ghcr.io/ark31/api</span>' },
+    { stage: 'test',    run: 750, time: '8.1s',  detail: '<span class="pl-pass">142 passed</span>, 0 failed' },
+    { stage: 'scan',    run: 650, time: '3.4s',  detail: 'trivy — <span class="pl-pass">0 critical</span>, 0 high' },
+    { stage: 'deploy',  run: 900, time: '9.7s',  detail: 'argocd sync → <span class="pl-hash">production</span>' },
+    { stage: 'rollout', run: 800, time: '6.2s',  detail: '<span class="pl-pass">3/3</span> pods healthy' },
+    { stage: 'verify',  run: 600, time: '1.1s',  detail: '/healthz <span class="pl-pass">200</span> · p99 42ms' },
   ];
 
-  var snippetIdx = 0;
-  var tokenIdx   = 0;
-  var charIdx    = 0;
-  var tokens     = [];
-  var currentSpan = null;
-  var tid        = null;
+  // A little variety per loop so it never feels canned.
+  var COMMITS = [
+    { hash: 'a1b9f3c', msg: 'feat: add cluster health checks' },
+    { hash: '7e02d4a', msg: 'fix: tighten readiness probe timing' },
+    { hash: 'c5f8b21', msg: 'chore: bump argocd to v2.13' },
+    { hash: 'f30ad6e', msg: 'feat: golden-signal SLO alerts' },
+    { hash: '9d41c7b', msg: 'refactor: split ingress per namespace' },
+  ];
 
-  var outEl  = null;
-  var bodyEl = null;
-  var fileEl = null;
+  var SPIN = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
+  var HOLD = 3200;     // pause on the completed run before resetting
+  var STAGE_GAP = 140; // delay between stages resolving
 
-  function loadSnippet(idx) {
-    tokens = tokenize(snippets[idx].code);
-    fileEl.textContent = snippets[idx].filename;
-    tokenIdx    = 0;
-    charIdx     = 0;
-    currentSpan = null;
+  var outEl, bodyEl, fileEl;
+  var runIdx = 0, timers = [], spinTimer = null;
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    if (spinTimer) { clearInterval(spinTimer); spinTimer = null; }
+  }
+  function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
+
+  function makeRow(stage) {
+    var row = document.createElement('div');
+    row.className = 'pl-row';
+    row.innerHTML =
+      '<span class="pl-icon is-pending">·</span>' +
+      '<span class="pl-stage">' + stage.stage + '</span>' +
+      '<span class="pl-detail"></span>' +
+      '<span class="pl-time"></span>';
+    return row;
   }
 
-  function step() {
-    if (tokenIdx >= tokens.length) {
-      tid = setTimeout(transition, SNIPPET_HOLD);
-      return;
-    }
-
-    var tok = tokens[tokenIdx];
-    var ch  = tok.text[charIdx];
-
-    if (charIdx === 0) {
-      if (tok.cls) {
-        currentSpan = document.createElement('span');
-        currentSpan.className = 'gt-' + tok.cls;
-        outEl.appendChild(currentSpan);
-      } else {
-        currentSpan = null;
-      }
-    }
-
-    var target = currentSpan || outEl;
-    target.appendChild(document.createTextNode(ch));
-    bodyEl.scrollTop = bodyEl.scrollHeight;
-
-    charIdx++;
-    if (charIdx >= tok.text.length) {
-      tokenIdx++;
-      charIdx = 0;
-    }
-
-    tid = setTimeout(step, ch === '\n' ? NEWLINE_PAUSE : CHAR_DELAY);
+  function spin(iconEl) {
+    var i = 0;
+    iconEl.className = 'pl-icon is-running';
+    iconEl.textContent = SPIN[0];
+    spinTimer = setInterval(function () {
+      i = (i + 1) % SPIN.length;
+      iconEl.textContent = SPIN[i];
+    }, 80);
   }
 
-  function transition() {
-    bodyEl.style.transition = 'opacity ' + FADE_MS + 'ms ease';
-    bodyEl.style.opacity    = '0';
+  function renderStatic() {
+    // reduced-motion: show a finished run, no animation
+    var c = COMMITS[0];
+    outEl.innerHTML =
+      '<div class="pipeline-cmd"><span class="pl-prompt">$</span>git push origin main</div>' +
+      '<div class="pl-row is-visible"><span class="pl-icon is-ok">✓</span>' +
+        '<span class="pl-stage">commit</span><span class="pl-detail">' +
+        '<span class="pl-hash">' + c.hash + '</span> ' + c.msg + '</span><span class="pl-time"></span></div>';
+    STAGES.forEach(function (s) {
+      outEl.insertAdjacentHTML('beforeend',
+        '<div class="pl-row is-visible"><span class="pl-icon is-ok">✓</span>' +
+        '<span class="pl-stage">' + s.stage + '</span>' +
+        '<span class="pl-detail">' + s.detail + '</span>' +
+        '<span class="pl-time">' + s.time + '</span></div>');
+    });
+    outEl.insertAdjacentHTML('beforeend',
+      '<div class="pl-summary is-visible"><span class="pl-check">✔</span>deployed to production in 1m 04s</div>');
+  }
 
-    setTimeout(function () {
-      outEl.innerHTML = '';
-      snippetIdx = (snippetIdx + 1) % snippets.length;
-      loadSnippet(snippetIdx);
-      bodyEl.style.opacity = '1';
-      tid = setTimeout(step, 200);
-    }, FADE_MS);
+  function run() {
+    clearTimers();
+    outEl.innerHTML = '';
+    var commit = COMMITS[runIdx % COMMITS.length];
+    runIdx++;
+
+    // command
+    var cmd = document.createElement('div');
+    cmd.className = 'pipeline-cmd';
+    cmd.innerHTML = '<span class="pl-prompt">$</span>git push origin main';
+    outEl.appendChild(cmd);
+
+    // commit row (resolves immediately)
+    var commitRow = makeRow({ stage: 'commit' });
+    outEl.appendChild(commitRow);
+    later(function () {
+      commitRow.classList.add('is-visible');
+      var ic = commitRow.querySelector('.pl-icon');
+      ic.className = 'pl-icon is-ok';
+      ic.textContent = '✓';
+      commitRow.querySelector('.pl-detail').innerHTML =
+        '<span class="pl-hash">' + commit.hash + '</span> ' + commit.msg;
+    }, 350);
+
+    // build remaining rows
+    var rows = STAGES.map(function (s) { var r = makeRow(s); outEl.appendChild(r); return r; });
+
+    var t = 650;
+    STAGES.forEach(function (s, idx) {
+      var row = rows[idx];
+      // reveal + start spinner
+      later(function () {
+        row.classList.add('is-visible');
+        spin(row.querySelector('.pl-icon'));
+        bodyEl.scrollTop = bodyEl.scrollHeight;
+      }, t);
+      // resolve
+      later(function () {
+        if (spinTimer) { clearInterval(spinTimer); spinTimer = null; }
+        var ic = row.querySelector('.pl-icon');
+        ic.className = 'pl-icon is-ok';
+        ic.textContent = '✓';
+        row.querySelector('.pl-detail').innerHTML = s.detail;
+        row.querySelector('.pl-time').textContent = s.time;
+        bodyEl.scrollTop = bodyEl.scrollHeight;
+      }, t + s.run);
+      t += s.run + STAGE_GAP;
+    });
+
+    // summary + loop
+    later(function () {
+      var sum = document.createElement('div');
+      sum.className = 'pl-summary';
+      sum.innerHTML = '<span class="pl-check">✔</span>deployed to production in 1m 04s';
+      outEl.appendChild(sum);
+      later(function () { sum.classList.add('is-visible'); }, 30);
+      bodyEl.scrollTop = bodyEl.scrollHeight;
+    }, t);
+
+    later(run, t + HOLD);
   }
 
   function init() {
-    outEl  = document.getElementById('go-term-out');
-    bodyEl = document.getElementById('go-term-body');
-    fileEl = document.getElementById('go-term-file');
-
+    outEl  = document.getElementById('pl-out');
+    bodyEl = document.getElementById('pl-body');
+    fileEl = document.getElementById('pl-file');
     if (!outEl) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    loadSnippet(0);
-    tid = setTimeout(step, 800);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      renderStatic();
+      return;
+    }
+    later(run, 600);
   }
 
   if (document.readyState === 'loading') {
