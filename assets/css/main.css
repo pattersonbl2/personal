@@ -746,6 +746,14 @@ main { flex: 1; padding-bottom: 4rem; }
   flex: 1 1 100%;
   margin: 0;
 }
+.resume-download-form .resume-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.resume-download-form #resume-status {
+  flex: 1 1 100%;
+  margin: 0;
+}
 .post-content .resume-btn {
   display: inline-flex;
   align-items: center;
