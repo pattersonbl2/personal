@@ -32,7 +32,21 @@ Optional Cloudflare Pages override (public):
 - `TURNSTILE_SITE_KEY` — overrides `params.turnstileSiteKey` from `config.yaml`
 
 Cloud Run (secret, not Pages):
-- `TURNSTILE_SECRET` — Turnstile secret used by `/api/contact` and `/api/resume` siteverify (fail-closed if unset)
+- `TURNSTILE_SECRET` — Turnstile secret used by `/api/contact` siteverify (fail-closed if unset)
+
+### Not found handling (important)
+
+In Pages → Settings → **Not found handling**, use **404 page** (or None).
+
+Do **not** use “Single-page application”. SPA mode serves `index.html` for missing
+`/css/*` and `/js/*` URLs with `content-type: text/html`, which makes the site
+appear as unstyled HTML after deploys when a fingerprinted asset URL is stale.
+
+## Troubleshooting unstyled pages (“only HTML”)
+
+1. Confirm Not found handling is **not** SPA (see above)
+2. Hard-refresh (`Cmd+Shift+R` / Ctrl+Shift+R)
+3. After this fix, the site publishes stable `/css/site.min.css` and `/js/contact.min.js` (no content-hash in the URL) so a brief CDN skew cannot point at a missing fingerprinted file
 
 ## Troubleshooting 404 Errors
 

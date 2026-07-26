@@ -39,6 +39,7 @@
 
 {{- if $siteKey }}
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-{{- $js := resources.Get "js/contact.js" | minify | fingerprint }}
-<script src="{{ $js.Permalink }}" defer integrity="{{ $js.Data.Integrity }}"></script>
+{{- $js := resources.Get "js/contact.js" | minify | resources.Copy "js/contact.js" -}}
+<script src="{{ $js.RelPermalink }}" defer></script>
 {{- end }}
+
