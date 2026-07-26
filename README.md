@@ -18,11 +18,10 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 - **Resume PDF sync** — downloadable resume PDF is generated from `content/resume.md` into `backend/resume.pdf` so the website resume and downloaded resume share one source of truth
 
 ### Contact / Turnstile ops
-1. Create a Turnstile widget in the Cloudflare dashboard for `ark31.info`.
-2. Set `TURNSTILE_SITE_KEY` in Cloudflare Pages build env (public).
-3. Set `TURNSTILE_SECRET_KEY` on Cloud Run for stage + prod (Secret Manager / service env). The API refuses submissions if this is unset.
-4. Keep `ALLOWED_ORIGINS=https://ark31.info` (and preview origins if needed) so browser `fetch` from the contact page works.
-5. Local always-pass dummy keys (Cloudflare): site `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`.
+1. Widget site key is in `config.yaml` as `params.turnstileSiteKey` (override with Pages env `TURNSTILE_SITE_KEY` if needed).
+2. Set `TURNSTILE_SECRET` on Cloud Run for stage + prod (Secret Manager / service env). Contact and resume handlers refuse requests if this is unset.
+3. Keep `ALLOWED_ORIGINS=https://ark31.info` (and preview origins if needed) so browser `fetch` from the contact page works.
+4. Every `cf-turnstile` widget uses `data-action="turnstile-spin-v2"` for Spin analytics attribution.
 
 ### Resume PDF Generation
 - Local build: `make resume-pdf`

@@ -79,7 +79,7 @@ func TestContactHandlerJSONConfigError(t *testing.T) {
 	}
 	t.Cleanup(func() { turnstileVerifier = prev })
 
-	t.Setenv("TURNSTILE_SECRET_KEY", "test-secret")
+	t.Setenv("TURNSTILE_SECRET", "test-secret")
 	t.Setenv("RESEND_API_KEY", "")
 	t.Setenv("CONTACT_EMAIL", "")
 
@@ -113,7 +113,7 @@ func TestContactHandlerTurnstileFail(t *testing.T) {
 		return &turnstile.Result{Success: false, ErrorCodes: []string{"invalid-input-response"}}, nil
 	}
 	t.Cleanup(func() { turnstileVerifier = prev })
-	t.Setenv("TURNSTILE_SECRET_KEY", "test-secret")
+	t.Setenv("TURNSTILE_SECRET", "test-secret")
 
 	formTS := time.Now().Add(-5 * time.Second).Unix()
 	body := strings.NewReader(
@@ -125,7 +125,7 @@ func TestContactHandlerTurnstileFail(t *testing.T) {
 	req.Header.Set("Accept", "application/json")
 	rr := httptest.NewRecorder()
 	ContactHandler(rr, req)
-	if rr.Code != http.StatusBadRequest {
+	if rr.Code != http.StatusForbidden {
 		t.Fatalf("status = %d body=%s", rr.Code, rr.Body.String())
 	}
 }
@@ -148,7 +148,7 @@ func TestContactHandlerHoneypotSilent(t *testing.T) {
 }
 
 func TestContactHandlerSecretMissing(t *testing.T) {
-	_ = os.Unsetenv("TURNSTILE_SECRET_KEY")
+	_ = os.Unsetenv("TURNSTILE_SECRET")
 	formTS := time.Now().Add(-5 * time.Second).Unix()
 	body := strings.NewReader(
 		"name=Brandon&email=brandon@example.com&message=Hello there friend&form_ts=" + strconv.FormatInt(formTS, 10),
@@ -164,7 +164,7 @@ func TestContactHandlerSecretMissing(t *testing.T) {
 }
 
 func TestContactHandlerTooFastSilent(t *testing.T) {
-	t.Setenv("TURNSTILE_SECRET_KEY", "test-secret")
+	t.Setenv("TURNSTILE_SECRET", "test-secret")
 	formTS := time.Now().Unix() // too fast
 	body := strings.NewReader(
 		"name=Brandon&email=brandon@example.com&message=Hello there friend&" +

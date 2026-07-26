@@ -25,7 +25,7 @@
   </p>
 
   {{- if $siteKey }}
-  <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-appearance="interaction-only"></div>
+  <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-action="turnstile-spin-v2" data-appearance="interaction-only"></div>
   {{- else }}
   <p class="contact-status contact-status--warn" role="status">Contact form is temporarily unavailable (missing Turnstile site key).</p>
   {{- end }}

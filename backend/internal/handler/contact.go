@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -12,8 +11,6 @@ import (
 	"strings"
 	"time"
 	"unicode/utf8"
-
-	"ark31/backend/internal/turnstile"
 
 	"github.com/resend/resend-go/v3"
 )
@@ -26,12 +23,6 @@ const (
 	minFormFillDelay = 2 * time.Second
 	maxFormAge       = 2 * time.Hour
 )
-
-// turnstileVerifier is overridable in tests.
-var turnstileVerifier = func(ctx context.Context, token, remoteIP string) (*turnstile.Result, error) {
-	client := &turnstile.Client{Secret: os.Getenv("TURNSTILE_SECRET_KEY")}
-	return client.Verify(ctx, token, remoteIP)
-}
 
 // ContactHandler accepts POST to /api/contact, validates input, sends email via Resend.
 // Form fields: name, email, message, form_ts, cf-turnstile-response.
@@ -64,7 +55,6 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	email := strings.TrimSpace(r.FormValue("email"))
 	message := strings.TrimSpace(r.FormValue("message"))
 	formTS := strings.TrimSpace(r.FormValue("form_ts"))
-	token := strings.TrimSpace(r.FormValue("cf-turnstile-response"))
 
 	if name == "" || email == "" || message == "" {
 		log.Printf("contact: reject reason=validation detail=required_fields ip=%s", clientIP(r))
@@ -103,13 +93,13 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	secret := os.Getenv("TURNSTILE_SECRET_KEY")
-	if secret == "" {
+	// Canonical Turnstile siteverify gate (TURNSTILE_SECRET).
+	if os.Getenv("TURNSTILE_SECRET") == "" {
 		log.Printf("contact: reject reason=turnstile detail=secret_missing ip=%s", clientIP(r))
 		sendContactError(w, jsonMode, "Email service is temporarily unavailable.", http.StatusServiceUnavailable)
 		return
 	}
-
+	token := strings.TrimSpace(r.FormValue("cf-turnstile-response"))
 	tsResult, err := turnstileVerifier(r.Context(), token, clientIP(r))
 	if err != nil {
 		log.Printf("contact: reject reason=turnstile detail=verify_error err=%v ip=%s", err, clientIP(r))
@@ -122,7 +112,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 			codes = tsResult.ErrorCodes
 		}
 		log.Printf("contact: reject reason=turnstile detail=%s ip=%s", strings.Join(codes, ","), clientIP(r))
-		sendContactError(w, jsonMode, "Verification failed. Please try again.", http.StatusBadRequest)
+		sendContactError(w, jsonMode, "Verification failed. Please try again.", http.StatusForbidden)
 		return
 	}
 
@@ -150,7 +140,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	)
 
 	params := &resend.SendEmailRequest{
-		From:    os.Getenv("RESEND_FROM"), // e.g. "Contact <onboarding@resend.dev>"
+		From:    os.Getenv("RESEND_FROM"),
 		To:      []string{contactEmail},
 		Subject: subject,
 		Html:    html,
@@ -217,18 +207,13 @@ func isTimingSuspicious(formTS string, now time.Time) (bool, string) {
 // isSpam returns true if the submission looks like spam.
 // Rules are intentionally simple and conservative to avoid false positives.
 func isSpam(name, email, message string) bool {
-	// Known bad sender(s) that repeatedly spam the form.
 	lowerEmail := strings.ToLower(email)
 	if lowerEmail == "zekisuquc419@gmail.com" {
 		return true
 	}
-
-	// Cyrillic script covers Russian, Ukrainian, Bulgarian, etc.
-	// Legitimate contacts on this English-language site are extremely unlikely to use it.
 	if containsScript(name, 0x0400, 0x052F) || containsScript(message, 0x0400, 0x052F) {
 		return true
 	}
-	// URLs in messages are a near-universal spam signal for contact forms.
 	msg := strings.ToLower(message)
 	if strings.Contains(msg, "http://") || strings.Contains(msg, "https://") || strings.Contains(msg, "www.") {
 		return true
@@ -236,7 +221,6 @@ func isSpam(name, email, message string) bool {
 	return false
 }
 
-// containsScript reports whether s contains any rune in the Unicode range [lo, hi].
 func containsScript(s string, lo, hi rune) bool {
 	for _, r := range s {
 		if r >= lo && r <= hi {

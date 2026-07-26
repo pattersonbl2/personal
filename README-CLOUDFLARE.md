@@ -28,11 +28,11 @@ The build script automatically uses:
 - `CF_PAGES_URL` for preview deployments (set automatically by Cloudflare)
 - `https://ark31.info` for production deployments
 
-Also set in Cloudflare Pages (public):
-- `TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key for the contact form widget
+Optional Cloudflare Pages override (public):
+- `TURNSTILE_SITE_KEY` — overrides `params.turnstileSiteKey` from `config.yaml`
 
 Cloud Run (secret, not Pages):
-- `TURNSTILE_SECRET_KEY` — Turnstile secret used by `/api/contact` siteverify (fail-closed if unset)
+- `TURNSTILE_SECRET` — Turnstile secret used by `/api/contact` and `/api/resume` siteverify (fail-closed if unset)
 
 ## Troubleshooting 404 Errors
 
