@@ -7,28 +7,29 @@
 <form action="https://api.ark31.info/api/resume" method="POST" class="resume-download-form" id="resume-download-form" target="_blank">
   <input type="hidden" name="token" value="{{ $token }}">
   {{- if $siteKey }}
-  {{/* Visible managed widget so a token exists before download (interaction-only raced the click). */}}
+  {{/* Invisible widget — runs on Download click via turnstile.execute (not shown beside the button). */}}
   <div
+    id="resume-turnstile"
     class="cf-turnstile"
     data-sitekey="{{ $siteKey }}"
     data-action="turnstile-spin-v2"
+    data-size="invisible"
     data-callback="onResumeTurnstileSuccess"
-    data-expired-callback="onResumeTurnstileReset"
-    data-error-callback="onResumeTurnstileReset"
+    data-error-callback="onResumeTurnstileError"
   ></div>
   {{- end }}
-  <button type="submit" class="resume-btn" id="resume-submit" {{- if $siteKey }} disabled{{- end }}>
+  <button type="submit" class="resume-btn" id="resume-submit" {{- if not $siteKey }} disabled{{- end }}>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
       <polyline points="7 10 12 15 17 10"/>
       <line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
-    Download PDF
+    <span class="resume-btn-label">Download PDF</span>
   </button>
   {{- if not $siteKey }}
   <p class="contact-status contact-status--warn" role="status">Resume download is temporarily unavailable (missing Turnstile site key).</p>
   {{- else }}
-  <p class="contact-status contact-status--warn" id="resume-status" role="status" hidden>Complete the check above, then download.</p>
+  <p class="contact-status contact-status--error" id="resume-status" role="status" hidden></p>
   {{- end }}
 </form>
 {{- if $siteKey }}
