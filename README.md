@@ -9,13 +9,20 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 - **Deployment:** Cloudflare Pages — auto-deploys staging on branch commits and production on merge to main
 
 ### Changes Made
-- **Contact form** — working contact page that submits to the Go backend API with honeypot spam protection
+- **Contact form** — dual-mode contact page (AJAX JSON + classic HTML POST) with Cloudflare Turnstile, honeypot, fill-timing checks, and silent spam discard
 - **Resume page** — full resume rendered in markdown with a PDF download button powered by the backend API
 - **Backend API** — Go service deployed to Cloud Run in both stage (`api-stage.ark31.info`) and prod (`api.ark31.info`) environments
 - **GCP infrastructure** — Terraform configs for Cloud Run, Artifact Registry, IAM, secrets, and custom domain mappings
 - **Profile landing page** — profile mode homepage with image, nav buttons (Archive, Resume, Blog, Contact), and social links (GitHub, LinkedIn)
 - **Search and archives** — built-in search and post archive pages
 - **Resume PDF sync** — downloadable resume PDF is generated from `content/resume.md` into `backend/resume.pdf` so the website resume and downloaded resume share one source of truth
+
+### Contact / Turnstile ops
+1. Create a Turnstile widget in the Cloudflare dashboard for `ark31.info`.
+2. Set `TURNSTILE_SITE_KEY` in Cloudflare Pages build env (public).
+3. Set `TURNSTILE_SECRET_KEY` on Cloud Run for stage + prod (Secret Manager / service env). The API refuses submissions if this is unset.
+4. Keep `ALLOWED_ORIGINS=https://ark31.info` (and preview origins if needed) so browser `fetch` from the contact page works.
+5. Local always-pass dummy keys (Cloudflare): site `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`.
 
 ### Resume PDF Generation
 - Local build: `make resume-pdf`

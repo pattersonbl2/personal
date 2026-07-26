@@ -15,6 +15,7 @@ security:
   funcs:
     getenv:
       - '^RESUME_TOKEN$'
+      - '^TURNSTILE_SITE_KEY$'
       - '^HUGO_'
 
 params:

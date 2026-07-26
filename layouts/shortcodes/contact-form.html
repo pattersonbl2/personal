@@ -1,0 +1,44 @@
+{{- $siteKey := getenv "TURNSTILE_SITE_KEY" | strings.TrimSpace -}}
+{{- if not $siteKey -}}
+{{- $siteKey = site.Params.turnstileSiteKey | default "" -}}
+{{- end -}}
+
+<form action="https://api.ark31.info/api/contact" method="POST" class="contact-form" id="contact-form">
+  <p class="contact-honeypot" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+  </p>
+  <input type="hidden" name="form_ts" id="form_ts" value="">
+  <script>document.getElementById('form_ts').value = String(Math.floor(Date.now() / 1000));</script>
+
+  <p>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required maxlength="100" autocomplete="name">
+  </p>
+  <p>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required maxlength="254" autocomplete="email">
+  </p>
+  <p>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required minlength="10" maxlength="5000"></textarea>
+  </p>
+
+  {{- if $siteKey }}
+  <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-appearance="interaction-only"></div>
+  {{- else }}
+  <p class="contact-status contact-status--warn" role="status">Contact form is temporarily unavailable (missing Turnstile site key).</p>
+  {{- end }}
+
+  <div class="contact-status" id="contact-status" role="status" aria-live="polite" hidden></div>
+
+  <p class="contact-actions">
+    <button type="submit" id="contact-submit" {{- if not $siteKey }} disabled{{- end }}>Send</button>
+  </p>
+</form>
+
+{{- if $siteKey }}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{{- $js := resources.Get "js/contact.js" | minify | fingerprint }}
+<script src="{{ $js.Permalink }}" defer integrity="{{ $js.Data.Integrity }}"></script>
+{{- end }}

@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"log"
 	"net/http"
 	"strings"
 	"sync"
@@ -64,6 +65,7 @@ func RateLimit(next http.Handler, limit int, window time.Duration) http.Handler 
 
 		if len(recent) >= limit {
 			mu.Unlock()
+			log.Printf("ratelimit: reject reason=rate detail=limit_exceeded ip=%s path=%s", ip, r.URL.Path)
 			http.Error(w, "too many requests", http.StatusTooManyRequests)
 			return
 		}

@@ -30,7 +30,7 @@ func main() {
 		c = cors.New(cors.Options{
 			AllowedOrigins:   parts,
 			AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
-			AllowedHeaders:   []string{"Content-Type"},
+			AllowedHeaders:   []string{"Content-Type", "Accept", "X-Requested-With"},
 			AllowCredentials: false,
 		})
 	} else {
