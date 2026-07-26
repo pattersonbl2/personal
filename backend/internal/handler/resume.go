@@ -9,32 +9,15 @@ import (
 	"strings"
 )
 
-// ResumeHandler accepts GET or POST /api/resume with resume token + Turnstile response.
-// Streams PDF if the resume token is valid, Turnstile siteverify succeeds, and the file exists.
+// ResumeHandler accepts GET /api/resume?token=XXX.
+// Streams PDF if token is valid and file exists. Returns 401 if invalid, 404/500 if file missing.
 func ResumeHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet && r.Method != http.MethodPost {
+	if r.Method != http.MethodGet {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	if r.Method == http.MethodPost {
-		r.Body = http.MaxBytesReader(w, r.Body, 64*1024)
-		if err := r.ParseForm(); err != nil {
-			log.Printf("resume: reject reason=validation detail=bad_request ip=%s", clientIP(r))
-			http.Error(w, "bad request", http.StatusBadRequest)
-			return
-		}
-	}
-
-	if !requireTurnstile(w, r, "resume") {
-		return
-	}
-
-	token := strings.TrimSpace(r.FormValue("token"))
-	if token == "" {
-		token = strings.TrimSpace(r.URL.Query().Get("token"))
-	}
-
+	token := strings.TrimSpace(r.URL.Query().Get("token"))
 	expected := os.Getenv("RESUME_TOKEN")
 	if expected == "" {
 		log.Printf("resume: RESUME_TOKEN not set, refusing to serve")

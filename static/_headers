@@ -1,0 +1,10 @@
+# Cloudflare Pages headers
+# Keep CSS/JS as real assets (never treat as HTML documents).
+
+/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+  X-Content-Type-Options: nosniff
+
+/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+  X-Content-Type-Options: nosniff

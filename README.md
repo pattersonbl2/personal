@@ -19,9 +19,10 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 
 ### Contact / Turnstile ops
 1. Widget site key is in `config.yaml` as `params.turnstileSiteKey` (override with Pages env `TURNSTILE_SITE_KEY` if needed).
-2. Set `TURNSTILE_SECRET` on Cloud Run for stage + prod (Secret Manager / service env). Contact and resume handlers refuse requests if this is unset.
+2. Set `TURNSTILE_SECRET` on Cloud Run for stage + prod (Secret Manager / service env). Contact refuses requests if this is unset. Resume stays token-gated only (no Turnstile UI).
 3. Keep `ALLOWED_ORIGINS=https://ark31.info` (and preview origins if needed) so browser `fetch` from the contact page works.
-4. Every `cf-turnstile` widget uses `data-action="turnstile-spin-v2"` for Spin analytics attribution.
+4. Contact `cf-turnstile` widgets use `data-action="turnstile-spin-v2"` for Spin analytics attribution.
+
 
 ### Resume PDF Generation
 - Local build: `make resume-pdf`

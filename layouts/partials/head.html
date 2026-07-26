@@ -122,8 +122,11 @@
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
 {{- end }}
 
-{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- /* Stable /css/site.min.css (no content-hash). Fingerprinted CSS + Cloudflare SPA
+     "not found" handling serves index.html as text/html for stale hashes → unstyled page. */ -}}
+{{- $css := resources.Get "css/main.css" | minify | resources.Copy "css/site.css" -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
 
 <script>
 (function() {
