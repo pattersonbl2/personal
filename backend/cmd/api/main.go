@@ -28,9 +28,10 @@ func main() {
 			parts[i] = strings.TrimSpace(parts[i])
 		}
 		c = cors.New(cors.Options{
-			AllowedOrigins:   parts,
-			AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
-			AllowedHeaders:   []string{"Content-Type", "Accept", "X-Requested-With"},
+			AllowedOrigins: parts,
+			AllowedMethods: []string{"GET", "POST", "OPTIONS"},
+			// Wildcard avoids brittle preflight mismatches on header casing/order.
+			AllowedHeaders:   []string{"*"},
 			AllowCredentials: false,
 		})
 	} else {

@@ -28,16 +28,19 @@
     setStatus('', '');
     setBusy(true);
 
-    var data = new FormData(form);
-    if (!data.get('form_ts') && tsInput) {
-      data.set('form_ts', String(Math.floor(Date.now() / 1000)));
+    if (tsInput && !tsInput.value) {
+      tsInput.value = String(Math.floor(Date.now() / 1000));
     }
+
+    // urlencoded (not FormData/multipart) so Go's ParseForm and CORS preflight stay simple
+    var data = new URLSearchParams(new FormData(form));
 
     fetch(form.action, {
       method: 'POST',
       body: data,
       headers: {
         Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         'X-Requested-With': 'XMLHttpRequest'
       },
       credentials: 'omit'
@@ -66,8 +69,14 @@
           try { window.turnstile.reset(); } catch (e) { /* ignore */ }
         }
       })
-      .catch(function () {
-        setStatus('Network error. Please try again.', 'error');
+      .catch(function (err) {
+        var detail = err && err.message ? String(err.message) : '';
+        setStatus(
+          detail && detail !== 'Failed to fetch'
+            ? 'Network error: ' + detail
+            : 'Network error. Please try again.',
+          'error'
+        );
       })
       .finally(function () {
         setBusy(false);

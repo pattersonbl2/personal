@@ -38,10 +38,13 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 	jsonMode := wantsJSON(r)
 
 	r.Body = http.MaxBytesReader(w, r.Body, 64*1024) // 64KB limit
-	if err := r.ParseForm(); err != nil {
-		log.Printf("contact: reject reason=validation detail=bad_request ip=%s", clientIP(r))
-		sendContactError(w, jsonMode, "Bad request.", http.StatusBadRequest)
-		return
+	// Prefer multipart when present (FormData); fall back to urlencoded ParseForm.
+	if err := r.ParseMultipartForm(1 << 20); err != nil {
+		if err := r.ParseForm(); err != nil {
+			log.Printf("contact: reject reason=validation detail=bad_request ip=%s", clientIP(r))
+			sendContactError(w, jsonMode, "Bad request.", http.StatusBadRequest)
+			return
+		}
 	}
 
 	// Honeypot: bots often fill hidden fields — silent success so they learn nothing.
