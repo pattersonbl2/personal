@@ -44,7 +44,7 @@ func requireTurnstile(w http.ResponseWriter, r *http.Request, surface string) bo
 			codes = tsResult.ErrorCodes
 		}
 		log.Printf("%s: reject reason=turnstile detail=%s ip=%s", surface, strings.Join(codes, ","), clientIP(r))
-		http.Error(w, "forbidden", http.StatusForbidden)
+		http.Error(w, "Turnstile verification failed. Go back, complete the check, and try again.", http.StatusForbidden)
 		return false
 	}
 	return true
