@@ -1,12 +1,27 @@
 {{- $token := getenv "RESUME_TOKEN" | strings.TrimSpace -}}
-{{- $url := printf "https://api.ark31.info/api/resume?token=%s" $token -}}
+{{- $siteKey := getenv "TURNSTILE_SITE_KEY" | strings.TrimSpace -}}
+{{- if not $siteKey -}}
+{{- $siteKey = site.Params.turnstileSiteKey | default "" -}}
+{{- end -}}
 {{- if $token -}}
-<a href="{{ $url }}" class="resume-btn" target="_blank" rel="noopener">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-    <polyline points="7 10 12 15 17 10"/>
-    <line x1="12" y1="15" x2="12" y2="3"/>
-  </svg>
-  Download PDF
-</a>
+<form action="https://api.ark31.info/api/resume" method="POST" class="resume-download-form" id="resume-download-form" target="_blank">
+  <input type="hidden" name="token" value="{{ $token }}">
+  {{- if $siteKey }}
+  <div class="cf-turnstile" data-sitekey="{{ $siteKey }}" data-action="turnstile-spin-v2" data-appearance="interaction-only"></div>
+  {{- end }}
+  <button type="submit" class="resume-btn" {{- if not $siteKey }} disabled{{- end }}>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Download PDF
+  </button>
+  {{- if not $siteKey }}
+  <p class="contact-status contact-status--warn" role="status">Resume download is temporarily unavailable (missing Turnstile site key).</p>
+  {{- end }}
+</form>
+{{- if $siteKey }}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{{- end }}
 {{- end -}}

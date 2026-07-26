@@ -15,9 +15,11 @@ security:
   funcs:
     getenv:
       - '^RESUME_TOKEN$'
+      - '^TURNSTILE_SITE_KEY$'
       - '^HUGO_'
 
 params:
+  turnstileSiteKey: '0x4AAAAAAD-Wku5l0KWMgbF-'
   author: 'Brandon Patterson'
   role: 'Platform Engineer / SRE'
   company: 'Jasper AI'

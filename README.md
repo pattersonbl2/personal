@@ -9,13 +9,19 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 - **Deployment:** Cloudflare Pages — auto-deploys staging on branch commits and production on merge to main
 
 ### Changes Made
-- **Contact form** — working contact page that submits to the Go backend API with honeypot spam protection
+- **Contact form** — dual-mode contact page (AJAX JSON + classic HTML POST) with Cloudflare Turnstile, honeypot, fill-timing checks, and silent spam discard
 - **Resume page** — full resume rendered in markdown with a PDF download button powered by the backend API
 - **Backend API** — Go service deployed to Cloud Run in both stage (`api-stage.ark31.info`) and prod (`api.ark31.info`) environments
 - **GCP infrastructure** — Terraform configs for Cloud Run, Artifact Registry, IAM, secrets, and custom domain mappings
 - **Profile landing page** — profile mode homepage with image, nav buttons (Archive, Resume, Blog, Contact), and social links (GitHub, LinkedIn)
 - **Search and archives** — built-in search and post archive pages
 - **Resume PDF sync** — downloadable resume PDF is generated from `content/resume.md` into `backend/resume.pdf` so the website resume and downloaded resume share one source of truth
+
+### Contact / Turnstile ops
+1. Widget site key is in `config.yaml` as `params.turnstileSiteKey` (override with Pages env `TURNSTILE_SITE_KEY` if needed).
+2. Set `TURNSTILE_SECRET` on Cloud Run for stage + prod (Secret Manager / service env). Contact and resume handlers refuse requests if this is unset.
+3. Keep `ALLOWED_ORIGINS=https://ark31.info` (and preview origins if needed) so browser `fetch` from the contact page works.
+4. Every `cf-turnstile` widget uses `data-action="turnstile-spin-v2"` for Spin analytics attribution.
 
 ### Resume PDF Generation
 - Local build: `make resume-pdf`

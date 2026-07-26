@@ -24,9 +24,15 @@ Set the output directory to: `public`
 
 ### Environment Variables
 
-No additional environment variables needed - the build script automatically uses:
+The build script automatically uses:
 - `CF_PAGES_URL` for preview deployments (set automatically by Cloudflare)
 - `https://ark31.info` for production deployments
+
+Optional Cloudflare Pages override (public):
+- `TURNSTILE_SITE_KEY` — overrides `params.turnstileSiteKey` from `config.yaml`
+
+Cloud Run (secret, not Pages):
+- `TURNSTILE_SECRET` — Turnstile secret used by `/api/contact` and `/api/resume` siteverify (fail-closed if unset)
 
 ## Troubleshooting 404 Errors
 
