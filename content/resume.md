@@ -1,7 +1,7 @@
 ---
 title: "Resume"
 url: "/resume/"
-description: "Resume of Brandon Patterson — platform engineer and SRE specializing in Kubernetes, GitOps, Terraform, and observability."
+description: "Resume of Brandon Patterson — Platform / SRE engineer focused on production observability for AI products, Kubernetes, GitOps, and Terraform."
 
 ---
 
@@ -11,13 +11,14 @@ description: "Resume of Brandon Patterson — platform engineer and SRE speciali
 
 ### Charlotte, NC | bpatterson@ark31.info | ark31.info | linkedin.com/in/pattersonbl2
 
-Platform-focused DevOps Engineer with 6+ years of experience designing and operating Kubernetes-based infrastructure across AWS and GCP. Strong background in Infrastructure as Code (Terraform, Atlantis), observability at scale, and GitOps workflows. Proven track record reducing toil, improving developer velocity, and increasing reliability for shared platforms and production services. Passionate about platform engineering, scalable systems, and continuous improvement.
+Platform / SRE engineer focused on production observability for AI products. 6+ years operating Kubernetes on AWS and GCP; currently building Datadog SLOs and LangSmith agent tracing at Jasper.ai so teams can debug latency, cost, and failure modes in live agent workflows. Strong GitOps (ArgoCD), Terraform, and incident response background from Mozilla-scale systems (50M+ users). Proven track record reducing toil, improving developer velocity, and increasing reliability for shared platforms and production services.
 
 CORE COMPETENCIES
 
 **Platforms & Cloud:** Kubernetes (GKE, K3s), Docker, Proxmox, GCP (Cloud Run, BigQuery, Cloud SQL), AWS, Helm  
 **Infrastructure as Code & GitOps:** Terraform, Atlantis, ArgoCD, Helm, GitHub Actions, CircleCI, Jenkins, deployment automation, release engineering  
 **Observability & Reliability:** Datadog (monitors, SLOs, on-call, RUM, dashboards), Prometheus, Grafana, Loki, Alertmanager, incident response, capacity planning  
+**AI / LLM Observability:** LangSmith (traces, monitoring, evals), LLM golden signals (latency, cost, errors, quality), bridging agent telemetry into Datadog SLOs and on-call  
 **Networking & Security:** VXLAN, Kubernetes networking, BGP, NGINX, DNS, TLS, load balancing, network security, supply-chain CI  
 **Programming Languages:** Python, Go, JavaScript, TypeScript, Bash  
 **Leadership & Operations:** Cross-functional collaboration, infrastructure planning, FinOps, platform modernization, technical debt reduction
@@ -26,7 +27,8 @@ PROFESSIONAL EXPERIENCE
 
 **DevOps / Platform Engineer |** Jasper.ai | Remote | 2026 – Present
 
-- Overhauled Datadog observability for multiple engineering teams — consolidated SLOs, standardized monitor tagging and routing, and reduced alert noise by retiring hundreds of low-signal alerts. Delivered LLM-aware golden signals, RUM dashboards, team-based on-call schedules, and critical-only alerting.
+- Building observability for Jasper's AI agent stack with LangSmith — production tracing across agent runs, surfacing latency / cost / error and quality signals, and connecting agent-level traces into Datadog SLOs and on-call so product teams can diagnose agent failures without guessing.
+- Overhauled Datadog observability for multiple engineering teams — consolidated SLOs, standardized monitor tagging and routing, and reduced alert noise by retiring hundreds of low-signal alerts. Delivered RUM dashboards, team-based on-call schedules, and critical-only alerting.
 - Established as ArgoCD SME — led platform ownership of the GitOps delivery pipeline, resolving repo-server timeouts and CMP stability issues causing production sync failures; improved deployment reliability through automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation. Remediated out-of-sync application metrics, decommissioned stale services, and fixed the DORA metrics pipeline to surface accurate delivery data for engineering leadership.
 - Implemented Atlantis to enable pull request–driven Terraform workflows, improving visibility, enforcing approval processes, and reducing manual infrastructure operations.
 - Designed GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
@@ -66,6 +68,7 @@ PROFESSIONAL EXPERIENCE
 ### CONSULTANCY & SPECIAL PROJECTS
 
 - **Personal Homelab Platform (2024 – Present)** Multi-node Kubernetes platform (Proxmox + K3s) with VXLAN-isolated networking, GitOps delivery via ArgoCD/Terraform/Ansible, Traefik + MetalLB/Cilium ingress, and a full Prometheus/Grafana/Loki/Alertmanager observability stack. Also spans Docker, VyOS, TrueNAS, and Oracle Cloud VPS.
+- **K8s Learn (2025 – Present)** Self-hosted Kubernetes training platform (live cluster + browser terminal + AI tutor) operated end-to-end with GitOps, observability, and production incident discipline.
 - **ark31.info (2025 – Present)** Designed and deployed a personal blog and portfolio platform using Hugo with a custom theme and a Go backend API on GCP Cloud Run for contact submissions, resume delivery, rate limiting, and operational controls.
 - **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure for relay.firefox.com and mozmail.com using Terraform and AWS.
 - **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided technical support during the DoD enterprise Windows 10 migration, deploying systems for 500 users across secure environments while minimizing downtime.
