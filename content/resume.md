@@ -15,63 +15,45 @@ Platform / SRE engineer focused on production observability for AI products. 6+ 
 
 CORE COMPETENCIES
 
-**Platforms & Cloud:** Kubernetes (GKE, K3s), Docker, Proxmox, GCP (Cloud Run, BigQuery, Cloud SQL), AWS, Helm  
-**Infrastructure as Code & GitOps:** Terraform, Atlantis, ArgoCD, Helm, GitHub Actions, CircleCI, Jenkins, deployment automation, release engineering  
-**Observability & Reliability:** Datadog (monitors, SLOs, on-call, RUM, dashboards), Prometheus, Grafana, Loki, Alertmanager, incident response, capacity planning  
-**AI / LLM Observability:** LangSmith (traces, monitoring, evals), LLM golden signals (latency, cost, errors, quality), bridging agent telemetry into Datadog SLOs and on-call  
-**Networking & Security:** VXLAN, Kubernetes networking, BGP, NGINX, DNS, TLS, load balancing, network security, supply-chain CI  
-**Programming Languages:** Python, Go, JavaScript, TypeScript, Bash  
-**Leadership & Operations:** Cross-functional collaboration, infrastructure planning, FinOps, platform modernization, technical debt reduction
+**Platforms & IaC:** Kubernetes (GKE, K3s), Docker, Terraform, ArgoCD, Helm, GitHub Actions, GCP (Cloud Run, BigQuery, Cloud SQL), AWS  
+**Observability & AI:** Datadog (SLOs, on-call, RUM), Prometheus/Grafana/Loki, LangSmith agent tracing, LLM golden signals (latency, cost, quality)  
+**Networking & Security:** VXLAN, Kubernetes networking, BGP, NGINX, DNS/TLS, supply-chain CI  
+**Languages:** Python, Go, JavaScript/TypeScript, Bash
 
 PROFESSIONAL EXPERIENCE
 
 **DevOps / Platform Engineer |** Jasper.ai | Remote | 2026 – Present
 
-- Building observability for Jasper's AI agent stack with LangSmith — production tracing across agent runs, surfacing latency / cost / error and quality signals, and connecting agent-level traces into Datadog SLOs and on-call so product teams can diagnose agent failures without guessing.
-- Overhauled Datadog observability for multiple engineering teams — consolidated SLOs, standardized monitor tagging and routing, and reduced alert noise by retiring hundreds of low-signal alerts. Delivered RUM dashboards, team-based on-call schedules, and critical-only alerting.
-- Established as ArgoCD SME — led platform ownership of the GitOps delivery pipeline, resolving repo-server timeouts and CMP stability issues causing production sync failures; improved deployment reliability through automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation. Remediated out-of-sync application metrics, decommissioned stale services, and fixed the DORA metrics pipeline to surface accurate delivery data for engineering leadership.
-- Implemented Atlantis to enable pull request–driven Terraform workflows, improving visibility, enforcing approval processes, and reducing manual infrastructure operations.
-- Designed GitHub organization automation to standardize repository configuration, permissions, and CI/CD workflows, improving developer onboarding and reducing manual setup.
-- Owned urgent supply-chain remediation for a compromised Trivy GitHub Action — assessment, pinning, and coordinated remediation across Security and DevOps. Supported compliance work including customer data deletion and access pattern review.
-- Strengthened cloud security and cost posture via Terraform — VPC Flow Logs enablement, default VPC reduction, BigQuery–Cloud SQL connectivity, replica/DNS/Helm health-check cleanup, GCS lifecycle policies, cloud cleanup, and legacy platform decommissioning — alongside cross-team platform requests (secrets, IAM, BigQuery, Cloud Run, vendor integrations). Authored internal audits, runbooks, and rollout plans.
+- Building observability for Jasper's AI agent stack with LangSmith — production tracing across agent runs, surfacing latency/cost/error/quality signals, and connecting agent telemetry into Datadog SLOs and on-call.
+- Overhauled Datadog observability across multiple engineering teams — consolidated SLOs, standardized monitor tagging/routing, and cut alert noise by retiring hundreds of low-signal alerts; shipped RUM dashboards and team-based on-call schedules.
+- ArgoCD SME — own the GitOps delivery pipeline; resolved repo-server timeouts and CMP stability issues causing production sync failures, and improved reliability via automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation.
+- Implemented Atlantis for PR-driven Terraform workflows, improving visibility and enforcing approval processes.
+- Led urgent supply-chain remediation for a compromised Trivy GitHub Action, coordinating assessment and fix across Security and DevOps.
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
-- Migrated production workloads from AWS to GCP using Terraform, cutting cloud costs by 40% while improving platform clarity and maintainability.
-- Built and launched new GCP infrastructure from scratch, reducing deployment time from hours to seconds through reusable Terraform patterns and improved Kubernetes platform onboarding.
-- Operated multi-tenant Kubernetes clusters supporting 50M+ users, maintaining availability, performance, and platform consistency at scale.
-- Developed Helm charts and GitHub Actions pipelines that standardized deployments and eliminated manual release effort across multiple services.
-- Served as incident responder for critical services, driving root cause analysis and follow-up reliability improvements.
-- Owned observability, automation, release engineering, capacity planning, and on-call operations across multiple production services via MozCloud platform triage rotation.
+- Migrated production workloads from AWS to GCP using Terraform, cutting cloud costs 40% while improving platform maintainability.
+- Built new GCP infrastructure from scratch, cutting deployment time from hours to seconds via reusable Terraform patterns.
+- Operated multi-tenant Kubernetes clusters supporting 50M+ users, maintaining availability and platform consistency at scale.
+- Built Helm charts and GitHub Actions pipelines standardizing deployments; served as incident responder driving root-cause analysis and reliability follow-through.
 
 **Software Engineer, Hubs Support |** Mozilla | Remote | 2021 – 2023
 
-- Owned and maintained GKE-based production infrastructure, improving operational efficiency across shared environments.
-- Built and improved GKE infrastructure, enabling faster deployments and a better developer experience.
-- Built internal QA tooling in TypeScript to automate test workflows and reduce repetitive engineering work.
-- Automated testing processes that reduced time to completion by 75%, from one day to under two hours.
+- Owned GKE-based production infrastructure, improving operational efficiency across shared environments.
+- Built internal QA tooling in TypeScript, cutting test cycle time 75% (one day to under two hours).
 - Improved CI/CD pipelines with GitHub Actions, reducing deployment friction and supporting faster delivery.
 
 **SysOps Administrator (Azure/AWS) |** Audacious Inquiry | 2020 – 2021
 
-- Served as identity and access management SME for Azure AD, supporting secure access for 200+ users.
-- Implemented endpoint protection services to maintain compliance with data privacy and security requirements.
-- Deployed AWS infrastructure with Terraform and automated onboarding workflows, reducing onboarding time by 10%.
-- Managed SSL certificates and DNS for state agency systems, maintaining uptime and compliance.
+- Served as IAM SME for Azure AD, supporting secure access for 200+ users.
+- Deployed AWS infrastructure with Terraform and automated onboarding workflows, cutting onboarding time 10%.
 
-**IT Administrator |** Single Stone Consulting | Richmond, VA | 2019 – 2020
-
-- Managed day-to-day IT administration including user provisioning, software lifecycle work, and troubleshooting for consulting teams.
-- Supported hybrid cloud environments spanning office systems, financial operations, and AWS-hosted infrastructure.
-- Reduced downtime and improved service continuity through practical cloud operations and infrastructure support.
+**Earlier:** IT Administrator, Single Stone Consulting (2019–2020) — hybrid cloud IT operations for consulting teams. Technical Support, DoD Windows 10 Migration (2018–2019) — deployed systems for 500 users.
 
 ### CONSULTANCY & SPECIAL PROJECTS
 
-- **Personal Homelab Platform (2024 – Present)** Multi-node Kubernetes platform (Proxmox + K3s) with VXLAN-isolated networking, GitOps delivery via ArgoCD/Terraform/Ansible, Traefik + MetalLB/Cilium ingress, and a full Prometheus/Grafana/Loki/Alertmanager observability stack. Also spans Docker, VyOS, TrueNAS, and Oracle Cloud VPS.
-- **K8s Learn (2025 – Present)** Self-hosted Kubernetes training platform (live cluster + browser terminal + AI tutor) operated end-to-end with GitOps, observability, and production incident discipline.
-- **ark31.info (2025 – Present)** Designed and deployed a personal blog and portfolio platform using Hugo with a custom theme and a Go backend API on GCP Cloud Run for contact submissions, resume delivery, rate limiting, and operational controls.
-- **Email Services Deployment (2023 – 2024)** Designed and deployed scalable email infrastructure for relay.firefox.com and mozmail.com using Terraform and AWS.
-- **Technical Support, DLA Windows 10 Migration (2018 – 2019)** Provided technical support during the DoD enterprise Windows 10 migration, deploying systems for 500 users across secure environments while minimizing downtime.
+- **Personal Homelab Platform & K8s Learn (2024 – Present)** Multi-node Kubernetes platform (Proxmox/K3s) with GitOps (ArgoCD/Terraform), full Prometheus/Grafana/Loki observability, plus a self-hosted K8s training platform with a live cluster and browser terminal.
+- **ark31.info (2025 – Present)** Personal site and portfolio: Hugo with a custom theme and a Go backend on GCP Cloud Run.
 
 EDUCATION
 
