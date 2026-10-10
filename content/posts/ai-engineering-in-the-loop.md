@@ -149,3 +149,11 @@ By the end of the session, the platform was fully operational:
 - **Full GitOps persistence** — everything managed by ArgoCD, sealed secrets for credentials
 
 AI wrote most of the code. I made most of the decisions. That's the partnership that works.
+
+## Epilogue: What I Built Next
+
+Lesson 6 stuck with me. Once I added failure notifications, I ran into the opposite problem: more alerts than I could sensibly read.
+
+So I built [sre-reflex](https://github.com/pattersonbl2/sre-reflex), a shadow-mode bot that scores each Prometheus alert (does a human need to act, how severe, will it resolve on its own) using a small decision model instead of a giant LLM context window, and compares it against a local LLM baseline using labels I tap in from my phone.
+
+The full write-up is in the next post: [Alert Triage Doesn't Need a Giant Context Window](/posts/alert-triage-decision-models/).
