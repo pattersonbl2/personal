@@ -489,6 +489,13 @@ main { flex: 1; padding-bottom: 4rem; }
   font-weight: 600;
   color: var(--accent);
 }
+/* Shown when a project's live link is pulled — see `notice` in data/projects.yaml. */
+.project-notice {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
 /* ========================================
    Projects page (/projects/)
    ======================================== */

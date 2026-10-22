@@ -20,6 +20,9 @@
       {{- with $p.outcome }}
       <div class="project-outcome">{{ . }}</div>
       {{- end }}
+      {{- with $p.notice }}
+      <div class="project-notice">{{ . }}</div>
+      {{- end }}
       {{- with $p.link }}
       {{- $label := $p.linkLabel | default "Read more" }}
       <a href="{{ . }}" class="project-link"{{ if hasPrefix . "http" }} target="_blank" rel="noopener"{{ end }}>{{ $label }} →</a>

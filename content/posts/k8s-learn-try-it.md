@@ -10,6 +10,10 @@ I built a free Kubernetes playground that gives you a real cluster, a browser te
 
 **Try it now:** [learn.bp31app.com](https://learn.bp31app.com)
 
+*Update, 22 October 2026: the platform is down — every route returns a 404 while I fix
+the host. The walkthrough below still describes how it works. I'll remove this note when
+signups are live again.*
+
 ---
 
 ## How It Works
