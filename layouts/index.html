@@ -77,6 +77,9 @@
       <div class="post-card-title">{{ $p.title }}</div>
       <div class="project-tech">{{ $p.tech }}</div>
       <div class="post-card-summary">{{ $p.summary }}</div>
+      {{- with $p.notice }}
+      <div class="project-notice">{{ . }}</div>
+      {{- end }}
       <span class="project-link">{{ $p.linkLabel | default "Read the write-up" }} →</span>
     </a>
     {{- end }}

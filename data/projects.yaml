@@ -3,10 +3,15 @@ projects:
     tech: "K3s · ArgoCD · Go · n8n · Ollama · Cloudflare Tunnel"
     summary: "A free, self-hosted Kubernetes training platform with a real cluster and a browser terminal. Five tasks take you from \"what is a Pod?\" to deploying an app on the internet. Built, deployed, and operated end to end on my own hardware."
     outcome: "Live and used by strangers on the internet. Survived its first real security review and a 24-hour silent outage that I found, fixed, and wrote up."
-    link: "https://learn.bp31app.com"
-    linkLabel: "Try it live"
+    # The live demo at learn.bp31app.com is returning 404 on every route, so the
+    # "Try it live" link is pulled until the host is fixed. Restore these two lines
+    # and delete `notice` when it is back up.
+    #   link: "https://learn.bp31app.com"
+    #   linkLabel: "Try it live"
+    link: "/posts/k8s-learn-review/"
+    linkLabel: "How it is built"
+    notice: "The live demo is offline while I fix the host. The write-ups below still cover how it works."
     writeups:
-      - { label: "How it is built", url: "/posts/k8s-learn-review/" }
       - { label: "Try it yourself", url: "/posts/k8s-learn-try-it/" }
       - { label: "Hardening it", url: "/posts/k8s-learn-hardening/" }
       - { label: "The 24-hour silent failure", url: "/posts/ai-engineering-in-the-loop/" }
