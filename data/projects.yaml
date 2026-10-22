@@ -1,0 +1,52 @@
+projects:
+  - title: "K8s Learn — a live Kubernetes playground"
+    tech: "K3s · ArgoCD · Go · n8n · Ollama · Cloudflare Tunnel"
+    summary: "A free, self-hosted Kubernetes training platform with a real cluster and a browser terminal. Five tasks take you from \"what is a Pod?\" to deploying an app on the internet. Built, deployed, and operated end to end on my own hardware."
+    outcome: "Live and used by strangers on the internet. Survived its first real security review and a 24-hour silent outage that I found, fixed, and wrote up."
+    link: "https://learn.bp31app.com"
+    linkLabel: "Try it live"
+    writeups:
+      - { label: "How it is built", url: "/posts/k8s-learn-review/" }
+      - { label: "Try it yourself", url: "/posts/k8s-learn-try-it/" }
+      - { label: "Hardening it", url: "/posts/k8s-learn-hardening/" }
+      - { label: "The 24-hour silent failure", url: "/posts/ai-engineering-in-the-loop/" }
+    featured: true
+
+  - title: "sre-reflex — alert triage without a giant context window"
+    tech: "Prometheus · Go · decision model · shadow mode"
+    summary: "A bot that scores every Prometheus alert before I decide whether to care. It uses a small decision model instead of a large LLM context window, and runs in shadow mode so it cannot make an incident worse while I measure it."
+    outcome: "Running in shadow mode against real homelab alerts, with my own human labels as ground truth."
+    link: "/posts/alert-triage-decision-models/"
+    linkLabel: "Read the write-up"
+    writeups: []
+    featured: true
+
+  - title: "Production-grade homelab platform"
+    tech: "Proxmox · K3s · ArgoCD · Terraform · VyOS · Longhorn · Prometheus/Grafana"
+    summary: "A multi-node Kubernetes platform with GitOps delivery, isolated networking, and observability on every layer — bare metal, router, storage, cluster, and a public VPS — from one Grafana instance."
+    outcome: "19 ArgoCD-managed applications across 8 nodes, delivered by GitOps and monitored end to end."
+    link: "/posts/homelab-end-to-end-2026/"
+    linkLabel: "Take the tour"
+    writeups:
+      - { label: "How the K3s cluster works", url: "/posts/k3s-deep-dive/" }
+      - { label: "How I monitor everything", url: "/posts/homelab-monitoring-deep-dive/" }
+      - { label: "Building it with AI help", url: "/posts/ai-powered-platform-building/" }
+    featured: true
+
+  - title: "ark31.info — this site"
+    tech: "Hugo · Go · Cloudflare Pages · GCP Cloud Run · Terraform"
+    summary: "A custom Hugo theme fronting a Go API that handles contact submissions, rate limiting, and signed resume PDF delivery, with Cloudflare Turnstile for anti-spam. Shipped through PR checks with auto-merge on green."
+    outcome: "Loads in about 0.2 seconds. The resume PDF is generated from the same Markdown that renders the resume page, so there is one source of truth."
+    link: "/posts/what-shipping-my-site-taught-me/"
+    linkLabel: "What shipping it taught me"
+    writeups: []
+    featured: false
+
+  - title: "SRE observability standards at Jasper AI"
+    tech: "Datadog · SLOs · Terraform"
+    summary: "Leading the effort to standardize how Jasper instruments, monitors, and alerts — turning ad-hoc dashboards and inconsistent naming into one repeatable observability model that SRE and product engineering both use."
+    outcome: "42% through a Datadog optimization project, with a defined SRE observability model behind it."
+    link: "/posts/datadog-observability-jasper/"
+    linkLabel: "Read the update"
+    writeups: []
+    featured: false

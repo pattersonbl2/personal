@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="page-desc">{{ . }}</p>
+    {{- end }}
+  </div>
+
+  <div class="project-list">
+    {{- range $p := site.Data.projects.projects }}
+    <div class="post-card project-card project-detail">
+      <div class="post-card-title">{{ $p.title }}</div>
+      {{- with $p.tech }}
+      <div class="project-tech">{{ . }}</div>
+      {{- end }}
+      {{- with $p.summary }}
+      <div class="post-card-summary">{{ . }}</div>
+      {{- end }}
+      {{- with $p.outcome }}
+      <div class="project-outcome">{{ . }}</div>
+      {{- end }}
+      {{- with $p.link }}
+      {{- $label := $p.linkLabel | default "Read more" }}
+      <a href="{{ . }}" class="project-link"{{ if hasPrefix . "http" }} target="_blank" rel="noopener"{{ end }}>{{ $label }} →</a>
+      {{- end }}
+      {{- with $p.writeups }}
+      <div class="project-writeups">
+        <span class="project-writeups-label">Write-ups</span>
+        <ul>
+          {{- range . }}
+          <li><a href="{{ .url }}">{{ .label }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+{{ end }}
