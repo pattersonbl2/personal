@@ -126,6 +126,7 @@ Plus the infrastructure services: ArgoCD, Traefik, Cloudflare Tunnel, Prometheus
 
 ---
 
-*Both repos are public if you want to dig into the details:*
-- *[gitops](https://github.com/pattersonbl2/gitops) — ArgoCD apps and K8s manifests*
-- *[homelab](https://github.com/pattersonbl2/homelab) — Terraform, Ansible, Docker stacks*
+*The code is public if you want to dig into the details:
+[homelab-public](https://github.com/pattersonbl2/homelab-public) — ArgoCD apps and K8s manifests under
+`kubernetes/`, Terraform, Ansible and Docker stacks under `infrastructure/` and
+`stacks/`. Note: the `homelab` and `gitops` repos have since been merged into one.*
