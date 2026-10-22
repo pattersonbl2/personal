@@ -196,6 +196,6 @@ have too much observability.
 
 ---
 
-*Repos:*
-- *[gitops](https://github.com/pattersonbl2/gitops) — Prometheus, alerting rules, Loki, ServiceMonitors*
-- *[homelab](https://github.com/pattersonbl2/homelab) — Terraform dashboards, exporters, Docker stacks*
+*Code: [homelab-public](https://github.com/pattersonbl2/homelab-public) — Prometheus, alerting rules, Loki and
+ServiceMonitors under `kubernetes/infrastructure/monitoring/`; Terraform dashboards and
+exporters under `infrastructure/terraform-grafana/`. Note: the `homelab` and `gitops` repos have since been merged into one.*

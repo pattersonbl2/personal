@@ -103,4 +103,4 @@ and eventually progress persistence so users can pick up where they left off. An
 and give users a real identity rather than just a namespace name. A live leaderboard showing who
 completed which tasks fastest would also make it more engaging for workshop use.
 
-*Check out the repo: [gitops](https://github.com/pattersonbl2/gitops)*
+*Check out the repo: [homelab-public](https://github.com/pattersonbl2/homelab-public) — the `gitops` repo has been merged into it.*

@@ -176,4 +176,4 @@ My homelab is now a production-grade platform that I understand inside and out, 
 
 ---
 
-*Want to see the infrastructure? Check out my [homelab](https://github.com/pattersonbl2/homelab) and [gitops](https://github.com/pattersonbl2/gitops) repositories.*
+*Want to see the infrastructure? Check out [homelab-public](https://github.com/pattersonbl2/homelab-public) — the `homelab` and `gitops` repos, merged into one.*

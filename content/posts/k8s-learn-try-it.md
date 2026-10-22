@@ -68,4 +68,4 @@ It takes 30 seconds to sign up and about an hour to work through all five tasks.
 
 **[learn.bp31app.com](https://learn.bp31app.com)**
 
-If you have feedback or want to see the code, the infrastructure is open source: [github.com/pattersonbl2/gitops](https://github.com/pattersonbl2/gitops)
+If you have feedback or want to see the code, the infrastructure is open source: [github.com/pattersonbl2/homelab-public](https://github.com/pattersonbl2/homelab-public) — the `gitops` repo has been merged into it.

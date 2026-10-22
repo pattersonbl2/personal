@@ -23,8 +23,11 @@ Everything is defined in code across two repos:
 
 | Repo | Purpose |
 |------|---------|
-| [homelab](https://github.com/pattersonbl2/homelab) | Terraform (VM provisioning), Ansible (config management), Docker Compose stacks |
-| [gitops](https://github.com/pattersonbl2/gitops) | ArgoCD applications, Kubernetes manifests, Helm values |
+| homelab | Terraform (VM provisioning), Ansible (config management), Docker Compose stacks |
+| gitops | ArgoCD applications, Kubernetes manifests, Helm values |
+
+*The two repos have since been merged into one:
+[homelab-public](https://github.com/pattersonbl2/homelab-public).*
 
 ---
 
@@ -227,4 +230,4 @@ The platform has gone from "learning project" to "I actually rely on this daily.
 
 If you're building a homelab, I'd encourage you to treat it like a real platform: version control everything, automate deployments, and invest in observability early. The compound benefits are real — every new service is easier to add, debug, and maintain.
 
-*Check out the repos: [homelab](https://github.com/pattersonbl2/homelab) | [gitops](https://github.com/pattersonbl2/gitops)*
+*Check out the code: [homelab-public](https://github.com/pattersonbl2/homelab-public) — the two repos above, merged into one.*

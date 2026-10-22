@@ -125,4 +125,4 @@ The repo is cleaner too. No more `secret-generator.yaml` files, no `.sops.yaml` 
 | KSOPS sidecar + GPG + CMP plugin | Sealed Secrets controller |
 | 2-container repo-server pod | 1-container repo-server pod |
 
-*Check out the repo: [gitops](https://github.com/pattersonbl2/gitops)*
+*Check out the repo: [homelab-public](https://github.com/pattersonbl2/homelab-public) — the `gitops` repo has been merged into it.*
