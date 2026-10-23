@@ -39,3 +39,5 @@ service-account*.json
 
 # Binary assets managed outside git
 backend/resume.pdf
+# Hugo build output
+/public/
