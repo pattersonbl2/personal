@@ -1,0 +1,18 @@
+# Cloudflare Pages redirects file
+# Handles trailing slashes and common routing issues
+
+# Ensure trailing slashes for directories (redirect without slash to with slash)
+/archives /archives/ 301
+/resume /resume/ 301
+/contact /contact/ 301
+/posts /posts/ 301
+
+# Retired K8s Learn posts
+/posts/k8s-learn-try-it /posts/ 301
+/posts/k8s-learn-try-it/ /posts/ 301
+/posts/k8s-learn-review /posts/ 301
+/posts/k8s-learn-review/ /posts/ 301
+/posts/k8s-learn-hardening /posts/ 301
+/posts/k8s-learn-hardening/ /posts/ 301
+/posts/ai-engineering-in-the-loop /posts/ 301
+/posts/ai-engineering-in-the-loop/ /posts/ 301

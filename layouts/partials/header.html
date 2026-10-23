@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="container">
-    <a href="/" class="site-logo">ark31.info</a>
+    <a href="/" class="site-logo">ark31</a>
     <nav class="site-nav">
       {{- range site.Menus.main }}
       <a href="{{ .URL }}"{{- if page.IsMenuCurrent "main" . }} class="active"{{- end }}>
@@ -14,7 +14,6 @@
       </a>
       {{- end }}
       {{- end }}
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
     </nav>
   </div>
 </header>

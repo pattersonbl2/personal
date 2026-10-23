@@ -9,23 +9,7 @@
     {{- block "main" . }}{{- end }}
   </main>
   {{- partial "footer.html" . }}
-  <script>
-  (function() {
-    var btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    function updateIcon() {
-      var theme = document.documentElement.getAttribute('data-theme');
-      btn.textContent = theme === 'light' ? '☀️' : '🌙';
-    }
-    updateIcon();
-    btn.addEventListener('click', function() {
-      var current = document.documentElement.getAttribute('data-theme');
-      var next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateIcon();
-    });
-  })();
-  </script>
+  {{- $motion := resources.Get "js/motion.js" | minify | resources.Copy "js/motion.js" }}
+  <script src="{{ $motion.RelPermalink }}" defer></script>
 </body>
 </html>

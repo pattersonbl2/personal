@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Prometheus on ark31.info</title>
+    <link>//localhost:1313/tags/prometheus/</link>
+    <description>Recent content in Prometheus on ark31.info</description>
+    <generator>Hugo -- 0.168.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Monitor Everything in My Homelab</title>
+      <link>//localhost:1313/posts/homelab-monitoring-deep-dive/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/homelab-monitoring-deep-dive/</guid>
+      <description>How I monitor every layer of my homelab — bare metal, VyOS, Longhorn, Kubernetes, and a public VPS — from a single Grafana instance.</description>
+    </item>
+  </channel>
+</rss>

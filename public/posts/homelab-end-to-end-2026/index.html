@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<title>Homelab End-to-End: A Production-Grade Platform in 2026 · ark31.info</title>
+<meta name="description" content="A visual tour of my homelab platform: Proxmox, K3s, GitOps with ArgoCD, Terraform, and services running across Docker and Kubernetes.">
+<meta name="author" content="Brandon Patterson">
+<link rel="canonical" href="//localhost:1313/posts/homelab-end-to-end-2026/">
+<meta property="og:title" content="Homelab End-to-End: A Production-Grade Platform in 2026">
+<meta property="og:description" content="A visual tour of my homelab platform: Proxmox, K3s, GitOps with ArgoCD, Terraform, and services running across Docker and Kubernetes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="//localhost:1313/posts/homelab-end-to-end-2026/">
+<meta property="og:site_name" content="ark31.info">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="//localhost:1313/images/bleach-styled-image.png">
+<meta property="og:image:alt" content="Brandon Patterson">
+<meta property="article:published_time" content="2026-01-28T14:00:00-05:00">
+<meta property="article:modified_time" content="2026-01-28T14:00:00-05:00">
+<meta property="article:tag" content="homelab">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="gitops">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Homelab End-to-End: A Production-Grade Platform in 2026">
+<meta name="twitter:description" content="A visual tour of my homelab platform: Proxmox, K3s, GitOps with ArgoCD, Terraform, and services running across Docker and Kubernetes.">
+<meta name="twitter:image" content="//localhost:1313/images/bleach-styled-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","address":{"@type":"PostalAddress","addressLocality":"Charlotte, NC"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Virginia Commonwealth University"},"description":"Brandon Patterson is a Platform Engineer / SRE in Charlotte, NC focused on production observability for AI products — LangSmith agent tracing, Datadog SLOs, Kubernetes, GitOps, and Terraform on GCP and AWS. Currently at Jasper AI, previously Mozilla.","email":"mailto:bpatterson@ark31.info","image":"//localhost:1313/images/bleach-styled-image.png","jobTitle":"Platform Engineer / SRE","knowsAbout":["Kubernetes","Site Reliability Engineering","Platform Engineering","AI Observability","LangSmith","Terraform","GitOps","ArgoCD","Observability","Datadog","Prometheus","Google Cloud Platform","Amazon Web Services","CI/CD"],"name":"Brandon Patterson","sameAs":["https://github.com/pattersonbl2","https://www.linkedin.com/in/pattersonbl2/"],"url":"//localhost:1313/","worksFor":{"@type":"Organization","name":"Jasper AI"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"//localhost:1313/","name":"Home","position":1},{"@type":"ListItem","item":"//localhost:1313/posts/","name":"Blog","position":2},{"@type":"ListItem","item":"//localhost:1313/posts/homelab-end-to-end-2026/","name":"Homelab End-to-End: A Production-Grade Platform in 2026","position":3}]},"dateModified":"2026-01-28T14:00:00-05:00","datePublished":"2026-01-28T14:00:00-05:00","description":"A visual tour of my homelab platform: Proxmox, K3s, GitOps with ArgoCD, Terraform, and services running across Docker and Kubernetes.","headline":"Homelab End-to-End: A Production-Grade Platform in 2026","image":"//localhost:1313/images/bleach-styled-image.png","keywords":"homelab, kubernetes, gitops","mainEntityOfPage":{"@id":"//localhost:1313/posts/homelab-end-to-end-2026/","@type":"WebPage"},"publisher":{"@type":"Person","address":{"@type":"PostalAddress","addressLocality":"Charlotte, NC"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Virginia Commonwealth University"},"description":"Brandon Patterson is a Platform Engineer / SRE in Charlotte, NC focused on production observability for AI products — LangSmith agent tracing, Datadog SLOs, Kubernetes, GitOps, and Terraform on GCP and AWS. Currently at Jasper AI, previously Mozilla.","email":"mailto:bpatterson@ark31.info","image":"//localhost:1313/images/bleach-styled-image.png","jobTitle":"Platform Engineer / SRE","knowsAbout":["Kubernetes","Site Reliability Engineering","Platform Engineering","AI Observability","LangSmith","Terraform","GitOps","ArgoCD","Observability","Datadog","Prometheus","Google Cloud Platform","Amazon Web Services","CI/CD"],"name":"Brandon Patterson","sameAs":["https://github.com/pattersonbl2","https://www.linkedin.com/in/pattersonbl2/"],"url":"//localhost:1313/","worksFor":{"@type":"Organization","name":"Jasper AI"}},"url":"//localhost:1313/posts/homelab-end-to-end-2026/","wordCount":1154}</script><link rel="stylesheet" href="/css/site.min.css">
+
+
+<script>document.documentElement.className+=' js';</script>
+
+
+</head>
+<body><header class="site-header">
+  <div class="container">
+    <a href="/" class="site-logo">ark31</a>
+    <nav class="site-nav">
+      <a href="/posts/">
+        <span class="nav-label">Blog</span>
+      </a>
+      <a href="/projects/">
+        <span class="nav-label">Projects</span>
+      </a>
+      <a href="/resume/">
+        <span class="nav-label">Resume</span>
+      </a>
+      <a href="/contact/">
+        <span class="nav-label">Contact</span>
+      </a>
+      <a href="https://github.com/pattersonbl2" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.377.203 2.394.1 2.647.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.003 10.003 0 0022 12c0-5.523-4.477-10-10-10z"/>
+</svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+  <main>
+<div class="container">
+  <article>
+    <div class="post-header">
+      <a href="/posts/" class="post-back">← Blog</a>
+      <h1 class="post-title">Homelab End-to-End: A Production-Grade Platform in 2026</h1>
+      <div class="post-meta">
+        <span>January 28, 2026</span>
+        <span>6 min read</span>
+      </div>
+    </div>
+
+    <div class="post-content">
+      <p>A lot has changed since I first wrote about building my homelab with AI assistance. What started as a learning project has evolved into a production-grade platform spanning two repositories, multiple Terraform projects, a full GitOps pipeline, and services running on both Docker and Kubernetes. This post is both a progress update and a visual tour of where things stand today.</p>
+<h2 id="the-big-picture">The Big Picture</h2>
+<p>My homelab now runs across:</p>
+<ul>
+<li><strong>Proxmox cluster</strong> — 2 physical nodes hosting all VMs</li>
+<li><strong>Docker hosts</strong> — 2 VMs running containerized services (media, networking, Gitea, etc.)</li>
+<li><strong>K3s cluster</strong> — 2 control plane nodes + workers for Kubernetes workloads</li>
+<li><strong>VyOS router</strong> — Software-defined networking with BGP</li>
+<li><strong>TrueNAS</strong> — Network storage</li>
+<li><strong>Oracle Cloud VPS</strong> — Pangolin tunnel endpoint for external access</li>
+</ul>
+<p>Everything is defined in code across two repos:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Repo</th>
+					<th>Purpose</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>homelab</td>
+					<td>Terraform (VM provisioning), Ansible (config management), Docker Compose stacks</td>
+			</tr>
+			<tr>
+					<td>gitops</td>
+					<td>ArgoCD applications, Kubernetes manifests, Helm values</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>The two repos have since been merged into one:
+<a href="https://github.com/pattersonbl2/homelab-public">homelab-public</a>.</em></p>
+<hr>
+<h2 id="infrastructure-layer">Infrastructure Layer</h2>
+<h3 id="terraform-projects">Terraform Projects</h3>
+<p>I manage five separate Terraform projects, each with its own state:</p>
+<pre tabindex="0"><code>infrastructure/
+├── terraform/           # Docker host VMs
+├── terraform-k3s/       # K3s cluster VMs
+├── terraform-vyos/      # VyOS router VM
+├── terraform-truenas/   # TrueNAS VM
+├── terraform-authentik/ # Authentik identity provider
+└── terraform-grafana/   # Grafana Cloud dashboards
+</code></pre><p>The reusable <code>proxmox-vm</code> module handles common patterns: cloud-init, networking, SSH keys. Each project just defines the specifics.</p>
+<h3 id="ansible-automation">Ansible Automation</h3>
+<p>Ansible handles everything post-provisioning:</p>
+<ul>
+<li><strong>Docker installation</strong> and configuration</li>
+<li><strong>Stack deployment</strong> — copies Compose files, manages <code>.env</code>, runs <code>docker compose up -d</code></li>
+<li><strong>K3s cluster upgrades</strong> — rolling upgrades across control plane and workers</li>
+<li><strong>Tailscale setup</strong> — for remote access to the homelab network</li>
+</ul>
+<p>The key playbook is <code>deploy-stacks.yml</code>, which takes a list of stacks and deploys them idempotently. Terraform calls this automatically after VM creation.</p>
+<h3 id="local-cicd">Local CI/CD</h3>
+<p>One of the most useful additions: <strong>git hooks that auto-deploy on commit</strong>. When I commit changes to a stack, the hook detects what changed and runs the appropriate Ansible deployment.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Update traefik config&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># → Automatically detects and deploys changed stacks</span>
+</span></span></code></pre></div><p>No manual commands, no forgetting to deploy. Just commit and push.</p>
+<hr>
+<h2 id="docker-stacks">Docker Stacks</h2>
+<p>The homelab repo defines 10+ Docker Compose stacks:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Stack</th>
+					<th>Services</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>core</strong></td>
+					<td>Traefik (reverse proxy), Portainer, node-exporter, cAdvisor, pve-exporter</td>
+			</tr>
+			<tr>
+					<td><strong>media</strong></td>
+					<td>Jellyfin, Sonarr, Radarr, Prowlarr, qBittorrent, Gluetun VPN</td>
+			</tr>
+			<tr>
+					<td><strong>database</strong></td>
+					<td>PostgreSQL</td>
+			</tr>
+			<tr>
+					<td><strong>networking</strong></td>
+					<td>Pi-hole (DNS), Netbox (IPAM)</td>
+			</tr>
+			<tr>
+					<td><strong>gitea</strong></td>
+					<td>Gitea server, container registry, CI runner</td>
+			</tr>
+			<tr>
+					<td><strong>ai-tools</strong></td>
+					<td>Open WebUI + Ollama (local LLM)</td>
+			</tr>
+			<tr>
+					<td><strong>projects</strong></td>
+					<td>Vikunja (project &amp; task tracking)</td>
+			</tr>
+			<tr>
+					<td><strong>newt</strong></td>
+					<td>Pangolin tunnel connector</td>
+			</tr>
+			<tr>
+					<td><strong>pangolin</strong></td>
+					<td>VPS-side tunnel control plane</td>
+			</tr>
+			<tr>
+					<td><strong>monitoring-vps</strong></td>
+					<td>Prometheus, Grafana, Loki on VPS</td>
+			</tr>
+			<tr>
+					<td><strong>authentik-vps</strong></td>
+					<td>Authentik identity provider on VPS</td>
+			</tr>
+			<tr>
+					<td><strong>crowdsec-vps</strong></td>
+					<td>CrowdSec security on VPS</td>
+			</tr>
+			<tr>
+					<td><strong>pihole-vps</strong></td>
+					<td>Pi-hole on VPS for external DNS</td>
+			</tr>
+	</tbody>
+</table>
+<p>All stacks share a common <code>env</code> file and follow the same patterns: Traefik labels for routing, consistent logging, health checks.</p>
+<hr>
+<h2 id="kubernetes-gitops">Kubernetes (GitOps)</h2>
+<p>The K3s cluster runs workloads managed entirely through ArgoCD. The gitops repo contains:</p>
+<h3 id="argocd-applications">ArgoCD Applications</h3>
+<pre tabindex="0"><code>apps/
+├── bootstrap.yaml         # Root app that deploys everything else
+├── argocd.yaml            # ArgoCD self-management
+├── cilium.yaml            # CNI with BGP
+├── traefik.yaml           # Ingress controller
+├── cloudflare-tunnel.yaml # Secure external access
+├── monitoring.yaml        # Prometheus + Grafana
+├── loki.yaml              # Log aggregation
+├── longhorn.yaml          # Distributed storage
+├── uptime-kuma.yaml       # Status monitoring
+├── ntfy.yaml              # Push notifications
+├── vaultwarden.yaml       # Password manager
+├── gitea-runner.yaml      # CI runner for Gitea
+└── newt.yaml              # Pangolin tunnel client
+</code></pre><h3 id="key-components">Key Components</h3>
+<ul>
+<li><strong>Cilium CNI</strong> — Replaced Flannel; provides BGP peering with VyOS for LoadBalancer IPs</li>
+<li><strong>Cloudflare Tunnel</strong> — Subnet routing (not hostname routing) for scalable external access</li>
+<li><strong>Tailscale + Cloudflare Access</strong> — Access restricted to Tailscale IPs only</li>
+<li><strong>Full observability</strong> — Prometheus scrapes Docker hosts, K3s, and Proxmox; Loki aggregates logs; Grafana dashboards</li>
+</ul>
+<h3 id="kubectl-anywhere">kubectl Anywhere</h3>
+<p>I can access the cluster from anywhere using three kubeconfig options:</p>
+<ol>
+<li><strong>Direct</strong> — On the home network, connect directly to control plane</li>
+<li><strong>SSH tunnel</strong> — Port-forward through VyOS when on home network but different subnet</li>
+<li><strong>Cloudflare tunnel</strong> — Works from anywhere with Tailscale connected</li>
+</ol>
+<hr>
+<h2 id="networking">Networking</h2>
+<h3 id="vyos-router">VyOS Router</h3>
+<p>The VyOS VM handles:</p>
+<ul>
+<li><strong>Inter-VLAN routing</strong> between lab network (10.10.10.0/24) and home network</li>
+<li><strong>BGP peering</strong> with Cilium for Kubernetes LoadBalancer IPs</li>
+<li><strong>Static routes</strong> for Kubernetes pod and service networks</li>
+</ul>
+<h3 id="cloudflare-tunnel--tailscale">Cloudflare Tunnel + Tailscale</h3>
+<p>External access uses <strong>subnet routing</strong> instead of individual hostname routes:</p>
+<ul>
+<li>Routes <code>10.42.0.0/16</code> (pod network) and <code>10.43.0.0/16</code> (service network) through the tunnel</li>
+<li>Cloudflare Access policy restricts access to Tailscale IPs (<code>100.64.0.0/10</code>)</li>
+<li>No need to configure individual services — just add them to the cluster</li>
+</ul>
+<p>This pattern scales without tunnel configuration changes.</p>
+<h3 id="pangolin-tunnel">Pangolin Tunnel</h3>
+<p>For services that need public access (without Tailscale), I run <strong>Pangolin</strong> — a self-hosted tunnel solution:</p>
+<ul>
+<li>Control plane runs on Oracle Cloud VPS</li>
+<li><code>newt</code> connector runs on Docker host and K3s</li>
+<li>Provides stable public endpoints for specific services</li>
+</ul>
+<hr>
+<h2 id="observability">Observability</h2>
+<h3 id="monitoring-stack">Monitoring Stack</h3>
+<ul>
+<li><strong>Prometheus</strong> — Scrapes metrics from Docker hosts, K3s, Proxmox, and individual services</li>
+<li><strong>Grafana</strong> — Dashboards for everything; some managed via Terraform</li>
+<li><strong>Loki</strong> — Log aggregation from Docker and Kubernetes</li>
+<li><strong>Alertmanager</strong> — Routes alerts to ntfy for push notifications</li>
+<li><strong>Uptime Kuma</strong> — External health checks and status page</li>
+</ul>
+<h3 id="exporters">Exporters</h3>
+<p>The <code>core</code> stack runs exporters for comprehensive coverage:</p>
+<ul>
+<li><code>node-exporter</code> — Host-level metrics</li>
+<li><code>cAdvisor</code> — Container metrics</li>
+<li><code>pve-exporter</code> — Proxmox metrics</li>
+</ul>
+<hr>
+<h2 id="whats-changed-since-last-time">What&rsquo;s Changed Since Last Time</h2>
+<p>Since my previous homelab post, I&rsquo;ve added:</p>
+<ol>
+<li><strong>VPS integration</strong> — Pangolin, CrowdSec, Authentik, monitoring all running on Oracle Cloud</li>
+<li><strong>Full monitoring pipeline</strong> — Prometheus + Loki + Grafana with alerting to ntfy</li>
+<li><strong>Longhorn storage</strong> — Distributed block storage for K3s stateful workloads</li>
+<li><strong>Uptime Kuma + Vaultwarden + Ntfy</strong> — Self-hosted alternatives to SaaS tools</li>
+<li><strong>Terraform for Authentik and Grafana</strong> — Managing identity and dashboards as code</li>
+<li><strong>K3s upgrade automation</strong> — Ansible playbook for rolling cluster upgrades</li>
+<li><strong>Local CI/CD with git hooks</strong> — Auto-deploy on commit</li>
+</ol>
+<p>The platform has gone from &ldquo;learning project&rdquo; to &ldquo;I actually rely on this daily.&rdquo;</p>
+<hr>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<ol>
+<li>
+<p><strong>GitOps is worth the setup cost.</strong> Once ArgoCD is running, adding services is just a YAML file and a commit.</p>
+</li>
+<li>
+<p><strong>Subnet routing &gt; hostname routing.</strong> Configuring individual hostnames doesn&rsquo;t scale. Route the subnet and use DNS.</p>
+</li>
+<li>
+<p><strong>Observability from day one.</strong> I can debug issues in minutes because I have metrics, logs, and traces.</p>
+</li>
+<li>
+<p><strong>Terraform state management matters.</strong> Multiple smaller projects with isolated state beats one giant project.</p>
+</li>
+<li>
+<p><strong>Document as you go.</strong> The <code>CLAUDE.md</code> files and READMEs save me constantly when I come back to something after weeks.</p>
+</li>
+<li>
+<p><strong>VPS extends homelab reach.</strong> A free Oracle Cloud instance gives me public endpoints and redundancy without exposing my home IP.</p>
+</li>
+</ol>
+<hr>
+<h2 id="whats-next">What&rsquo;s Next</h2>
+<ul>
+<li><strong>Authentik SSO</strong> — Single sign-on across all services</li>
+<li><strong>Backup automation</strong> — TrueNAS snapshots + off-site replication</li>
+<li><strong>More K3s workloads</strong> — Migrate remaining Docker services that benefit from HA</li>
+<li><strong>Cost tracking</strong> — Power monitoring and cloud cost dashboards</li>
+</ul>
+<hr>
+<p>If you&rsquo;re building a homelab, I&rsquo;d encourage you to treat it like a real platform: version control everything, automate deployments, and invest in observability early. The compound benefits are real — every new service is easier to add, debug, and maintain.</p>
+<p><em>Check out the code: <a href="https://github.com/pattersonbl2/homelab-public">homelab-public</a> — the two repos above, merged into one.</em></p>
+
+    </div>
+  </article>
+</div>
+
+  </main><footer class="site-footer">
+  <div class="container">
+    <span class="footer-copy">© 2026 Brandon Patterson</span>
+    <span class="footer-privacy">Anonymous, cookieless visit stats via Cloudflare Web Analytics</span>
+    <div class="footer-links">
+      <a href="/consulting/">Consulting</a>
+      <a href="https://github.com/pattersonbl2" target="_blank" rel="noopener" aria-label="Github"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.547 1.377.203 2.394.1 2.647.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.003 10.003 0 0022 12c0-5.523-4.477-10-10-10z"/>
+</svg>
+        Github
+      </a>
+      <a href="https://www.linkedin.com/in/pattersonbl2/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+</svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script src="/js/motion.min.js" defer></script>
+</body>
+</html>

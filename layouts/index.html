@@ -1,106 +1,113 @@
 {{ define "main" }}
 
 {{/* ── Hero ── */}}
-<div class="hero">
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
   {{- with site.Params.imageUrl }}
-  <img class="hero-photo" src="{{ . | absURL }}" alt="{{ site.Params.imageAlt | default site.Params.author }}" width="90" height="90">
+  <img class="hero-photo load" style="--i:0" src="{{ . | absURL }}" alt="{{ site.Params.imageAlt | default site.Params.author }}" width="72" height="72">
   {{- end }}
-  <h1 class="hero-name">{{ site.Params.author }}</h1>
-  <p class="hero-role">{{ site.Params.role }} · <em>{{ site.Params.company }}</em></p>
+  <p class="hero-role load" style="--i:1">{{ site.Params.role }} · <em>{{ site.Params.company }}</em></p>
+  <h1 class="hero-name load" style="--i:2">{{ site.Params.author }}</h1>
   {{- with site.Params.tagline }}
-  <p class="hero-tagline">{{ . }}</p>
+  <p class="hero-tagline load" style="--i:3">{{ . }}</p>
   {{- end }}
+
+  <div class="cta-row load" style="--i:4">
+    <a href="/resume/" class="cta-btn cta-primary">View résumé</a>
+    <a href="/contact/" class="cta-btn cta-secondary">Get in touch</a>
+  </div>
+
   {{- if or site.Params.location site.Params.availability }}
-  <p class="hero-availability">
+  <p class="hero-availability load" style="--i:5">
     <span class="avail-dot" aria-hidden="true"></span>
     {{- with site.Params.location }}{{ . }}{{ end }}{{ if and site.Params.location site.Params.availability }} · {{ end }}{{ with site.Params.availability }}{{ . }}{{ end }}
   </p>
   {{- end }}
+  <span class="scroll-cue" aria-hidden="true">Scroll</span>
+</section>
 
-  {{/* ── Primary recruiter CTAs ── */}}
-  <div class="cta-row">
-    <a href="/resume/" class="cta-btn cta-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      View résumé
-    </a>
-    <a href="/contact/" class="cta-btn cta-secondary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Get in touch
-    </a>
-    {{- range site.Params.socialIcons }}
-    {{- if eq .name "LinkedIn" }}
-    <a href="{{ .url }}" target="_blank" rel="noopener" class="cta-btn cta-secondary" aria-label="LinkedIn">
-      {{- partial "svg-icon.html" (dict "name" .name "size" "16") }}
-      LinkedIn
-    </a>
-    {{- end }}
-    {{- end }}
-  </div>
-</div>
-
-{{/* ── Impact strip (recruiter scan) ── */}}
+{{/* ── Spec strip ── */}}
 {{- with site.Params.metrics }}
 <div class="impact-strip">
-  {{- range . }}
-  <div class="impact-item">
-    <div class="impact-value">{{ .value }}</div>
-    <div class="impact-label">{{ .label }}</div>
+  {{- range $i, $m := . }}
+  {{- $num := index (findRE `^[0-9]+` $m.value) 0 | default "" }}
+  <div class="impact-item reveal" style="--i:{{ $i }}">
+    <div class="impact-value"{{ if $num }} data-count="{{ $num }}" data-suffix="{{ strings.TrimPrefix $num $m.value }}"{{ end }}>{{ $m.value }}</div>
+    <div class="impact-label">{{ $m.label }}</div>
   </div>
   {{- end }}
 </div>
 {{- end }}
 
-{{/* ── CI/CD pipeline animation ── */}}
-<div class="terminal-section">
-  {{- partial "terminal.html" . }}
-</div>
-
-{{/* ── Secondary nav buttons ── */}}
-<div class="hero-buttons">
-  <a href="/posts/"      class="hero-btn">Blog</a>
-  <a href="/projects/"   class="hero-btn">Projects</a>
-  <a href="/archives/"   class="hero-btn">Archive</a>
-  {{- range site.Params.socialIcons }}
-  {{- if eq .name "Github" }}
-  <a href="{{ .url }}" target="_blank" rel="noopener" class="hero-btn">GitHub</a>
-  {{- end }}
-  {{- end }}
-</div>
+{{/* ── Pipeline "product shot" ── */}}
+<section class="band">
+  <div class="wide">
+    <p class="eyebrow reveal">How I ship</p>
+    <h2 class="section-heading reveal" style="--i:1">Every push, verified end to end.</h2>
+    <p class="section-lede reveal" style="--i:2">Build, test, scan, deploy, verify. The same pipeline discipline I run at work, running on my own hardware.</p>
+  </div>
+  <div class="terminal-section reveal" style="margin-top:3rem; padding:0 1.5rem">
+    {{- partial "terminal.html" . }}
+  </div>
+</section>
 
 {{/* ── Featured projects ── */}}
-<div class="container">
-  <h2 class="section-title">Projects</h2>
-  <div class="project-grid">
-    {{- range $p := where site.Data.projects.projects "featured" true }}
-    <a href="{{ $p.link }}"{{ if hasPrefix $p.link "http" }} target="_blank" rel="noopener"{{ end }} class="post-card project-card">
-      <div class="post-card-title">{{ $p.title }}</div>
-      <div class="project-tech">{{ $p.tech }}</div>
-      <div class="post-card-summary">{{ $p.summary }}</div>
-      {{- with $p.notice }}
-      <div class="project-notice">{{ . }}</div>
+<section class="band">
+  <div class="wide">
+    <p class="eyebrow reveal">Work</p>
+    <h2 class="section-heading reveal" style="--i:1">Things I've built.</h2>
+    <div class="project-grid">
+      {{- range $i, $p := where site.Data.projects.projects "featured" true }}
+      <a href="{{ $p.link }}"{{ if hasPrefix $p.link "http" }} target="_blank" rel="noopener"{{ end }} class="post-card project-card reveal{{ if eq $i 0 }} is-lead{{ end }}" style="--i:{{ $i }}">
+        <div class="post-card-title">{{ $p.title }}</div>
+        <div class="project-tech">{{ $p.tech }}</div>
+        <div class="post-card-summary">{{ $p.summary }}</div>
+        {{- with $p.notice }}
+        <div class="project-notice">{{ . }}</div>
+        {{- end }}
+        <span class="project-link">{{ $p.linkLabel | default "Read the write-up" }} ›</span>
+      </a>
       {{- end }}
-      <span class="project-link">{{ $p.linkLabel | default "Read the write-up" }} →</span>
-    </a>
-    {{- end }}
+    </div>
+    <div class="section-foot reveal">
+      <a href="/projects/" class="text-link">All projects ›</a>
+    </div>
   </div>
-  <p class="services-cta">
-    <a href="/projects/" class="hero-btn">See all projects →</a>
-  </p>
-</div>
+</section>
 
-{{/* ── Recent posts ── */}}
-<div class="container">
-  <h2 class="section-title">Recent Posts</h2>
-  <div class="post-grid">
-    {{- $posts := where site.RegularPages "Type" "posts" }}
-    {{- range ($posts | first 6) }}
-    <a href="{{ .Permalink }}" class="post-card">
-      <div class="post-card-title">{{ .Title }}</div>
-      <div class="post-card-date">{{ .Date.Format "Jan 02, 2006" }}</div>
-      <div class="post-card-summary">{{ .Summary | plainify | truncate 120 }}</div>
-    </a>
+{{/* ── Writing ── */}}
+<section class="band">
+  <div class="wide">
+    <p class="eyebrow reveal">Writing</p>
+    <h2 class="section-heading reveal" style="--i:1">Notes from the field.</h2>
+    <div class="post-grid">
+      {{- $posts := where site.RegularPages "Type" "posts" }}
+      {{- range $i, $p := ($posts | first 6) }}
+      <a href="{{ $p.Permalink }}" class="post-card reveal" style="--i:{{ mod $i 3 }}">
+        <div class="post-card-title">{{ $p.Title }}</div>
+        <div class="post-card-date">{{ $p.Date.Format "Jan 2, 2006" }}</div>
+        <div class="post-card-summary">{{ $p.Summary | plainify | truncate 120 }}</div>
+      </a>
+      {{- end }}
+    </div>
+    <div class="section-foot reveal">
+      <a href="/posts/" class="text-link">All writing ›</a>
+      <a href="/archives/" class="text-link">Archive ›</a>
+    </div>
+  </div>
+</section>
+
+{{/* ── Closer ── */}}
+<section class="closer">
+  <h2 class="section-heading reveal">Let's build something reliable.</h2>
+  <div class="cta-row reveal" style="--i:1">
+    <a href="/contact/" class="cta-btn cta-primary">Get in touch</a>
+    {{- range site.Params.socialIcons }}
+    {{- if eq .name "LinkedIn" }}
+    <a href="{{ .url }}" target="_blank" rel="noopener" class="cta-btn cta-secondary">LinkedIn</a>
+    {{- end }}
     {{- end }}
   </div>
-</div>
+</section>
 
 {{ end }}

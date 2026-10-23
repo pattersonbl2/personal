@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0d1117">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -128,12 +128,7 @@
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 
-<script>
-(function() {
-  var theme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-})();
-</script>
+<script>document.documentElement.className+=' js';</script>
 
 {{- /* Cloudflare Web Analytics (cookieless): production builds with a token only */}}
 {{- with site.Params.cloudflareAnalyticsToken }}
