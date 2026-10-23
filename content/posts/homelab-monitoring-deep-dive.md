@@ -133,10 +133,6 @@ status, Cilium Hubble network flows between namespaces, and interface-level netw
 **Docker/homelab-1** — Container CPU and memory per stack, Scraparr media metrics, and
 Docker Traefik request rates and latency.
 
-**Applications** — A dedicated K8s Learn dashboard showing active environments, resource
-consumption per user namespace, pod status, and environment age (color-coded: green under
-a day, yellow under a week, red over 30 days).
-
 **VPS** — Authentik login metrics and CrowdSec ban/decision activity.
 
 ---

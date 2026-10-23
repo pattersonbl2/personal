@@ -52,7 +52,7 @@ PROFESSIONAL EXPERIENCE
 
 ### CONSULTANCY & SPECIAL PROJECTS
 
-- **Personal Homelab Platform & K8s Learn (2024 – Present)** Multi-node Kubernetes platform (Proxmox/K3s) with GitOps (ArgoCD/Terraform), full Prometheus/Grafana/Loki observability, plus a self-hosted K8s training platform with a live cluster and browser terminal.
+- **Personal Homelab Platform (2024 – Present)** Multi-node Kubernetes platform (Proxmox/K3s) with GitOps (ArgoCD/Terraform), full Prometheus/Grafana/Loki observability.
 - **ark31.info (2025 – Present)** Personal site and portfolio: Hugo with a custom theme and a Go backend on GCP Cloud Run.
 
 EDUCATION
