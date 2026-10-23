@@ -19,6 +19,10 @@ security:
       - '^HUGO_'
 
 params:
+  # Cloudflare Web Analytics beacon token (not a secret). Leave empty to disable, or if
+  # Cloudflare Pages auto-injects the beacon. Can also be set via HUGO_PARAMS_cloudflareAnalyticsToken.
+  # Only rendered in production builds.
+  cloudflareAnalyticsToken: ''
   turnstileSiteKey: '0x4AAAAAAD-Wku5l0KWMgbF-'
   author: 'Brandon Patterson'
   role: 'Platform Engineer / SRE'
