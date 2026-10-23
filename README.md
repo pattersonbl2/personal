@@ -28,7 +28,15 @@ Personal website and blog built with Hugo (PaperMod theme), deployed on Cloudfla
 - Local build: `make resume-pdf`
 - CI build: `.github/workflows/deploy-backend.yml` regenerates the PDF automatically before backend deploys
 
+### Analytics
+Visitor stats use Cloudflare Web Analytics (free, cookieless). The beacon is rendered in `layouts/partials/head.html` only for production builds when `params.cloudflareAnalyticsToken` is set.
+
+1. Cloudflare dashboard → Analytics & Logs → Web Analytics → Add a site (hostname `ark31.info`), and copy the beacon token from the JS snippet (`data-cf-beacon='{"token": "..."}'`). Alternatively enable it in the Pages project → Metrics → Web Analytics.
+2. Put the token in `params.cloudflareAnalyticsToken` in `config.yaml`, or set the Pages build env var `HUGO_PARAMS_cloudflareAnalyticsToken` (the token is not a secret).
+3. Deploy, visit the site, and confirm in Web Analytics (data appears within a few minutes); the page source should contain `static.cloudflareinsights.com/beacon.min.js`.
+
+If Pages auto-injects the beacon (Metrics → Web Analytics enabled on the Pages project), leave the token empty to avoid double counting.
+
 ### Future Ideas
 1. **Blog post series with tutorials** — write technical posts covering real-world SRE/DevOps topics (Terraform patterns, Kubernetes debugging, CI/CD pipelines) to showcase expertise and give back to the community
-2. **Visitor analytics dashboard** — integrate a privacy-friendly analytics tool (e.g., Plausible or Umami) to track page views, popular posts, and traffic sources without cookies
-3. **Projects showcase page** — a dedicated page highlighting personal and open-source projects with descriptions, tech used, and links to live demos or repos
+2. **Projects showcase page** — a dedicated page highlighting personal and open-source projects with descriptions, tech used, and links to live demos or repos

@@ -135,3 +135,10 @@
 })();
 </script>
 
+{{- /* Cloudflare Web Analytics (cookieless): production builds with a token only */}}
+{{- with site.Params.cloudflareAnalyticsToken }}
+{{- if hugo.IsProduction }}
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ . }}"}'></script>
+{{- end }}
+{{- end }}
+
