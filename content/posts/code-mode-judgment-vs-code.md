@@ -87,7 +87,7 @@ Four API calls, 1.1 seconds, one model round trip:
 
 Ten records that could be behind Cloudflare and are not. Seven of them are the CNAMEs that point `mail`, `calendar`, `drive` and `groups` at Google, which is correct and must stay that way — proxying someone else's hostname breaks it.
 
-The other three were the finding. On `bp31app.com`, a **wildcard A record pointing straight at a public IP address**, unproxied. Every hostname on that domain that I had not explicitly configured — including the Kubernetes learning platform I have [written about](/posts/k8s-learn-try-it/) and which is currently returning 404 — resolves directly to an origin box, bypassing Cloudflare completely. No proxy, no WAF, no rate limiting, origin address in public DNS for anyone who asks.
+The other three were the finding. On `bp31app.com`, a **wildcard A record pointing straight at a public IP address**, unproxied. Every hostname on that domain that I had not explicitly configured resolves directly to an origin box, bypassing Cloudflare completely. No proxy, no WAF, no rate limiting, origin address in public DNS for anyone who asks.
 
 I did not know that. I have been running this domain for months.
 
@@ -112,6 +112,6 @@ Code Mode is [marked experimental](https://developers.cloudflare.com/agents/tool
 
 ## What I am doing about it
 
-The wildcard is the hole, and proxying it is the lazy fix: it would push every hostname on the domain behind Cloudflare whether that is right for it or not. So the fix was the narrower one — `learn.bp31app.com` now has its own record, a CNAME to a Cloudflare Tunnel, so that hostname gets a deliberate route instead of inheriting the wildcard, and the origin address is no longer the default answer to every name I never configured.
+The wildcard is the hole, and proxying it is the lazy fix: it would push every hostname on the domain behind Cloudflare whether that is right for it or not. So the fix was the narrower one — each hostname I actually serve gets its own deliberate record (a CNAME to a Cloudflare Tunnel) instead of inheriting the wildcard, and the origin address is no longer the default answer to every name I never configured.
 
 It is a change I should have made in February. It took a for-loop over 26 DNS records to tell me it was needed.

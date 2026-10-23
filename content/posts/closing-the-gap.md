@@ -8,7 +8,7 @@ tags: ["career", "platform-engineering", "homelab"]
 
 In October 2025 I left Mozilla, and I'll be honest about where my head was: the market was rough, and I knew the biggest hole in my skill set was active development. I had spent years operating infrastructure at scale without being asked to write much code, and I'd let that slide for too long. It felt like a huge mountain to climb.
 
-Eight months later I'm a DevOps engineer at Jasper AI, the team's ArgoCD SME, and I've shipped a free Kubernetes training platform (since retired) that strangers on the internet actually used. This post is about what happened in between — not because the story is special, but because the approach is repeatable.
+Eight months later I'm a DevOps engineer at Jasper AI, the team's ArgoCD SME. This post is about what happened in between — not because the story is special, but because the approach is repeatable.
 
 ## Step one: build something real, in public
 
@@ -24,7 +24,7 @@ I leaned hard on AI assistance to accelerate the learning, and I [wrote about th
 
 In January 2026 I joined Jasper AI. The homelab work transferred directly: within months I had taken platform ownership of our ArgoCD delivery pipeline, led a Datadog observability overhaul across multiple engineering teams, and handled an urgent supply-chain security remediation.
 
-The development gap I was so worried about? Building K8s Learn — a Go-backed training platform with a browser terminal, running on my own cluster (a project I've since retired) — answered that question for me.
+The development gap I was so worried about? Running a production-style platform on my own cluster answered that question for me.
 
 ## If you're in the October-2025 version of this story
 
