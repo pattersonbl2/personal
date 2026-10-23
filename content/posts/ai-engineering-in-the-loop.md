@@ -14,7 +14,7 @@ Here's what happened, what it took to fix it, and why I think the engineers who 
 
 ## The Platform
 
-I built [K8s Learn](https://learn.bp31app.com) as a hands-on Kubernetes learning environment. You sign up, get an isolated namespace with a browser-based terminal, and work through five tasks: run a Pod, create a Deployment, expose a Service, set up an Ingress, and scale with rolling updates. An AI tutor is available if you get stuck.
+I built K8s Learn (a project I've since retired) as a hands-on Kubernetes learning environment. You sign up, get an isolated namespace with a browser-based terminal, and work through five tasks: run a Pod, create a Deployment, expose a Service, set up an Ingress, and scale with rolling updates. An AI tutor is available if you get stuck.
 
 Under the hood, the architecture looked like this:
 
@@ -50,8 +50,8 @@ This is engineering discipline that AI doesn't naturally have. When you're stari
 We added structured logging to the provisioning script:
 
 ```
-[k8s-learn-provision] [INFO]  2026-03-18T05:07:31Z Testing cluster connectivity
-[k8s-learn-provision] [ERROR] 2026-03-18T05:07:31Z Cannot connect to K8s cluster
+[provision] [INFO]  2026-03-18T05:07:31Z Testing cluster connectivity
+[provision] [ERROR] 2026-03-18T05:07:31Z Cannot connect to K8s cluster
 ```
 
 We added an ERR trap that sends push notifications on failure. We added step numbering (Step 1/7 through Step 7/7) so you could see exactly where things died. We added HTTP status code logging for email sends.

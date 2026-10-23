@@ -16,7 +16,7 @@ That is not a simplification. It is the entire list of things that send me an in
 
 | Line | What it runs | Cost |
 | --- | --- | --- |
-| `ark31.info` + `bp31app.com` | this site, K8s Learn | **$40/year** — $3.33/month |
+| `ark31.info` + `bp31app.com` | this site, homelab services | **$40/year** — $3.33/month |
 | Cloudflare Pages | the whole static site, build and CDN | $0 — free tier |
 | Cloudflare Tunnel | public ingress with no open ports at home | $0 — free tier |
 | Cloudflare Turnstile | contact-form anti-spam | $0 — free tier |

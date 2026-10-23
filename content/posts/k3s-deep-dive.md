@@ -82,7 +82,7 @@ Security in a homelab is mostly about building good habits for production.
 
 **Sealed Secrets** handle sensitive data in git. I encrypt secrets locally with `kubeseal`, commit the ciphertext, and the controller decrypts them in-cluster. This replaced a KSOPS setup that was the most fragile part of the stack — GPG keyrings, kustomize plugin directories, ArgoCD sidecars. Sealed Secrets is one Helm chart and it just works.
 
-**RBAC** is scoped tightly. The n8n provisioner that creates K8s Learn environments has a ClusterRole limited to namespace operations, with per-namespace Roles for the resources it actually needs. ArgoCD uses SAML SSO through Google Workspace. Grafana authenticates through Authentik.
+**RBAC** is scoped tightly. The n8n provisioner that created per-user training environments on the cluster has a ClusterRole limited to namespace operations, with per-namespace Roles for the resources it actually needs. ArgoCD uses SAML SSO through Google Workspace. Grafana authenticates through Authentik.
 
 **CrowdSec** runs on the VPS as an intrusion detection layer for anything hitting the Pangolin tunnel.
 
@@ -102,7 +102,6 @@ Here's what the cluster does day to day:
 
 | Service | What it does |
 |---------|-------------|
-| **K8s Learn** | Interactive Kubernetes training platform with per-user namespaces and browser terminals |
 | **Vaultwarden** | Self-hosted password manager (Bitwarden-compatible) |
 | **Uptime Kuma** | Status monitoring for all 16 public services |
 | **Ntfy** | Push notifications for alerts and events |
