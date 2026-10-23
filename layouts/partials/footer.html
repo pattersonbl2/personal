@@ -2,6 +2,7 @@
   <div class="container">
     <span class="footer-copy">© {{ now.Year }} {{ site.Params.author }}</span>
     <div class="footer-links">
+      <a href="/consulting/">Consulting</a>
       {{- range site.Params.socialIcons }}
       <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}">
         {{- partial "svg-icon.html" (dict "name" .name "size" "16") }}
