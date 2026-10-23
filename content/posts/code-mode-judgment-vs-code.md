@@ -112,6 +112,6 @@ Code Mode is [marked experimental](https://developers.cloudflare.com/agents/tool
 
 ## What I am doing about it
 
-The wildcard is the hole, and proxying it is the lazy fix: it would push every hostname on the domain behind Cloudflare whether that is right for it or not. The narrower fix is the correct one — a Cloudflare Tunnel for `learn.bp31app.com` specifically, so that hostname gets a deliberate route instead of inheriting a wildcard, and the origin address stops being the default answer to every name nobody configured.
+The wildcard is the hole, and proxying it is the lazy fix: it would push every hostname on the domain behind Cloudflare whether that is right for it or not. So the fix was the narrower one — `learn.bp31app.com` now has its own record, a CNAME to a Cloudflare Tunnel, so that hostname gets a deliberate route instead of inheriting the wildcard, and the origin address is no longer the default answer to every name I never configured.
 
-I should have made that fix in February. It took a for-loop over 26 DNS records to tell me it was needed.
+It is a change I should have made in February. It took a for-loop over 26 DNS records to tell me it was needed.
