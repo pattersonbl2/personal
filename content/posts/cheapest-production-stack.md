@@ -61,7 +61,7 @@ And one thing not worth paying for: managed Kubernetes, *for this purpose*. If t
 
 The honest total is not $90, because the largest input is weekends.
 
-[My Kubernetes platform was silently broken for 24 hours](/posts/ai-engineering-in-the-loop/) and every signup went into a black hole. I built a triage bot to catch silent failures, and then [spent twelve days with the evaluation harness silently broken](/posts/shadow-mode-zero-labels/). Nobody invoices me for those hours, so they never show up when I say "under $20 a month." They are the real price, and they are also the thing I would pay again.
+One of my platforms was silently broken for 24 hours. I built a triage bot to catch silent failures, and then [spent twelve days with the evaluation harness silently broken](/posts/shadow-mode-zero-labels/). Nobody invoices me for those hours, so they never show up when I say "under $20 a month." They are the real price, and they are also the thing I would pay again.
 
 So: $90 a month, of which $3.33 goes to anyone who sends an invoice. A platform built almost entirely out of open source and other people's free tiers, running on hardware in my house and power from my meter.
 

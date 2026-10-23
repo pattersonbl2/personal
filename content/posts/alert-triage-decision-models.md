@@ -6,7 +6,7 @@ summary: "Building sre-reflex: a shadow-mode bot that scores Prometheus alerts w
 tags: ["sre", "observability", "ai", "homelab"]
 ---
 
-In [my last post](/posts/ai-engineering-in-the-loop/) I wrote about a platform that was silently broken for 24 hours, and the thing that bothered me most: *the failure notification that should have existed.*
+A platform of mine once sat silently broken for 24 hours, and the thing that bothered me most was *the failure notification that should have existed.*
 
 I fixed that one specific gap. But it left me with a bigger problem. Once you add alerts to everything, you get a different failure mode: you stop reading them.
 

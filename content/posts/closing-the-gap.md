@@ -18,7 +18,7 @@ The point wasn't the hardware. The point was that every skill I felt shaky on â€
 
 ## Step two: use AI as a multiplier, not a crutch
 
-I leaned hard on AI assistance to accelerate the learning, and I [wrote about that honestly](/posts/ai-engineering-in-the-loop/) â€” including the time it helped me silently break my own platform for 24 hours. The lesson that stuck: AI raises the ceiling for engineers who stay in the loop and verify everything. It doesn't replace the judgment you build by operating systems yourself.
+I leaned hard on AI assistance to accelerate the learning, including the time it helped me silently break my own platform for 24 hours. The lesson that stuck: AI raises the ceiling for engineers who stay in the loop and verify everything. It doesn't replace the judgment you build by operating systems yourself.
 
 ## Step three: the gap closes faster than you think
 
