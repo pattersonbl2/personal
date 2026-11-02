@@ -53,8 +53,8 @@ params:
   metrics:
     - value: '50M+'
       label: 'users supported'
-    - value: '40%'
-      label: 'cloud cost cut'
+    - value: 'AWS → GCP'
+      label: 'Terraform migration'
     - value: '6+ yrs'
       label: 'SRE / DevOps'
     - value: '19 apps'

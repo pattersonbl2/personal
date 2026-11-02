@@ -24,7 +24,7 @@ CircleCI, Jenkins), FinOps, GCP, AWS, Go, Python.
 ## Selected impact
 
 - Operated multi-tenant Kubernetes clusters supporting 50M+ users at Mozilla.
-- Migrated production workloads AWS → GCP with Terraform, cutting cloud spend ~40%.
+- Migrated production workloads AWS → GCP with Terraform, reducing cloud spend.
 - ArgoCD subject-matter expert at Jasper AI; fixed the DORA metrics pipeline and
   improved GitOps delivery reliability.
 - Runs a multi-node Proxmox + K3s homelab with full GitOps and observability
