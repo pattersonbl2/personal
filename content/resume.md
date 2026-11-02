@@ -32,7 +32,7 @@ PROFESSIONAL EXPERIENCE
 
 **Site Reliability Engineer |** Mozilla | Remote | 2023 – 2025
 
-- Migrated production workloads from AWS to GCP using Terraform, cutting cloud costs 40% while improving platform maintainability.
+- Migrated production workloads from AWS to GCP using Terraform, reducing cloud spend and improving platform maintainability.
 - Built new GCP infrastructure from scratch, cutting deployment time from hours to seconds via reusable Terraform patterns.
 - Operated multi-tenant Kubernetes clusters supporting 50M+ users, maintaining availability and platform consistency at scale.
 - Built Helm charts and GitHub Actions pipelines standardizing deployments; served as incident responder driving root-cause analysis and reliability follow-through.

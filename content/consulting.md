@@ -64,7 +64,7 @@ I take on engagements in three shapes — pick whichever fits the problem.
 ## Why work with me
 
 - 5+ years in production SRE / DevOps roles at Mozilla and Jasper.ai
-- Operated Kubernetes at 50M+ user scale; migrated production workloads AWS → GCP and cut cloud spend 40%
+- Operated Kubernetes at 50M+ user scale; migrated production workloads AWS → GCP with Terraform, reducing cloud spend
 - Built and run a multi-node homelab on Proxmox / K3s with full GitOps and observability — the same patterns I apply to client work
 - Comfortable working remotely across time zones and embedding with existing engineering teams
 
