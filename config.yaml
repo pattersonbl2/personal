@@ -53,8 +53,8 @@ params:
   metrics:
     - value: '50M+'
       label: 'users supported'
-    - value: 'AWS → GCP'
-      label: 'Terraform migration'
+    - value: 'GCP'
+      label: 'migrated from AWS'
     - value: '6+ yrs'
       label: 'SRE / DevOps'
     - value: '19 apps'
