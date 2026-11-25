@@ -17,6 +17,7 @@ CORE COMPETENCIES
 
 **Platforms & IaC:** Kubernetes (GKE, K3s), Docker, Terraform, ArgoCD, Helm, GitHub Actions, GCP (Cloud Run, BigQuery, Cloud SQL), AWS  
 **Observability & AI:** Datadog (SLOs, on-call, RUM), Prometheus/Grafana/Loki, LangSmith agent tracing, LLM golden signals (latency, cost, quality)  
+**Agentic Reliability:** Agentic workflows for log/metric-driven triage, stability testing, and scaling/load validation  
 **Networking & Security:** VXLAN, Kubernetes networking, BGP, NGINX, DNS/TLS, supply-chain CI  
 **Languages:** Python, Go, JavaScript/TypeScript, Bash
 
@@ -25,6 +26,7 @@ PROFESSIONAL EXPERIENCE
 **DevOps / Platform Engineer |** Jasper.ai | Remote | 2026 – Present
 
 - Building observability for Jasper's AI agent stack with LangSmith — production tracing across agent runs, surfacing latency/cost/error/quality signals, and connecting agent telemetry into Datadog SLOs and on-call.
+- Use agentic workflows to test application stability and scaling: agents ingest observed log errors and performance metrics (latency, error rates, resource saturation), form hypotheses about root causes, and run targeted stability and load tests to reproduce issues and validate fixes and capacity limits.
 - Overhauled Datadog observability across multiple engineering teams — consolidated SLOs, standardized monitor tagging/routing, and cut alert noise by retiring hundreds of low-signal alerts; shipped RUM dashboards and team-based on-call schedules.
 - ArgoCD SME — own the GitOps delivery pipeline; resolved repo-server timeouts and CMP stability issues causing production sync failures, and improved reliability via automated post-merge sync refresh, Helm-based RBAC, and Terraform Workload Identity Federation.
 - Implemented Atlantis for PR-driven Terraform workflows, improving visibility and enforcing approval processes.
@@ -52,7 +54,7 @@ PROFESSIONAL EXPERIENCE
 
 ### SPECIAL PROJECTS
 
-- **Personal Homelab Platform (2024 – Present)** Multi-node Kubernetes platform (Proxmox/K3s) with GitOps (ArgoCD/Terraform), full Prometheus/Grafana/Loki observability.
+- **Personal Homelab Platform (2024 – Present)** Multi-node Kubernetes platform (Proxmox/K3s) with GitOps (ArgoCD/Terraform), full Prometheus/Grafana/Loki observability; agentic workflows read observed log errors and performance metrics to drive stability and scaling tests.
 - **ark31.info (2025 – Present)** Personal site and portfolio: Hugo with a custom theme and a Go backend on GCP Cloud Run.
 
 EDUCATION
